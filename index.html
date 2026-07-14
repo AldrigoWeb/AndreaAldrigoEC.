@@ -133,6 +133,14 @@
     height:100%;
     opacity: 0.9;
   }
+  .hero-illustration img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  }
+  .hero-illustration::after{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(32,42,26,0.25) 0%, rgba(32,42,26,0.7) 100%);
+  }
   .hero-inner{
     position: relative;
     z-index: 2;
@@ -270,12 +278,19 @@
   /* Galleria */
   .gallery-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .gph{
+    position: relative;
     aspect-ratio: 4/3; border: 1.5px dashed rgba(51,66,43,0.35); border-radius: var(--radius);
     background: var(--paper-warm); display:flex; flex-direction: column; align-items:center;
     justify-content:center; gap: 10px; color: var(--ink-soft); text-align:center; padding: 20px;
+    overflow: hidden;
   }
   .gph svg{ width: 34px; height:34px; color: var(--field-green); opacity: 0.55; }
   .gph .cap{ font-family:'Space Mono', monospace; font-size: 11.5px; letter-spacing: 0.04em; }
+  .gph .filename{ display:block; margin-top:4px; font-size: 10px; opacity: 0.6; }
+  .gph img{
+    position: absolute; inset:0; width:100%; height:100%;
+    object-fit: cover; z-index: 3;
+  }
   .gallery-note{ margin-top: 18px; font-size: 13.5px; color: var(--ink-soft); font-style: italic; }
 
   /* Contatti */
@@ -355,6 +370,7 @@
 
 <section class="hero">
   <div class="hero-illustration" aria-hidden="true">
+    <img data-name="hero" alt="">
     <svg viewBox="0 0 1200 620" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
       <circle cx="980" cy="120" r="90" fill="var(--wheat)" opacity="0.18"/>
       <!-- distant hills -->
@@ -389,8 +405,8 @@
       <span style="width:22px;height:1px;background:var(--wheat-light);display:inline-block;margin-right:-8px"></span>
       Pernumia, tra Bassa Padovana e Colli Euganei
     </div>
-    <h1>Al servizio della terra, <em>da sempre.</em></h1>
-    <p class="lead">Sementi, prodotti fitosanitari e concimi — dal granulare alla fertirrigazione, fino ai grandi formati in sacconi — per le aziende agricole del territorio.</p>
+    <h1>Al fianco degli agricoltori, <em>generazione dopo generazione.</em></h1>
+    <p class="lead">Forniamo prodotti e servizi per una gestione efficiente delle colture: sementi, difesa fitosanitaria, nutrizione, fertirrigazione e supporto nella gestione del Quaderno di Campagna.</p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="#contatti">Vieni a trovarci</a>
       <a class="btn btn-ghost" href="#prodotti">Cosa trattiamo →</a>
@@ -406,7 +422,7 @@
     </div>
     <div class="fact">
       <span class="label">Attività</span>
-      <span class="value">Sementi, fitosanitari, concimi e fertirrigazione</span>
+      <span class="value">Gestione e fornitura di sementi, prodotti fitosanitari, concimi, soluzioni di fertirrigazione e supporto alla compilazione del Quaderno di Campagna.”</span>
     </div>
     <div class="fact">
       <span class="label">Collaborazioni</span>
@@ -462,8 +478,8 @@
       </div>
       <div class="card">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
-        <h3>Sacconi</h3>
-        <p>Fornitura in grandi formati per le esigenze di volume delle aziende agricole.</p>
+        <h3>Assistenza QdC</h3>
+        <p>I nostri tecnici seguono ogni azienda con un approccio concreto e personalizzato, supportandola anche nella corretta compilazione e gestione del Quaderno di Campagna.</p>
       </div>
     </div>
   </div>
@@ -543,12 +559,30 @@
       <p>Uno sguardo al negozio e al magazzino — foto e video reali in arrivo.</p>
     </div>
     <div class="gallery-grid">
-      <div class="gph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="12" rx="1"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span class="cap">FOTO NEGOZIO</span></div>
-      <div class="gph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M12 3v18"/></svg><span class="cap">FOTO SEMENTI</span></div>
-      <div class="gph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v4l3 3v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-9l3-3V3Z"/><path d="M9 12h6M9 16h6"/></svg><span class="cap">FOTO FITOSANITARI</span></div>
-      <div class="gph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="2"/><circle cx="17" cy="7" r="2"/><circle cx="12" cy="14" r="2"/><path d="M12 16v5M7 9v3l4 2M17 9v3l-4 2"/></svg><span class="cap">FOTO CONCIMI</span></div>
-      <div class="gph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cap">FOTO SACCONI</span></div>
-      <div class="gph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M9 4v16"/></svg><span class="cap">FOTO MAGAZZINO</span></div>
+      <div class="gph">
+        <img data-name="negozio" alt="Negozio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="12" rx="1"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span class="cap">FOTO NEGOZIO<br><span class="filename">images/negozio.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="sementi" alt="Sementi">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M12 3v18"/></svg><span class="cap">FOTO SEMENTI<br><span class="filename">images/sementi.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="fitosanitari" alt="Prodotti fitosanitari">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v4l3 3v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-9l3-3V3Z"/><path d="M9 12h6M9 16h6"/></svg><span class="cap">FOTO FITOSANITARI<br><span class="filename">images/fitosanitari.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="concimi" alt="Concimi">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="2"/><circle cx="17" cy="7" r="2"/><circle cx="12" cy="14" r="2"/><path d="M12 16v5M7 9v3l4 2M17 9v3l-4 2"/></svg><span class="cap">FOTO CONCIMI<br><span class="filename">images/concimi.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="sacconi" alt="Sacconi">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cap">FOTO SACCONI<br><span class="filename">images/sacconi.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="magazzino" alt="Magazzino">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M9 4v16"/></svg><span class="cap">FOTO MAGAZZINO<br><span class="filename">images/magazzino.jpg</span></span>
+      </div>
     </div>
     <p class="gallery-note">Spazi pronti per le foto e i video reali dell'attività — potrai aggiungerli tu in un secondo momento al posto dei segnaposto.</p>
   </div>
@@ -612,6 +646,21 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Prova automaticamente varie estensioni (jpg, jpeg, png, webp) per ogni
+  // immagine con attributo data-name, cercando in images/<nome>.<estensione>.
+  // Se nessuna versione esiste, il segnaposto resta visibile.
+  document.querySelectorAll('img[data-name]').forEach(function (img) {
+    var exts = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG'];
+    var i = 0;
+    function tryNext() {
+      if (i >= exts.length) { img.remove(); return; }
+      img.src = 'images/' + img.dataset.name + '.' + exts[i];
+      i++;
+    }
+    img.onerror = tryNext;
+    tryNext();
+  });
 </script>
 
 </body>
