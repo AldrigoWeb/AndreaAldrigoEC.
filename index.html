@@ -660,6 +660,10 @@
       img.src = 'images/' + img.dataset.name + '.' + exts[i];
       i++;
     }
+    img.onerror = tryNext;
+    tryNext();
+  });
+
   // Prova a caricare un video locale (videos/video.mp4, .webm, .mov).
   // Se lo trova, sostituisce il placeholder "Video di presentazione".
   (function () {
