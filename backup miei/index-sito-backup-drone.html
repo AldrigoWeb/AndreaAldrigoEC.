@@ -259,44 +259,30 @@
   .territorio-banner svg{ width:100%; height:100%; }
   .territorio-text{ max-width: 620px; margin-top: 40px; }
   .territorio-text p{ color: var(--ink-soft); font-size: 16px; margin-top: 14px; }
-
-  /* Focus dal campo: foto in evidenza di grandezze diverse, con didascalia */
-  .focus-grid{
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
-  }
-  .focus-item.large{ grid-column: 1 / -1; }
-  .focus-item.medium{ grid-column: span 2; }
-  .focus-media{
+  .video-block{
     position: relative;
-    overflow: hidden;
+    margin-top: 40px;
+    background: var(--field-green-dark);
     border-radius: var(--radius);
-    background: var(--paper-warm);
-    border: 1.5px dashed rgba(51,66,43,0.35);
+    aspect-ratio: 16/7;
+    max-height: 620px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+    color: var(--paper);
+    border: 1.5px dashed rgba(228,200,120,0.4);
+    transition: aspect-ratio 0.2s ease, max-width 0.2s ease;
   }
-  .focus-item.large .focus-media{ aspect-ratio: 21/8; }
-  .focus-item.medium .focus-media{ aspect-ratio: 4/3; }
-  .focus-media img{
-    position: absolute; inset: 0; width:100%; height:100%; object-fit: cover; z-index: 3;
+  .video-block.is-portrait{
+    aspect-ratio: 9/16;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .focus-placeholder{
-    position: absolute; inset: 0;
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
-    color: var(--ink-soft); text-align:center; padding: 16px;
+  .play-btn{
+    width:56px; height:56px; border-radius:50%; background: var(--wheat);
+    display:flex; align-items:center; justify-content:center;
   }
-  .focus-placeholder svg{ width: 28px; height: 28px; color: var(--field-green); opacity: 0.5; }
-  .focus-placeholder .cap{ font-family:'Space Mono', monospace; font-size: 11px; letter-spacing: 0.04em; }
-  .focus-placeholder .filename{ display:block; margin-top:4px; font-size: 10px; opacity: 0.6; }
-  .focus-caption{ margin-top: 12px; }
-  .focus-caption strong{ display:block; font-family:'Fraunces', serif; font-size: 15.5px; color: var(--ink); margin-bottom: 4px; }
-  .focus-caption p{ font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; margin: 0; }
-  @media (max-width: 760px){
-    .focus-grid{ grid-template-columns: 1fr; }
-    .focus-item.medium{ grid-column: 1; }
-    .focus-item.large .focus-media{ aspect-ratio: 4/3; }
-  }
+  .play-btn svg{ width:20px; height:20px; color: var(--field-green-dark); }
+  .video-block .cap{ font-family:'Space Mono', monospace; font-size: 12px; letter-spacing:0.05em; color:#D6D0BC; text-align:center; padding:0 20px; }
 
   /* Galleria */
   .gallery-slider{ position: relative; }
@@ -428,7 +414,7 @@
   :focus-visible{ outline: 2.5px solid var(--rust); outline-offset: 2px; }
 
   /* ---------- LIGHTBOX ---------- */
-  .gph img, .focus-media img{ cursor: zoom-in; }
+  .gph img{ cursor: zoom-in; }
   #lightbox{
     position: fixed; inset: 0; z-index: 200;
     background: rgba(20,17,11,0.94);
@@ -826,79 +812,18 @@
       </svg>
     </div>
     <div class="territorio-text">
-      <p>Da Pernumia, siamo vicini alle aziende agricole della Bassa Padovana e ai vigneti dei Colli Euganei — un territorio che conosciamo passo per passo, tra pianura coltivata e prime colline.</p>
+      <p>Da Pernumia siamo vicini alle realtà agricole della Bassa Padovana, un territorio che conosciamo profondamente e in cui lavoriamo ogni giorno.
+
+Affianchiamo aziende agricole, serre e vivai con forniture puntuali e un servizio diretto, costruendo rapporti basati sulla fiducia, sulla disponibilità e sulla conoscenza concreta delle esigenze del settore.
+</p>
       <p>Lavoriamo con aziende agricole, serre e vivai della zona, offrendo forniture puntuali e un rapporto diretto, senza intermediari.</p>
     </div>
-    <div class="focus-grid">
-      <figure class="focus-item large">
-        <div class="focus-media">
-          <img data-name="focus1" alt="Scaphoideus titanus su foglia di vite">
-          <div class="focus-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
-            <span class="cap">FOTO IN EVIDENZA<br><span class="filename">images/focus1.jpg</span></span>
-          </div>
-        </div>
-        <figcaption class="focus-caption">
-          <strong>Scaphoideus titanus</strong>
-          <p>Il vettore della flavescenza dorata nei vigneti dei Colli Euganei: riconoscerlo per tempo è il primo passo della difesa fitosanitaria.</p>
-        </figcaption>
-      </figure>
-
-      <figure class="focus-item medium">
-        <div class="focus-media">
-          <img data-name="focus2" alt="Bombi impollinatori al lavoro">
-          <div class="focus-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
-            <span class="cap">FOTO IN EVIDENZA<br><span class="filename">images/focus2.jpg</span></span>
-          </div>
-        </div>
-        <figcaption class="focus-caption">
-          <strong>Bombi impollinatori</strong>
-          <p>In serra e in pieno campo, restano preziosi alleati per l'allegagione di molte colture.</p>
-        </figcaption>
-      </figure>
-
-      <figure class="focus-item medium">
-        <div class="focus-media">
-          <img data-name="focus3" alt="Foto in evidenza">
-          <div class="focus-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
-            <span class="cap">FOTO IN EVIDENZA<br><span class="filename">images/focus3.jpg</span></span>
-          </div>
-        </div>
-        <figcaption class="focus-caption">
-          <strong>Titolo foto</strong>
-          <p>Breve descrizione — sostituiscila con le vostre note dal campo.</p>
-        </figcaption>
-      </figure>
-
-      <figure class="focus-item medium">
-        <div class="focus-media">
-          <img data-name="focus4" alt="Foto in evidenza">
-          <div class="focus-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
-            <span class="cap">FOTO IN EVIDENZA<br><span class="filename">images/focus4.jpg</span></span>
-          </div>
-        </div>
-        <figcaption class="focus-caption">
-          <strong>Titolo foto</strong>
-          <p>Breve descrizione — sostituiscila con le vostre note dal campo.</p>
-        </figcaption>
-      </figure>
-
-      <figure class="focus-item medium">
-        <div class="focus-media">
-          <img data-name="focus5" alt="Foto in evidenza">
-          <div class="focus-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
-            <span class="cap">FOTO IN EVIDENZA<br><span class="filename">images/focus5.jpg</span></span>
-          </div>
-        </div>
-        <figcaption class="focus-caption">
-          <strong>Titolo foto</strong>
-          <p>Breve descrizione — sostituiscila con le vostre note dal campo.</p>
-        </figcaption>
-      </figure>
+    <div class="video-block" id="video-block">
+      <video id="site-video" controls playsinline style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:var(--radius);"></video>
+      <div class="play-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <span class="cap">VIDEO DI PRESENTAZIONE — spazio pronto per il vostro video<br><span class="filename">videos/video.mp4</span></span>
     </div>
   </div>
 </section>
@@ -1018,6 +943,33 @@
     tryNext();
   });
 
+  // Prova a caricare un video locale (videos/video.mp4, .webm, .mov).
+  // Se lo trova, sostituisce il placeholder "Video di presentazione".
+  (function () {
+    var video = document.getElementById('site-video');
+    var block = document.getElementById('video-block');
+    var exts = ['mp4', 'webm', 'mov', 'MP4', 'MOV'];
+    var i = 0;
+    function tryNext() {
+      if (i >= exts.length) return; // nessun video trovato: resta il placeholder
+      video.src = 'videos/video.' + exts[i];
+      i++;
+      video.load();
+    }
+    video.addEventListener('error', tryNext);
+    video.addEventListener('loadedmetadata', function () {
+      block.style.aspectRatio = video.videoWidth + ' / ' + video.videoHeight;
+      if (video.videoHeight > video.videoWidth) {
+        block.classList.add('is-portrait');
+      }
+    });
+    video.addEventListener('loadeddata', function () {
+      video.style.display = 'block';
+      block.querySelectorAll('.play-btn, .cap').forEach(function (el) { el.style.display = 'none'; });
+    });
+    tryNext();
+  })();
+
   // Frecce di scorrimento della galleria
   (function () {
     var grid = document.getElementById('gallery-grid');
@@ -1046,7 +998,7 @@
     }
 
     document.addEventListener('click', function (e) {
-      var img = e.target.closest('.gph img[data-name], .focus-media img[data-name]');
+      var img = e.target.closest('.gph img[data-name]');
       if (img && img.src) openLightbox(img.src, img.alt);
     });
     closeBtn.addEventListener('click', closeLightbox);
