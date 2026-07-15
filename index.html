@@ -265,9 +265,17 @@
     background: var(--field-green-dark);
     border-radius: var(--radius);
     aspect-ratio: 16/7;
+    max-height: 620px;
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
     color: var(--paper);
     border: 1.5px dashed rgba(228,200,120,0.4);
+    transition: aspect-ratio 0.2s ease, max-width 0.2s ease;
+  }
+  .video-block.is-portrait{
+    aspect-ratio: 9/16;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .play-btn{
     width:56px; height:56px; border-radius:50%; background: var(--wheat);
@@ -277,7 +285,28 @@
   .video-block .cap{ font-family:'Space Mono', monospace; font-size: 12px; letter-spacing:0.05em; color:#D6D0BC; text-align:center; padding:0 20px; }
 
   /* Galleria */
-  .gallery-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .gallery-slider{ position: relative; }
+  .gallery-grid{
+    display:flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding-bottom: 8px; scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .gallery-grid::-webkit-scrollbar{ display:none; }
+  .gph{ flex: 0 0 auto; width: 300px; scroll-snap-align: start; }
+  .gallery-arrow{
+    position:absolute; top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px; border-radius: 50%; background: #fff;
+    border: 1px solid rgba(36,31,23,0.14); display:flex; align-items:center; justify-content:center;
+    cursor:pointer; z-index: 5; box-shadow: 0 4px 14px rgba(36,31,23,0.12);
+    transition: background 0.15s ease;
+  }
+  .gallery-arrow:hover{ background: var(--paper-warm); }
+  .gallery-arrow svg{ width: 18px; height:18px; color: var(--field-green-dark); }
+  .gallery-arrow.prev{ left: -14px; }
+  .gallery-arrow.next{ right: -14px; }
+  @media (max-width: 620px){
+    .gallery-arrow{ display:none; }
+    .gph{ width: 78vw; }
+  }
   .gph{
     position: relative;
     aspect-ratio: 4/3; border: 1.5px dashed rgba(51,66,43,0.35); border-radius: var(--radius);
@@ -335,13 +364,11 @@
     .about-grid{ grid-template-columns: 1fr; gap: 30px; }
     .cards{ grid-template-columns: repeat(2, 1fr); }
     .cra .wrap{ grid-template-columns: 1fr; }
-    .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
     .contact-grid{ grid-template-columns: 1fr; }
     .territorio-banner{ height: 200px; }
   }
   @media (max-width: 520px){
     .cards{ grid-template-columns: 1fr; }
-    .gallery-grid{ grid-template-columns: 1fr; }
     .wrap, .nav-row{ padding-left: 20px; padding-right: 20px; }
   }
 
@@ -560,31 +587,215 @@
       <h2>La stagione raccontata dal campo</h2>
       <p>Gli scatti che ci mandano i nostri clienti e quelli che i nostri tecnici raccolgono durante i sopralluoghi in azienda.</p>
     </div>
-    <div class="gallery-grid">
+    <div class="gallery-slider">
+      <button class="gallery-arrow prev" id="gal-prev" aria-label="Foto precedenti">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="gallery-arrow next" id="gal-next" aria-label="Foto successive">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+      <div class="gallery-grid" id="gallery-grid">
       <div class="gph">
-        <img data-name="campo" alt="Coltura in campo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3C7 3 4 8 4 13c0 4 3 7 8 7s8-3 8-7c0-5-3-10-8-10Z"/><path d="M12 21V9"/></svg><span class="cap">COLTURE IN CAMPO<br><span class="filename">images/campo.jpg</span></span>
+        <img data-name="extra1" alt="Foto 1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 1<br><span class="filename">images/extra1.jpg</span></span>
       </div>
       <div class="gph">
-        <img data-name="semina" alt="Semina">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20 10 6M10 20 14 6M14 20 20 6"/></svg><span class="cap">SEMINA<br><span class="filename">images/semina.jpg</span></span>
+        <img data-name="extra2" alt="Foto 2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 2<br><span class="filename">images/extra2.jpg</span></span>
       </div>
       <div class="gph">
-        <img data-name="trattamento" alt="Trattamento in corso">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11Z"/></svg><span class="cap">TRATTAMENTO IN CORSO<br><span class="filename">images/trattamento.jpg</span></span>
+        <img data-name="extra3" alt="Foto 3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 3<br><span class="filename">images/extra3.jpg</span></span>
       </div>
       <div class="gph">
-        <img data-name="sopralluogo" alt="Sopralluogo tecnico">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="6"/><path d="M21 21l-5.5-5.5"/></svg><span class="cap">SOPRALLUOGO TECNICO<br><span class="filename">images/sopralluogo.jpg</span></span>
+        <img data-name="extra4" alt="Foto 4">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 4<br><span class="filename">images/extra4.jpg</span></span>
       </div>
       <div class="gph">
-        <img data-name="cliente" alt="Foto inviata da un cliente">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO DI UN CLIENTE<br><span class="filename">images/cliente.jpg</span></span>
+        <img data-name="extra5" alt="Foto 5">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 5<br><span class="filename">images/extra5.jpg</span></span>
       </div>
       <div class="gph">
-        <img data-name="stagione" alt="Un momento della stagione">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg><span class="cap">UN MOMENTO DELLA STAGIONE<br><span class="filename">images/stagione.jpg</span></span>
+        <img data-name="extra6" alt="Foto 6">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 6<br><span class="filename">images/extra6.jpg</span></span>
       </div>
+      <div class="gph">
+        <img data-name="extra7" alt="Foto 7">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 7<br><span class="filename">images/extra7.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra8" alt="Foto 8">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 8<br><span class="filename">images/extra8.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra9" alt="Foto 9">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 9<br><span class="filename">images/extra9.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra10" alt="Foto 10">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 10<br><span class="filename">images/extra10.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra11" alt="Foto 11">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 11<br><span class="filename">images/extra11.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra12" alt="Foto 12">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 12<br><span class="filename">images/extra12.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra13" alt="Foto 13">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 13<br><span class="filename">images/extra13.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra14" alt="Foto 14">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 14<br><span class="filename">images/extra14.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra15" alt="Foto 15">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 15<br><span class="filename">images/extra15.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra16" alt="Foto 16">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 16<br><span class="filename">images/extra16.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra17" alt="Foto 17">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 17<br><span class="filename">images/extra17.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra18" alt="Foto 18">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 18<br><span class="filename">images/extra18.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra19" alt="Foto 19">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 19<br><span class="filename">images/extra19.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra20" alt="Foto 20">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 20<br><span class="filename">images/extra20.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra21" alt="Foto 21">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 21<br><span class="filename">images/extra21.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra22" alt="Foto 22">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 22<br><span class="filename">images/extra22.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra23" alt="Foto 23">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 23<br><span class="filename">images/extra23.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra24" alt="Foto 24">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 24<br><span class="filename">images/extra24.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra25" alt="Foto 25">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 25<br><span class="filename">images/extra25.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra26" alt="Foto 26">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 26<br><span class="filename">images/extra26.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra27" alt="Foto 27">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 27<br><span class="filename">images/extra27.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra28" alt="Foto 28">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 28<br><span class="filename">images/extra28.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra29" alt="Foto 29">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 29<br><span class="filename">images/extra29.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra30" alt="Foto 30">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 30<br><span class="filename">images/extra30.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra31" alt="Foto 31">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 31<br><span class="filename">images/extra31.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra32" alt="Foto 32">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 32<br><span class="filename">images/extra32.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra33" alt="Foto 33">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 33<br><span class="filename">images/extra33.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra34" alt="Foto 34">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 34<br><span class="filename">images/extra34.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra35" alt="Foto 35">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 35<br><span class="filename">images/extra35.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra36" alt="Foto 36">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 36<br><span class="filename">images/extra36.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra37" alt="Foto 37">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 37<br><span class="filename">images/extra37.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra38" alt="Foto 38">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 38<br><span class="filename">images/extra38.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra39" alt="Foto 39">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 39<br><span class="filename">images/extra39.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra40" alt="Foto 40">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 40<br><span class="filename">images/extra40.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra41" alt="Foto 41">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 41<br><span class="filename">images/extra41.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra42" alt="Foto 42">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 42<br><span class="filename">images/extra42.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra43" alt="Foto 43">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 43<br><span class="filename">images/extra43.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra44" alt="Foto 44">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 44<br><span class="filename">images/extra44.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra45" alt="Foto 45">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 45<br><span class="filename">images/extra45.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra46" alt="Foto 46">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 46<br><span class="filename">images/extra46.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra47" alt="Foto 47">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 47<br><span class="filename">images/extra47.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra48" alt="Foto 48">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 48<br><span class="filename">images/extra48.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra49" alt="Foto 49">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 49<br><span class="filename">images/extra49.jpg</span></span>
+      </div>
+      <div class="gph">
+        <img data-name="extra50" alt="Foto 50">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO 50<br><span class="filename">images/extra50.jpg</span></span>
+      </div>
+    </div>
     </div>
     <p class="gallery-note">Uno spazio pensato per crescere con il tempo: ogni foto che arriva da un cliente o da un sopralluogo può prendere il posto di un segnaposto.</p>
   </div>
@@ -678,11 +889,28 @@
       video.load();
     }
     video.addEventListener('error', tryNext);
+    video.addEventListener('loadedmetadata', function () {
+      block.style.aspectRatio = video.videoWidth + ' / ' + video.videoHeight;
+      if (video.videoHeight > video.videoWidth) {
+        block.classList.add('is-portrait');
+      }
+    });
     video.addEventListener('loadeddata', function () {
       video.style.display = 'block';
       block.querySelectorAll('.play-btn, .cap').forEach(function (el) { el.style.display = 'none'; });
     });
     tryNext();
+  })();
+
+  // Frecce di scorrimento della galleria
+  (function () {
+    var grid = document.getElementById('gallery-grid');
+    var prev = document.getElementById('gal-prev');
+    var next = document.getElementById('gal-next');
+    if (!grid || !prev || !next) return;
+    var step = 318; // larghezza tile + gap
+    prev.addEventListener('click', function () { grid.scrollBy({ left: -step, behavior: 'smooth' }); });
+    next.addEventListener('click', function () { grid.scrollBy({ left: step, behavior: 'smooth' }); });
   })();
 </script>
 
