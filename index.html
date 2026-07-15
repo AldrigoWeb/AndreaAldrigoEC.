@@ -260,6 +260,7 @@
   .territorio-text{ max-width: 620px; margin-top: 40px; }
   .territorio-text p{ color: var(--ink-soft); font-size: 16px; margin-top: 14px; }
   .video-block{
+    position: relative;
     margin-top: 40px;
     background: var(--field-green-dark);
     border-radius: var(--radius);
@@ -405,8 +406,8 @@
       <span style="width:22px;height:1px;background:var(--wheat-light);display:inline-block;margin-right:-8px"></span>
       Pernumia, tra Bassa Padovana e Colli Euganei
     </div>
-    <h1>Al fianco degli agricoltori, <em>generazione dopo generazione.</em></h1>
-    <p class="lead">Forniamo prodotti e servizi per una gestione efficiente delle colture: sementi, difesa fitosanitaria, nutrizione, fertirrigazione e supporto nella gestione del Quaderno di Campagna.</p>
+    <h1>Al servizio della terra, <em>da sempre.</em></h1>
+    <p class="lead">Sementi, prodotti fitosanitari e concimi — dal granulare alla fertirrigazione, fino ai grandi formati in sacconi — per le aziende agricole del territorio.</p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="#contatti">Vieni a trovarci</a>
       <a class="btn btn-ghost" href="#prodotti">Cosa trattiamo →</a>
@@ -422,7 +423,7 @@
     </div>
     <div class="fact">
       <span class="label">Attività</span>
-      <span class="value">Gestione e fornitura di sementi, prodotti fitosanitari, concimi, soluzioni di fertirrigazione e supporto alla compilazione del Quaderno di Campagna.”</span>
+      <span class="value">Sementi, fitosanitari, concimi e fertirrigazione</span>
     </div>
     <div class="fact">
       <span class="label">Collaborazioni</span>
@@ -478,8 +479,8 @@
       </div>
       <div class="card">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
-        <h3>Assistenza QdC</h3>
-        <p>I nostri tecnici seguono ogni azienda con un approccio concreto e personalizzato, supportandola anche nella corretta compilazione e gestione del Quaderno di Campagna.</p>
+        <h3>Sacconi</h3>
+        <p>Fornitura in grandi formati per le esigenze di volume delle aziende agricole.</p>
       </div>
     </div>
   </div>
@@ -542,11 +543,12 @@
       <p>Da Pernumia, siamo vicini alle aziende agricole della Bassa Padovana e ai vigneti dei Colli Euganei — un territorio che conosciamo passo per passo, tra pianura coltivata e prime colline.</p>
       <p>Lavoriamo con aziende agricole, serre e vivai della zona, offrendo forniture puntuali e un rapporto diretto, senza intermediari.</p>
     </div>
-    <div class="video-block">
+    <div class="video-block" id="video-block">
+      <video id="site-video" controls playsinline style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:var(--radius);"></video>
       <div class="play-btn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
       </div>
-      <span class="cap">VIDEO DI PRESENTAZIONE — spazio pronto per il vostro video</span>
+      <span class="cap">VIDEO DI PRESENTAZIONE — spazio pronto per il vostro video<br><span class="filename">videos/video.mp4</span></span>
     </div>
   </div>
 </section>
@@ -554,37 +556,37 @@
 <section id="galleria">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">Galleria</div>
-      <h2>Il nostro punto vendita</h2>
-      <p>Uno sguardo al negozio e al magazzino — foto e video reali in arrivo.</p>
+      <div class="eyebrow">Dal campo</div>
+      <h2>La stagione raccontata dal campo</h2>
+      <p>Gli scatti che ci mandano i nostri clienti e quelli che i nostri tecnici raccolgono durante i sopralluoghi in azienda.</p>
     </div>
     <div class="gallery-grid">
       <div class="gph">
-        <img data-name="negozio" alt="Negozio">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="12" rx="1"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span class="cap">FOTO NEGOZIO<br><span class="filename">images/negozio.jpg</span></span>
+        <img data-name="campo" alt="Coltura in campo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3C7 3 4 8 4 13c0 4 3 7 8 7s8-3 8-7c0-5-3-10-8-10Z"/><path d="M12 21V9"/></svg><span class="cap">COLTURE IN CAMPO<br><span class="filename">images/campo.jpg</span></span>
       </div>
       <div class="gph">
-        <img data-name="sementi" alt="Sementi">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M12 3v18"/></svg><span class="cap">FOTO SEMENTI<br><span class="filename">images/sementi.jpg</span></span>
+        <img data-name="semina" alt="Semina">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20 10 6M10 20 14 6M14 20 20 6"/></svg><span class="cap">SEMINA<br><span class="filename">images/semina.jpg</span></span>
       </div>
       <div class="gph">
-        <img data-name="fitosanitari" alt="Prodotti fitosanitari">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v4l3 3v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-9l3-3V3Z"/><path d="M9 12h6M9 16h6"/></svg><span class="cap">FOTO FITOSANITARI<br><span class="filename">images/fitosanitari.jpg</span></span>
+        <img data-name="trattamento" alt="Trattamento in corso">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11Z"/></svg><span class="cap">TRATTAMENTO IN CORSO<br><span class="filename">images/trattamento.jpg</span></span>
       </div>
       <div class="gph">
-        <img data-name="concimi" alt="Concimi">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="2"/><circle cx="17" cy="7" r="2"/><circle cx="12" cy="14" r="2"/><path d="M12 16v5M7 9v3l4 2M17 9v3l-4 2"/></svg><span class="cap">FOTO CONCIMI<br><span class="filename">images/concimi.jpg</span></span>
+        <img data-name="sopralluogo" alt="Sopralluogo tecnico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="6"/><path d="M21 21l-5.5-5.5"/></svg><span class="cap">SOPRALLUOGO TECNICO<br><span class="filename">images/sopralluogo.jpg</span></span>
       </div>
       <div class="gph">
-        <img data-name="sacconi" alt="Sacconi">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cap">FOTO SACCONI<br><span class="filename">images/sacconi.jpg</span></span>
+        <img data-name="cliente" alt="Foto inviata da un cliente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="cap">FOTO DI UN CLIENTE<br><span class="filename">images/cliente.jpg</span></span>
       </div>
       <div class="gph">
-        <img data-name="magazzino" alt="Magazzino">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M9 4v16"/></svg><span class="cap">FOTO MAGAZZINO<br><span class="filename">images/magazzino.jpg</span></span>
+        <img data-name="stagione" alt="Un momento della stagione">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg><span class="cap">UN MOMENTO DELLA STAGIONE<br><span class="filename">images/stagione.jpg</span></span>
       </div>
     </div>
-    <p class="gallery-note">Spazi pronti per le foto e i video reali dell'attività — potrai aggiungerli tu in un secondo momento al posto dei segnaposto.</p>
+    <p class="gallery-note">Uno spazio pensato per crescere con il tempo: ogni foto che arriva da un cliente o da un sopralluogo può prendere il posto di un segnaposto.</p>
   </div>
 </section>
 
@@ -658,9 +660,26 @@
       img.src = 'images/' + img.dataset.name + '.' + exts[i];
       i++;
     }
-    img.onerror = tryNext;
+  // Prova a caricare un video locale (videos/video.mp4, .webm, .mov).
+  // Se lo trova, sostituisce il placeholder "Video di presentazione".
+  (function () {
+    var video = document.getElementById('site-video');
+    var block = document.getElementById('video-block');
+    var exts = ['mp4', 'webm', 'mov', 'MP4', 'MOV'];
+    var i = 0;
+    function tryNext() {
+      if (i >= exts.length) return; // nessun video trovato: resta il placeholder
+      video.src = 'videos/video.' + exts[i];
+      i++;
+      video.load();
+    }
+    video.addEventListener('error', tryNext);
+    video.addEventListener('loadeddata', function () {
+      video.style.display = 'block';
+      block.querySelectorAll('.play-btn, .cap').forEach(function (el) { el.style.display = 'none'; });
+    });
     tryNext();
-  });
+  })();
 </script>
 
 </body>
