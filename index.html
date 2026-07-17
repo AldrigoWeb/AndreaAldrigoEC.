@@ -179,18 +179,46 @@
   .btn-ghost{ border-color: rgba(240,235,221,0.4); color: var(--paper); }
   .btn-ghost:hover{ border-color: var(--paper); }
 
-  /* ---------- FACTS STRIP ---------- */
-  .facts{ background: var(--paper-warm); border-bottom: 1px solid rgba(36,31,23,0.1); }
-  .facts-row{
-    max-width: 1140px; margin: 0 auto; padding: 26px 32px;
-    display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  /* ---------- PARTNER LOGO MARQUEE ---------- */
+  .partners{ background: var(--paper-warm); border-bottom: 1px solid rgba(36,31,23,0.1); padding: 22px 0; }
+  .partners-label{
+    font-family:'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--rust); margin-bottom: 16px;
   }
-  .fact{ padding-left: 16px; border-left: 2px solid var(--wheat); }
-  .fact .label{
-    font-family:'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--rust); display:block; margin-bottom: 4px;
+  .partners-viewport{ overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .partners-track{
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    width: max-content;
+    animation: partners-scroll 26s linear infinite;
   }
-  .fact .value{ font-size: 15.5px; font-weight: 600; color: var(--ink); }
+  .partners-viewport:hover .partners-track{ animation-play-state: paused; }
+  .partner-logo{
+    flex: 0 0 auto;
+    height: 68px;
+    min-width: 130px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .partner-logo img{
+    position: absolute; inset: 0; margin: auto;
+    height: 100%; width: auto; object-fit: contain;
+    filter: grayscale(1) opacity(0.55);
+    transition: filter 0.2s ease;
+    z-index: 2;
+  }
+  .partner-logo:hover img{ filter: grayscale(0) opacity(1); }
+  .partner-logo .ph{
+    font-family:'Space Mono', monospace; font-size: 12px; letter-spacing: 0.08em;
+    color: var(--ink-soft); opacity: 0.45;
+    border: 1.5px dashed rgba(51,66,43,0.3);
+    padding: 10px 22px; border-radius: var(--radius);
+  }
+  @keyframes partners-scroll{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
 
   /* ---------- SECTIONS GENERIC ---------- */
   section{ padding: 90px 0; }
@@ -413,7 +441,6 @@
       flex-direction: column; padding: 18px 32px 26px; gap: 16px; border-bottom: 3px solid var(--wheat);
     }
     .hero-inner{ padding-top: 70px; }
-    .facts-row{ grid-template-columns: 1fr; }
     .about-grid{ grid-template-columns: 1fr; gap: 30px; }
     .cards{ grid-template-columns: repeat(2, 1fr); }
     .cra .wrap{ grid-template-columns: 1fr; }
@@ -539,19 +566,27 @@
   </div>
 </section>
 
-<div class="facts">
-  <div class="facts-row">
-    <div class="fact">
-      <span class="label">Sede</span>
-      <span class="value">Via Monselice, 2 — Pernumia (PD)</span>
-    </div>
-    <div class="fact">
-      <span class="label">Attività</span>
-      <span class="value">Sementi, Fitosanitari, Analisi del Terreno, Analisi Fogliare, Piani di Concimazione Personalizzati</span>
-    </div>
-    <div class="fact">
-      <span class="label">Collaborazioni</span>
-      <span class="value">Consorzio CRA</span>
+<div class="partners">
+  <div class="wrap">
+    <div class="partners-label">I nostri partner</div>
+  </div>
+  <div class="partners-viewport">
+    <div class="partners-track">
+      <div class="partner-logo"><img data-name="partner-cra" alt="Consorzio CRA"><span class="ph">CRA</span></div>
+      <div class="partner-logo"><img data-name="partner1" alt="Partner"><span class="ph">LOGO</span></div>
+      <div class="partner-logo"><img data-name="partner2" alt="Partner"><span class="ph">LOGO</span></div>
+      <div class="partner-logo"><img data-name="partner3" alt="Partner"><span class="ph">LOGO</span></div>
+      <div class="partner-logo"><img data-name="partner4" alt="Partner"><span class="ph">LOGO</span></div>
+      <div class="partner-logo"><img data-name="partner5" alt="Partner"><span class="ph">LOGO</span></div>
+      <div class="partner-logo"><img data-name="partner6" alt="Partner"><span class="ph">LOGO</span></div>
+      <!-- duplicato per il loop continuo -->
+      <div class="partner-logo" aria-hidden="true"><img data-name="partner-cra" alt=""><span class="ph">CRA</span></div>
+      <div class="partner-logo" aria-hidden="true"><img data-name="partner1" alt=""><span class="ph">LOGO</span></div>
+      <div class="partner-logo" aria-hidden="true"><img data-name="partner2" alt=""><span class="ph">LOGO</span></div>
+      <div class="partner-logo" aria-hidden="true"><img data-name="partner3" alt=""><span class="ph">LOGO</span></div>
+      <div class="partner-logo" aria-hidden="true"><img data-name="partner4" alt=""><span class="ph">LOGO</span></div>
+      <div class="partner-logo" aria-hidden="true"><img data-name="partner5" alt=""><span class="ph">LOGO</span></div>
+      <div class="partner-logo" aria-hidden="true"><img data-name="partner6" alt=""><span class="ph">LOGO</span></div>
     </div>
   </div>
 </div>
@@ -1042,6 +1077,14 @@
       i++;
     }
     img.onerror = tryNext;
+    img.onload = function () {
+      // Immagine caricata con successo: nasconde del tutto il segnaposto
+      // (icona/testo), utile soprattutto per i loghi con sfondo trasparente.
+      var parent = img.parentElement;
+      Array.prototype.forEach.call(parent.children, function (el) {
+        if (el !== img) el.style.display = 'none';
+      });
+    };
     tryNext();
   });
 
