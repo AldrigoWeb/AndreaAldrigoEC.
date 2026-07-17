@@ -243,8 +243,9 @@
   .field-list .v{ font-weight: 600; text-align:right; }
 
   /* Prodotti e Servizi */
-  .cards{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .cards{ display:grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 22px; }
   .card{
+    position: relative;
     background: #fff; border: 1px solid rgba(36,31,23,0.1); border-radius: var(--radius);
     padding: 30px 24px; transition: border-color 0.15s ease, transform 0.15s ease;
   }
@@ -252,6 +253,21 @@
   .card .icon{ width: 42px; height: 42px; margin-bottom: 20px; color: var(--field-green); }
   .card h3{ font-size: 18px; margin-bottom: 10px; }
   .card p{ font-size: 14.5px; color: var(--ink-soft); }
+  .card-featured{ border-color: rgba(200,155,60,0.5); }
+  .badge-new{
+    position: absolute;
+    top: -11px; right: 20px;
+    background: var(--rust);
+    color: var(--paper);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 5px 12px;
+    border-radius: var(--radius);
+    transform: rotate(3deg);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.18);
+  }
 
   /* CRA band */
   .cra{ background: var(--field-green-dark); color: var(--paper); }
@@ -333,7 +349,7 @@
     padding-bottom: 8px; scrollbar-width: none; -ms-overflow-style: none;
   }
   .gallery-grid::-webkit-scrollbar{ display:none; }
-  .gph{ flex: 0 0 auto; width: 300px; scroll-snap-align: start; }
+  .gph{ flex: 0 0 auto; width: 350px; scroll-snap-align: start; }
   .gallery-arrow{
     position:absolute; top: 50%; transform: translateY(-50%);
     width: 44px; height: 44px; border-radius: 50%; background: #fff;
@@ -414,6 +430,9 @@
     text-transform: uppercase; color: var(--rust); display:block; margin-bottom: 6px;
   }
   .contact-list .val{ font-size: 17px; font-weight: 600; }
+  .contact-list .contact-people{ display: flex; flex-direction: column; gap: 6px; }
+  .contact-list .contact-people a{ font-size: 16px; }
+  .contact-list .contact-people a:hover{ color: var(--field-green); }
   .contact-list a.val:hover{ color: var(--field-green); }
   .map-frame{
     width: 100%; height: 100%; min-height: 320px; border-radius: var(--radius);
@@ -893,8 +912,8 @@
           </div>
         </div>
         <figcaption class="focus-caption">
-          <strong>Scaphoideus titanus</strong>
-          <p>Il vettore della flavescenza dorata nei vigneti dei Colli Euganei: riconoscerlo per tempo è il primo passo della difesa fitosanitaria.</p>
+          <strong>Pinot Nero</strong>
+          <p>Grappolo di uva Pinot Nero osservato in vigneto, una varietà di pregio coltivata dai viticoltori.</p>
         </figcaption>
       </figure>
 
@@ -908,7 +927,7 @@
         </div>
         <figcaption class="focus-caption">
           <strong>Bombi impollinatori</strong>
-          <p>In serra e in pieno campo, restano preziosi alleati per l'allegagione di molte colture.</p>
+          <p>Box contenente colonie di bombi impollinatori destinati al supporto dell’attività di impollinazione.</p>
         </figcaption>
       </figure>
 
@@ -921,8 +940,8 @@
           </div>
         </div>
         <figcaption class="focus-caption">
-          <strong>Titolo foto</strong>
-          <p>Breve descrizione — sostituiscila con le vostre note dal campo.</p>
+          <strong>Bombo Impollinatore</strong>
+          <p>Bombo impegnato nell’impollinazione, un prezioso alleato per la biodiversità e l’equilibrio dell’ambiente agricolo.</p>
         </figcaption>
       </figure>
 
@@ -935,8 +954,8 @@
           </div>
         </div>
         <figcaption class="focus-caption">
-          <strong>Titolo foto</strong>
-          <p>Breve descrizione — sostituiscila con le vostre note dal campo.</p>
+          <strong>Grappolo di uva Glera</strong>
+          <p>Grappolo di uva Glera, una delle varietà simbolo della viticoltura del territorio.</p>
         </figcaption>
       </figure>
 
@@ -949,8 +968,8 @@
           </div>
         </div>
         <figcaption class="focus-caption">
-          <strong>Titolo foto</strong>
-          <p>Breve descrizione — sostituiscila con le vostre note dal campo.</p>
+          <strong>Trappole Monitoraggio Lepidotteri</strong>
+          <p>Sistema di monitoraggio dei lepidotteri mediante trappola a feromoni.</p>
         </figcaption>
       </figure>
     </div>
@@ -979,13 +998,19 @@
       </div>
       <div class="card">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="2"/><circle cx="17" cy="7" r="2"/><circle cx="12" cy="14" r="2"/><path d="M12 16v5M7 9v3l4 2M17 9v3l-4 2"/></svg>
-        <h3>Concimi</h3>
-        <p>Granulari, liquidi e soluzioni per la fertirrigazione, per ogni fase della coltura.</p>
+        <h3>Concimazione su misura</h3>
+        <p>Analizziamo il terreno, interpretiamo i risultati e definiamo una strategia di concimazione personalizzata per massimizzare resa ed efficienza.</p>
       </div>
-      <div class="card">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <div class="card card-featured">
+        <span class="badge-new">Nuovo!</span>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M8.5 12.5l2 2 4.5-4.5"/></svg>
         <h3>Assistenza QdC</h3>
         <p>Consulenza e assistenza per la gestione del quaderno di campagna, così puoi dedicarti al lavoro in campo.</p>
+      </div>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 3v6l-3 3v9h6v-6h2v6h6v-9l-3-3V3"/><path d="M8 9h8"/></svg>
+        <h3>Legna e Pellet</h3>
+        <p>Legna da ardere e pellet per il riscaldamento domestico, pronti per l'inverno.</p>
       </div>
     </div>
   </div>
@@ -1005,8 +1030,11 @@
           <span class="val">Via Monselice, 2 — 35020 Pernumia (PD)</span>
         </li>
         <li>
-          <span class="label">Telefono</span>
-          <a class="val" href="tel:+393484425820">348 442 5820</a>
+          <span class="label">Assistenza Commerciale ed Agronomica</span>
+          <span class="val contact-people">
+            <a href="tel:+393484425820">Andrea Aldrigo — 348 442 5820</a>
+            <a href="tel:+393403716236">Giacomo Lion — 340 371 6236</a>
+          </span>
         </li>
         <li>
           <span class="label">WhatsApp</span>
@@ -1018,7 +1046,8 @@
         </li>
         <li>
           <span class="label">Orari indicativi</span>
-          <span class="val">Lun–Ven, 8:00–12:30 · 14:30–18:30</span>
+          <span class="val" style="display:block; font-weight:600; font-size:17px;">Lun–Ven  8:00–12:30 · 14:30–18:30</span>
+          <span class="val" style="display:block; font-weight:600; font-size:17px; margin-top:4px;">Sabato 8:30–12:00</span>
         </li>
       </ul>
       <div class="map-frame">
@@ -1094,7 +1123,7 @@
     var prev = document.getElementById('gal-prev');
     var next = document.getElementById('gal-next');
     if (!grid || !prev || !next) return;
-    var step = 318; // larghezza tile + gap
+    var step = 368; // larghezza tile (350px) + gap (18px)
     prev.addEventListener('click', function () { grid.scrollBy({ left: -step, behavior: 'smooth' }); });
     next.addEventListener('click', function () { grid.scrollBy({ left: step, behavior: 'smooth' }); });
   })();
