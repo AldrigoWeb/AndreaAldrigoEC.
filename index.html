@@ -451,6 +451,25 @@
   }
   #lightbox-close:hover{ background: rgba(240,235,221,0.22); }
   #lightbox-close svg{ width: 18px; height: 18px; }
+
+  /* ---------- WHATSAPP FLOTTANTE ---------- */
+  .whatsapp-float{
+    position: fixed;
+    right: 22px; bottom: 22px;
+    z-index: 150;
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: #25D366;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    transition: transform 0.15s ease;
+  }
+  .whatsapp-float:hover{ transform: translateY(-3px) scale(1.04); }
+  .whatsapp-float svg{ width: 30px; height: 30px; }
+  @media (max-width: 620px){
+    .whatsapp-float{ right: 16px; bottom: 16px; width: 52px; height: 52px; }
+    .whatsapp-float svg{ width: 26px; height: 26px; }
+  }
 </style>
 </head>
 <body>
@@ -511,7 +530,7 @@
       <span style="width:22px;height:1px;background:var(--wheat-light);display:inline-block;margin-right:-8px"></span>
       Pernumia, tra Bassa Padovana e Colli Euganei
     </div>
-    <h1>Tutto il necessario per la tua azienda agricola.</em></h1>
+    <h1>Tutto il necessario per la tua azienda agricola.</h1>
     <p class="lead">Un'ampia gamma di sementi, prodotti fitosanitari, concimi e forniture professionali, con la competenza e la vicinanza di chi lavora ogni giorno al fianco del territorio.</p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="#contatti">Vieni a trovarci</a>
@@ -528,7 +547,7 @@
     </div>
     <div class="fact">
       <span class="label">Attività</span>
-      <span class="value">Sementi, Fitosanitari, Analisi del Terreno, Analisi Fogliare, Piani di Concimazione Personalizzati  </span>
+      <span class="value">Sementi, Fitosanitari, Analisi del Terreno, Analisi Fogliare, Piani di Concimazione Personalizzati</span>
     </div>
     <div class="fact">
       <span class="label">Collaborazioni</span>
@@ -827,8 +846,7 @@
     </div>
     <div class="territorio-text">
       <p>Da Pernumia siamo vicini alle realtà agricole della Bassa Padovana, un territorio che conosciamo profondamente e in cui lavoriamo ogni giorno.</p>
-      <p>Affianchiamo aziende agricole, serre e vivai con forniture puntuali e un servizio diretto, costruendo rapporti basati sulla fiducia, sulla disponibilità e sulla conoscenza concreta delle esigenze del settore.
-</p>
+      <p>Affianchiamo aziende agricole, serre e vivai con forniture puntuali e un servizio diretto, costruendo rapporti basati sulla fiducia, sulla disponibilità e sulla conoscenza concreta delle esigenze del settore.</p>
     </div>
     <div class="focus-grid">
       <figure class="focus-item large">
@@ -956,6 +974,10 @@
           <a class="val" href="tel:+393484425820">348 442 5820</a>
         </li>
         <li>
+          <span class="label">WhatsApp</span>
+          <a class="val" href="https://wa.me/393484425820" target="_blank" rel="noopener">Scrivici su WhatsApp →</a>
+        </li>
+        <li>
           <span class="label">Email</span>
           <a class="val" href="mailto:goeand@gmail.com">goeand@gmail.com</a>
         </li>
@@ -993,6 +1015,10 @@
     </div>
   </div>
 </footer>
+
+<a class="whatsapp-float" href="https://wa.me/393484425820" target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp">
+  <svg viewBox="0 0 32 32" fill="#fff"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.909 6.478L4 29l7.723-1.867A11.94 11.94 0 0 0 16.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3Zm0 21.818c-1.94 0-3.75-.55-5.287-1.502l-.379-.227-4.584 1.108 1.13-4.47-.246-.393A9.77 9.77 0 0 1 5.182 15c0-5.965 4.854-10.818 10.819-10.818S26.818 9.035 26.818 15 21.966 24.818 16.001 24.818Zm5.94-8.146c-.325-.163-1.92-.947-2.217-1.056-.297-.108-.514-.163-.73.163-.216.325-.838 1.056-1.028 1.273-.19.217-.379.244-.703.081-.325-.163-1.372-.505-2.613-1.61-.966-.86-1.618-1.923-1.808-2.248-.19-.325-.02-.5.143-.663.147-.146.325-.379.487-.569.163-.19.217-.325.325-.542.108-.217.054-.407-.027-.57-.081-.163-.73-1.756-1-2.406-.263-.632-.53-.546-.73-.556l-.62-.011c-.217 0-.57.081-.868.407-.297.325-1.135 1.11-1.135 2.705 0 1.596 1.162 3.138 1.325 3.355.163.217 2.287 3.49 5.542 4.895.774.334 1.378.534 1.848.683.776.247 1.483.212 2.041.129.623-.093 1.92-.785 2.19-1.543.27-.759.27-1.409.19-1.544-.081-.135-.298-.217-.623-.38Z"/></svg>
+</a>
 
 <div id="lightbox">
   <button id="lightbox-close" aria-label="Chiudi">
