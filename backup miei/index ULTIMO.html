@@ -656,82 +656,6 @@
     .whatsapp-float{ right: 16px; bottom: 16px; width: 52px; height: 52px; }
     .whatsapp-float svg{ width: 26px; height: 26px; }
   }
-
-  /* ---------- NOVITÀ: TAB LATERALE + PANNELLO ---------- */
-  .novita-tab{
-    position: fixed;
-    left: 0; top: 50%;
-    transform: translateY(-50%);
-    z-index: 149;
-    background: var(--terracotta);
-    color: var(--paper);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 14px 12px 12px;
-    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-    cursor: pointer;
-    border: none;
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    transition: padding-left 0.2s ease, transform 0.15s ease;
-  }
-  .novita-tab:hover{ padding-left: 18px; }
-  .novita-tab svg{ width: 18px; height: 18px; flex-shrink: 0; }
-  @media (max-width: 620px){
-    .novita-tab span{ display: none; }
-    .novita-tab{ padding: 12px; }
-    .novita-tab:hover{ padding-left: 12px; }
-  }
-
-  .novita-backdrop{
-    position: fixed; inset: 0; z-index: 199;
-    background: rgba(18,26,12,0.55);
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.25s ease;
-  }
-  .novita-backdrop.open{ opacity: 1; pointer-events: auto; }
-
-  .novita-panel{
-    position: fixed;
-    left: 0; top: 0; bottom: 0;
-    z-index: 200;
-    width: 340px;
-    max-width: 86vw;
-    background: var(--paper);
-    box-shadow: 0 0 50px rgba(0,0,0,0.3);
-    transform: translateX(-100%);
-    transition: transform 0.35s var(--ease);
-    display: flex;
-    flex-direction: column;
-    padding: 30px 28px;
-    overflow-y: auto;
-  }
-  .novita-panel.open{ transform: translateX(0); }
-  .novita-panel .badge-new{
-    position: static;
-    display: inline-block;
-    transform: rotate(-3deg);
-    margin-bottom: 18px;
-    width: fit-content;
-  }
-  .novita-panel h3{ font-size: 22px; margin-bottom: 14px; }
-  .novita-panel p{ color: var(--ink-soft); font-size: 15px; margin-bottom: 10px; }
-  .novita-panel .btn{ margin-top: 14px; align-self: flex-start; }
-  .novita-close{
-    align-self: flex-end;
-    width: 34px; height: 34px; border-radius: 50%;
-    background: var(--sage-tint); border: 1px solid var(--line);
-    display:flex; align-items:center; justify-content:center;
-    color: var(--ink-soft); cursor: pointer;
-    margin-bottom: 12px;
-  }
-  .novita-close:hover{ background: var(--paper-warm); }
-  .novita-close svg{ width: 16px; height: 16px; }
 </style>
 </head>
 <body>
@@ -1039,17 +963,6 @@
   </div>
 </section>
 
-<div class="news-ticker" aria-label="Novità">
-  <div class="ticker-track">
-    <span>Legna da ardere: carpino, faggio e rovere</span>
-    <span>Pellet premium di Abete, pronto per l'inverno</span>
-    <span>Prenota la tua fornitura in azienda</span>
-    <span aria-hidden="true">Legna da ardere: carpino, faggio e rovere</span>
-    <span aria-hidden="true">Pellet premium di Abete, pronto per l'inverno</span>
-    <span aria-hidden="true">Prenota la tua fornitura in azienda</span>
-  </div>
-</div>
-
 <section id="prodotti">
   <div class="wrap">
     <div class="section-head reveal">
@@ -1087,17 +1000,6 @@
     </div>
   </div>
 </section>
-
-<div class="news-ticker" aria-label="Novità">
-  <div class="ticker-track">
-    <span>Legna da ardere: carpino, faggio e rovere</span>
-    <span>Pellet premium di Abete, pronto per l'inverno</span>
-    <span>Prenota la tua fornitura in azienda</span>
-    <span aria-hidden="true">Legna da ardere: carpino, faggio e rovere</span>
-    <span aria-hidden="true">Pellet premium di Abete, pronto per l'inverno</span>
-    <span aria-hidden="true">Prenota la tua fornitura in azienda</span>
-  </div>
-</div>
 
 <section id="contatti" style="background:var(--sage-tint)">
   <div class="wrap">
@@ -1183,23 +1085,6 @@
     </div>
   </div>
 </footer>
-
-<button class="novita-tab" id="novita-open" aria-label="Novità: legna e pellet">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3v6l-3 3v9h6v-6h2v6h6v-9l-3-3V3"/><path d="M8 9h8"/></svg>
-  <span>Novità</span>
-</button>
-
-<div class="novita-backdrop" id="novita-backdrop"></div>
-<aside class="novita-panel" id="novita-panel">
-  <button class="novita-close" id="novita-close" aria-label="Chiudi">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
-  </button>
-  <span class="badge-new">Novità</span>
-  <h3>Legna da ardere e pellet premium</h3>
-  <p>Una selezione di legna da ardere di carpino, faggio e rovere.</p>
-  <p>Il nostro pellet premium di Abete, pronto per l'inverno.</p>
-  <a class="btn btn-primary" href="#prodotti" id="novita-cta">Scopri di più →</a>
-</aside>
 
 <a class="whatsapp-float" href="https://wa.me/393484425820" target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp">
   <svg viewBox="0 0 32 32" fill="#fff"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.909 6.478L4 29l7.723-1.867A11.94 11.94 0 0 0 16.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3Zm0 21.818c-1.94 0-3.75-.55-5.287-1.502l-.379-.227-4.584 1.108 1.13-4.47-.246-.393A9.77 9.77 0 0 1 5.182 15c0-5.965 4.854-10.818 10.819-10.818S26.818 9.035 26.818 15 21.966 24.818 16.001 24.818Zm5.94-8.146c-.325-.163-1.92-.947-2.217-1.056-.297-.108-.514-.163-.73.163-.216.325-.838 1.056-1.028 1.273-.19.217-.379.244-.703.081-.325-.163-1.372-.505-2.613-1.61-.966-.86-1.618-1.923-1.808-2.248-.19-.325-.02-.5.143-.663.147-.146.325-.379.487-.569.163-.19.217-.325.325-.542.108-.217.054-.407-.027-.57-.081-.163-.73-1.756-1-2.406-.263-.632-.53-.546-.73-.556l-.62-.011c-.217 0-.57.081-.868.407-.297.325-1.135 1.11-1.135 2.705 0 1.596 1.162 3.138 1.325 3.355.163.217 2.287 3.49 5.542 4.895.774.334 1.378.534 1.848.683.776.247 1.483.212 2.041.129.623-.093 1.92-.785 2.19-1.543.27-.759.27-1.409.19-1.544-.081-.135-.298-.217-.623-.38Z"/></svg>
@@ -1302,23 +1187,6 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeLightbox();
     });
-  })();
-
-  // Tab laterale "Novità" con pannello a scomparsa
-  (function () {
-    var openBtn = document.getElementById('novita-open');
-    var closeBtn = document.getElementById('novita-close');
-    var backdrop = document.getElementById('novita-backdrop');
-    var panel = document.getElementById('novita-panel');
-    var cta = document.getElementById('novita-cta');
-    if (!openBtn || !panel || !backdrop) return;
-    function openPanel() { panel.classList.add('open'); backdrop.classList.add('open'); }
-    function closePanel() { panel.classList.remove('open'); backdrop.classList.remove('open'); }
-    openBtn.addEventListener('click', openPanel);
-    closeBtn.addEventListener('click', closePanel);
-    backdrop.addEventListener('click', closePanel);
-    if (cta) cta.addEventListener('click', closePanel);
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePanel(); });
   })();
 
   // Animazioni di reveal allo scroll
