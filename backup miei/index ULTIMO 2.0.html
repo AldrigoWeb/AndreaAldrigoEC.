@@ -667,26 +667,25 @@
     color: var(--paper);
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 18px 24px 18px 18px;
+    gap: 8px;
+    padding: 12px 14px 12px 12px;
     border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-    box-shadow: 0 8px 26px rgba(0,0,0,0.25);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     cursor: pointer;
     border: none;
     font-family: 'Space Mono', monospace;
-    font-size: 14.5px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.03em;
     text-transform: uppercase;
     transition: padding-left 0.2s ease, transform 0.15s ease;
   }
-  .novita-tab:hover{ padding-left: 24px; }
-  .novita-tab svg{ width: 24px; height: 24px; flex-shrink: 0; }
+  .novita-tab:hover{ padding-left: 18px; }
+  .novita-tab svg{ width: 18px; height: 18px; flex-shrink: 0; }
   @media (max-width: 620px){
     .novita-tab span{ display: none; }
-    .novita-tab{ padding: 16px; }
-    .novita-tab:hover{ padding-left: 16px; }
-    .novita-tab svg{ width: 22px; height: 22px; }
+    .novita-tab{ padding: 12px; }
+    .novita-tab:hover{ padding-left: 12px; }
   }
 
   .novita-backdrop{
@@ -723,31 +722,6 @@
   .novita-panel h3{ font-size: 22px; margin-bottom: 14px; }
   .novita-panel p{ color: var(--ink-soft); font-size: 15px; margin-bottom: 10px; }
   .novita-panel .btn{ margin-top: 14px; align-self: flex-start; }
-  .novita-photos{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 14px;
-    margin-top: 24px;
-  }
-  .novita-photo{
-    position: relative;
-    aspect-ratio: 16/11;
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: var(--sage-tint);
-    border: 1px solid var(--line);
-  }
-  .novita-photo img{
-    position: absolute; inset:0; width:100%; height:100%; object-fit: cover; z-index: 3;
-    cursor: zoom-in;
-  }
-  .novita-photo .ph-fallback{
-    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:6px; color: var(--ink-soft); text-align:center; padding: 10px;
-  }
-  .novita-photo .ph-fallback svg{ width: 26px; height:26px; color: var(--field); opacity: 0.5; }
-  .novita-photo .ph-fallback .cap{ font-family:'Space Mono', monospace; font-size: 10.5px; letter-spacing: 0.03em; }
-  .novita-photo .ph-fallback .filename{ display:block; margin-top:2px; font-size: 9.5px; opacity: 0.6; }
   .novita-close{
     align-self: flex-end;
     width: 34px; height: 34px; border-radius: 50%;
@@ -1225,22 +1199,6 @@
   <p>Una selezione di legna da ardere di carpino, faggio e rovere.</p>
   <p>Il nostro pellet premium di Abete, pronto per l'inverno.</p>
   <a class="btn btn-primary" href="#prodotti" id="novita-cta">Scopri di più →</a>
-  <div class="novita-photos">
-    <div class="novita-photo">
-      <img data-name="novita1" alt="Legna da ardere">
-      <div class="ph-fallback">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
-        <span class="cap">FOTO<br><span class="filename">images/novita1.jpg</span></span>
-      </div>
-    </div>
-    <div class="novita-photo">
-      <img data-name="novita2" alt="Pellet premium di Abete">
-      <div class="ph-fallback">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
-        <span class="cap">FOTO<br><span class="filename">images/novita2.jpg</span></span>
-      </div>
-    </div>
-  </div>
 </aside>
 
 <a class="whatsapp-float" href="https://wa.me/393484425820" target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp">
@@ -1334,7 +1292,7 @@
     }
 
     document.addEventListener('click', function (e) {
-      var img = e.target.closest('.gph img[data-name], .focus-media img[data-name], .about-photo img[data-name], .novita-photo img[data-name]');
+      var img = e.target.closest('.gph img[data-name], .focus-media img[data-name], .about-photo img[data-name]');
       if (img && img.src) openLightbox(img.src, img.alt);
     });
     closeBtn.addEventListener('click', closeLightbox);
