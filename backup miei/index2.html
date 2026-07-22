@@ -603,39 +603,49 @@
   #lightbox-close:hover{ background: rgba(251,249,243,0.22); }
   #lightbox-close svg{ width: 18px; height: 18px; }
 
-  /* ---------- NEWS TICKER ---------- */
-  .news-ticker{
-    background: var(--forest-deep);
-    color: var(--wheat-light);
+  /* ---------- WELCOME MODAL ---------- */
+  #welcome-modal{
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(18,26,12,0.88);
+    display: none; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  #welcome-modal.open{ display: flex; }
+  .welcome-card{
+    position: relative;
+    max-width: 460px;
+    width: 100%;
+    background: var(--paper);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    border-bottom: 1px solid rgba(251,249,243,0.1);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.4);
   }
-  .ticker-track{
-    display: flex;
-    align-items: center;
-    gap: 52px;
-    width: max-content;
-    padding: 9px 0;
-    white-space: nowrap;
-    animation: ticker-scroll 24s linear infinite;
+  .welcome-photo{ position: absolute; inset: 0; z-index: 1; }
+  .welcome-photo img{
+    position: absolute; inset:0; width:100%; height:100%; object-fit: cover;
+    opacity: 0.16;
   }
-  .news-ticker:hover .ticker-track{ animation-play-state: paused; }
-  .ticker-track span{
-    font-family: 'Space Mono', monospace;
-    font-size: 12.5px;
-    letter-spacing: 0.03em;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  .welcome-card::after{
+    content:"";
+    position:absolute; inset:0; z-index: 2;
+    background: linear-gradient(180deg, rgba(251,249,243,0.5) 0%, var(--paper) 70%);
   }
-  .ticker-track span::before{
-    content:"●";
-    color: var(--terracotta);
-    font-size: 7px;
+  .welcome-content{ position: relative; z-index: 3; padding: 40px 32px 34px; text-align: center; }
+  .welcome-content .eyebrow{ justify-content: center; }
+  .welcome-content .eyebrow::before{ display:none; }
+  .welcome-content h2{ font-size: 24px; margin-bottom: 12px; }
+  .welcome-content p{ color: var(--ink-soft); font-size: 15px; margin-bottom: 22px; }
+  .welcome-close{
+    position: absolute; top: 14px; right: 14px; z-index: 4;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(35,39,27,0.06); border: 1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--ink-soft); cursor: pointer;
   }
-  @keyframes ticker-scroll{
-    from{ transform: translateX(0); }
-    to{ transform: translateX(-50%); }
+  .welcome-close:hover{ background: rgba(35,39,27,0.1); }
+  .welcome-close svg{ width: 16px; height: 16px; }
+  @media (max-width: 480px){
+    .welcome-content{ padding: 32px 22px 28px; }
   }
 
   /* ---------- WHATSAPP FLOTTANTE ---------- */
@@ -660,14 +670,20 @@
 </head>
 <body>
 
-<div class="news-ticker" aria-label="Novità">
-  <div class="ticker-track">
-    <span>Legna da ardere: carpino, faggio e rovere</span>
-    <span>Pellet premium di Abete, pronto per l'inverno</span>
-    <span>Prenota la tua fornitura in azienda</span>
-    <span aria-hidden="true">Legna da ardere: carpino, faggio e rovere</span>
-    <span aria-hidden="true">Pellet premium di Abete, pronto per l'inverno</span>
-    <span aria-hidden="true">Prenota la tua fornitura in azienda</span>
+<div id="welcome-modal" class="open">
+  <div class="welcome-card">
+    <button id="welcome-close" class="welcome-close" aria-label="Chiudi">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="welcome-photo">
+      <img data-name="legna-pellet" alt="">
+    </div>
+    <div class="welcome-content">
+      <div class="eyebrow">Pronti per l'inverno</div>
+      <h2>Legna da ardere e pellet premium</h2>
+      <p>Una selezione di legna di carpino, faggio e rovere, insieme al nostro pellet premium di Abete.</p>
+      <a class="btn btn-primary" href="#prodotti">Scopri di più</a>
+    </div>
   </div>
 </div>
 
@@ -1187,6 +1203,18 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeLightbox();
     });
+  })();
+
+  // Modal di benvenuto (Legna e Pellet)
+  (function () {
+    var modal = document.getElementById('welcome-modal');
+    var closeBtn = document.getElementById('welcome-close');
+    if (!modal || !closeBtn) return;
+    function closeWelcome() { modal.classList.remove('open'); }
+    closeBtn.addEventListener('click', closeWelcome);
+    modal.addEventListener('click', function (e) { if (e.target === modal) closeWelcome(); });
+    modal.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeWelcome); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeWelcome(); });
   })();
 
   // Animazioni di reveal allo scroll

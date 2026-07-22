@@ -603,41 +603,6 @@
   #lightbox-close:hover{ background: rgba(251,249,243,0.22); }
   #lightbox-close svg{ width: 18px; height: 18px; }
 
-  /* ---------- NEWS TICKER ---------- */
-  .news-ticker{
-    background: var(--forest-deep);
-    color: var(--wheat-light);
-    overflow: hidden;
-    border-bottom: 1px solid rgba(251,249,243,0.1);
-  }
-  .ticker-track{
-    display: flex;
-    align-items: center;
-    gap: 52px;
-    width: max-content;
-    padding: 9px 0;
-    white-space: nowrap;
-    animation: ticker-scroll 24s linear infinite;
-  }
-  .news-ticker:hover .ticker-track{ animation-play-state: paused; }
-  .ticker-track span{
-    font-family: 'Space Mono', monospace;
-    font-size: 12.5px;
-    letter-spacing: 0.03em;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .ticker-track span::before{
-    content:"●";
-    color: var(--terracotta);
-    font-size: 7px;
-  }
-  @keyframes ticker-scroll{
-    from{ transform: translateX(0); }
-    to{ transform: translateX(-50%); }
-  }
-
   /* ---------- WHATSAPP FLOTTANTE ---------- */
   .whatsapp-float{
     position: fixed;
@@ -659,17 +624,6 @@
 </style>
 </head>
 <body>
-
-<div class="news-ticker" aria-label="Novità">
-  <div class="ticker-track">
-    <span>Legna da ardere: carpino, faggio e rovere</span>
-    <span>Pellet premium di Abete, pronto per l'inverno</span>
-    <span>Prenota la tua fornitura in azienda</span>
-    <span aria-hidden="true">Legna da ardere: carpino, faggio e rovere</span>
-    <span aria-hidden="true">Pellet premium di Abete, pronto per l'inverno</span>
-    <span aria-hidden="true">Prenota la tua fornitura in azienda</span>
-  </div>
-</div>
 
 <header>
   <div class="nav-row">
