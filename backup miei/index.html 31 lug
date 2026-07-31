@@ -495,62 +495,6 @@
     box-shadow: 0 3px 8px rgba(0,0,0,0.18);
   }
 
-  /* Riga "Legna e Pellet" + animazione camioncino */
-  .cards-feature-row{
-    margin-top: 22px;
-    display: flex;
-    align-items: stretch;
-    gap: 22px;
-  }
-  .cards-feature-row .card{
-    flex: 0 0 260px;
-  }
-  @media (max-width: 760px){
-    .cards-feature-row{ flex-direction: column; }
-    .cards-feature-row .card{ flex: 1 1 auto; width: 100%; }
-  }
-
-  .truck-anim-wrap{
-    position: relative;
-    flex: 1 1 auto;
-    min-width: 240px;
-    min-height: 360px;
-    overflow: hidden;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--line);
-    background: var(--sage-tint);
-  }
-  .truck-photo-slide{
-    position: absolute;
-    inset: 0;
-    transform: translateX(115%);
-    opacity: 0;
-  }
-  .truck-anim-wrap.truck-in .truck-photo-slide{
-    animation: truck-drive-in 1s var(--ease) forwards;
-  }
-  @keyframes truck-drive-in{
-    0%{ transform: translateX(115%); opacity: 0; }
-    100%{ transform: translateX(0); opacity: 1; }
-  }
-  .truck-photo-slide img{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:3;
-  }
-  .truck-photo-slide .ph-fallback{
-    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:10px; color: var(--ink-soft); text-align:center; padding: 20px;
-  }
-  .truck-photo-slide .ph-fallback svg{ width:32px; height:32px; color:var(--field); opacity:0.5; }
-  .truck-photo-slide .ph-fallback .cap{ font-family:'Space Mono', monospace; font-size:11.5px; letter-spacing:0.03em; }
-  .truck-photo-slide .ph-fallback .filename{ display:block; margin-top:4px; font-size:10px; opacity:0.6; }
-  @media (max-width: 760px){
-    .truck-anim-wrap{ min-height: 260px; }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .truck-photo-slide{ transform: none; opacity: 1; }
-    .truck-anim-wrap.truck-in .truck-photo-slide{ animation: none; }
-  }
-
   /* Contatti */
   .contact-grid{ display:grid; grid-template-columns: 0.95fr 1.1fr; gap: 40px; align-items: stretch; }
   .contact-col{ display:flex; flex-direction:column; gap: 14px; }
@@ -1157,23 +1101,10 @@
         <h3>Assistenza QdC</h3>
         <p>Consulenza e assistenza per la gestione del quaderno di campagna, così puoi dedicarti al lavoro in campo.</p>
       </div>
-    </div>
-
-    <div class="cards-feature-row">
       <div class="card reveal stagger-5">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 3v6l-3 3v9h6v-6h2v6h6v-9l-3-3V3"/><path d="M8 9h8"/></svg>
         <h3>Legna e Pellet</h3>
         <p>Legna da ardere e pellet per il riscaldamento domestico, pronti per l'inverno.</p>
-      </div>
-
-      <div class="truck-anim-wrap reveal stagger-5" id="truck-anim">
-        <div class="truck-photo-slide">
-          <img data-name="truck" alt="Il nostro nuovo camion" loading="lazy" decoding="async">
-          <div class="ph-fallback">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
-            <span class="cap">FOTO<br><span class="filename">images/truck.jpg</span></span>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -1444,28 +1375,6 @@
       });
     }, { threshold: 0.14, rootMargin: '0px 0px -60px 0px' });
     items.forEach(function (el) { io.observe(el); });
-  })();
-
-  // Animazione camioncino: riparte ogni volta che l'elemento torna in vista
-  (function () {
-    var wrap = document.getElementById('truck-anim');
-    if (!wrap) return;
-    if (!('IntersectionObserver' in window)) {
-      wrap.classList.add('truck-in');
-      return;
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          wrap.classList.remove('truck-in');
-          void wrap.offsetWidth; // forza il reflow per far ripartire l'animazione CSS
-          wrap.classList.add('truck-in');
-        } else {
-          wrap.classList.remove('truck-in');
-        }
-      });
-    }, { threshold: 0.35 });
-    io.observe(wrap);
   })();
 </script>
 
