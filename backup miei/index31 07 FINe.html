@@ -174,39 +174,7 @@
     margin: 0 auto;
     padding: 0 32px 74px;
   }
-  .hero-inner{
-    display:flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
   .hero-inner-content{ max-width: 640px; }
-
-  .hero-notice{
-    display:none;
-    background: var(--paper);
-    border-radius: var(--radius-lg);
-    padding: 22px 24px;
-    max-width: 300px;
-    box-shadow: 0 18px 44px rgba(22,36,15,0.25);
-  }
-  .hero-notice.has-items{ display:block; }
-  .hero-notice .label{
-    font-family:'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--terracotta); margin-bottom: 10px; display:block;
-  }
-  .hero-notice ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
-  .hero-notice li{ font-size: 14px; color: var(--ink); border-top: 1px dashed var(--line); padding-top: 8px; }
-  .hero-notice li:first-child{ border-top:none; padding-top:0; }
-  .hero-notice li .data{
-    font-family:'Space Mono', monospace; font-size: 11px; color: var(--field);
-    display:block; margin-bottom: 2px;
-  }
-  @media (max-width: 880px){
-    .hero-inner{ flex-direction: column; align-items: flex-start; }
-    .hero-notice{ max-width: 100%; }
-  }
   .hero h1{
     color: var(--paper);
     font-size: clamp(2.3rem, 4.6vw, 3.6rem);
@@ -960,10 +928,6 @@
         <a class="btn btn-ghost" href="#prodotti">Cosa trattiamo →</a>
       </div>
     </div>
-    <div class="hero-notice" id="hero-notice">
-      <span class="label">Comunicazioni</span>
-      <ul id="hero-notice-list"></ul>
-    </div>
   </div>
 </section>
 
@@ -1534,25 +1498,6 @@
     backdrop.addEventListener('click', closePanel);
     if (cta) cta.addEventListener('click', closePanel);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePanel(); });
-  })();
-
-  // Bacheca comunicazioni: legge comunicazioni.json, si mostra solo se ci sono voci
-  (function () {
-    var box = document.getElementById('hero-notice');
-    var list = document.getElementById('hero-notice-list');
-    if (!box || !list) return;
-    fetch('comunicazioni.json')
-      .then(function (r) { return r.json(); })
-      .then(function (items) {
-        if (!Array.isArray(items) || items.length === 0) return;
-        items.forEach(function (item) {
-          var li = document.createElement('li');
-          li.innerHTML = (item.data ? '<span class="data">' + item.data + '</span>' : '') + (item.testo || '');
-          list.appendChild(li);
-        });
-        box.classList.add('has-items');
-      })
-      .catch(function () { /* nessuna comunicazione o file non raggiungibile: bacheca resta nascosta */ });
   })();
 
   // Animazioni di reveal allo scroll
