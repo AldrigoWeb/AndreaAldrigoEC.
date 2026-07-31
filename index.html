@@ -174,51 +174,38 @@
     margin: 0 auto;
     padding: 0 32px 74px;
   }
+  .hero-inner{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
   .hero-inner-content{ max-width: 640px; }
 
-  /* Bacheca comunicazioni: in alto a destra nell'hero, stile calendario, compatta */
-  .hero-notice-wrap{
-    position: absolute;
-    top: 108px; left: 0; right: 0;
-    z-index: 3;
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 32px;
-    display: flex;
-    justify-content: flex-end;
-    pointer-events: none;
-  }
   .hero-notice{
     display:none;
-    pointer-events: auto;
-    background: rgba(251,249,243,0.95);
-    backdrop-filter: blur(6px);
-    border-radius: var(--radius);
-    padding: 12px 16px;
-    max-width: 240px;
-    box-shadow: 0 10px 26px rgba(22,36,15,0.2);
+    background: var(--paper);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    max-width: 300px;
+    box-shadow: 0 18px 44px rgba(22,36,15,0.25);
   }
   .hero-notice.has-items{ display:block; }
   .hero-notice .label{
-    font-family:'Space Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--terracotta);
-    display:flex; align-items:center; gap: 6px; margin-bottom: 8px;
+    font-family:'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--terracotta); margin-bottom: 10px; display:block;
   }
-  .hero-notice .label svg{ width: 13px; height: 13px; flex-shrink:0; }
-  .hero-notice ul{ list-style:none; display:flex; flex-direction:column; gap:7px; }
-  .hero-notice li{ font-size: 13px; color: var(--ink); border-top: 1px dashed var(--line); padding-top: 6px; }
+  .hero-notice ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .hero-notice li{ font-size: 14px; color: var(--ink); border-top: 1px dashed var(--line); padding-top: 8px; }
   .hero-notice li:first-child{ border-top:none; padding-top:0; }
   .hero-notice li .data{
-    font-family:'Space Mono', monospace; font-size: 10.5px; color: var(--field);
-    display:block; margin-bottom: 1px;
+    font-family:'Space Mono', monospace; font-size: 11px; color: var(--field);
+    display:block; margin-bottom: 2px;
   }
   @media (max-width: 880px){
-    .hero-notice-wrap{ top: 92px; padding: 0 20px; }
-    .hero-notice{ max-width: 200px; padding: 10px 14px; }
-  }
-  @media (max-width: 560px){
-    .hero-notice{ max-width: 168px; }
-    .hero-notice li{ font-size: 12px; }
+    .hero-inner{ flex-direction: column; align-items: flex-start; }
+    .hero-notice{ max-width: 100%; }
   }
   .hero h1{
     color: var(--paper);
@@ -973,13 +960,8 @@
         <a class="btn btn-ghost" href="#prodotti">Cosa trattiamo →</a>
       </div>
     </div>
-  </div>
-  <div class="hero-notice-wrap">
     <div class="hero-notice" id="hero-notice">
-      <span class="label">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v3.5M16 3v3.5"/></svg>
-        Comunicazioni
-      </span>
+      <span class="label">Comunicazioni</span>
       <ul id="hero-notice-list"></ul>
     </div>
   </div>
