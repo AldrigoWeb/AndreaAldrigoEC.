@@ -425,32 +425,26 @@
 
   /* CRA band */
   .cra{ background: var(--forest-deep); color: var(--paper); }
-  .cra .wrap{ display:block; }
-  .cra-intro{ max-width: 700px; }
+  .cra .wrap{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: center; }
   .cra .eyebrow{ color: var(--wheat-light); }
   .cra .eyebrow::before{ background: var(--wheat-light); }
   .cra h2{ color: var(--paper); }
-  .cra p{ color: #D9D4BE; margin-top: 16px; font-size: 16.5px; max-width: 62ch; line-height: 1.75; }
-  .cra-badge{
-    margin-top: 52px;
-    border: 1.5px solid rgba(231,200,124,0.5);
-    border-radius: var(--radius-lg);
-    padding: 32px 34px 34px;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-  }
+  .cra p{ color: #D9D4BE; margin-top: 16px; font-size: 16px; max-width: 52ch; }
+  .cra-badge{ border: 1.5px solid rgba(231,200,124,0.5); border-radius: var(--radius-lg); padding: 28px; }
   .cra-badge .tag{
-    font-family:'Space Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--wheat-light); display:block;
+    font-family:'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--wheat-light); margin-bottom: 10px; display:block;
+  }
+  .cra-badge h3{ color: var(--paper); font-size: 19px; margin-bottom: 12px; }
+  .cra-products{ list-style:none; margin-top: 14px; }
+  .cra-products li{
+    font-size: 14px; padding: 8px 0; border-top: 1px dashed rgba(231,200,124,0.25); color: #EDE9D8;
   }
   .cra-link{
     display:inline-flex; align-items:center; gap:8px; margin-top: 20px; font-size: 14px;
     font-weight: 700; color: var(--wheat-light); border-bottom: 1px solid var(--wheat-light); padding-bottom: 2px;
   }
-  @media (max-width: 620px){
-    .cra-badge{ padding: 26px 20px 28px; }
-  }
+  @media (max-width: 880px){ .cra .wrap{ grid-template-columns: 1fr; } }
 
   /* Territorio / Colli Euganei */
   .territorio{ position:relative; background: var(--sage-tint); overflow:hidden; }
@@ -682,38 +676,9 @@
   }
   #lightbox.open{ display: flex; }
   #lightbox img{
-    max-width: 92vw; max-height: 74vh;
-    border-radius: var(--radius) var(--radius) 0 0;
+    max-width: 92vw; max-height: 88vh;
+    border-radius: var(--radius);
     box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    display: block;
-  }
-  #lightbox-content{
-    display: flex;
-    flex-direction: column;
-    max-width: 560px;
-    width: 100%;
-    max-height: 88vh;
-  }
-  #lightbox-caption{
-    background: var(--paper);
-    border-radius: 0 0 var(--radius) var(--radius);
-    padding: 20px 24px 22px;
-    display: none;
-  }
-  #lightbox-caption.has-text{ display: block; }
-  #lightbox-caption .lb-tag{
-    font-family:'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--terracotta); display:block; margin-bottom: 6px;
-  }
-  #lightbox-caption .lb-title{
-    font-family:'Fraunces', serif; font-size: 19px; font-weight: 600; color: var(--ink);
-    margin-bottom: 8px;
-  }
-  #lightbox-caption .lb-desc{
-    font-size: 14.5px; color: var(--ink-soft); line-height: 1.65;
-  }
-  @media (max-width: 620px){
-    #lightbox-content{ max-width: 92vw; }
   }
   #lightbox-close{
     position: absolute; top: 22px; right: 26px;
@@ -918,73 +883,6 @@
   }
   .novita-close:hover{ background: var(--paper-warm); }
   .novita-close svg{ width: 16px; height: 16px; }
-
-  /* ---------- CRA PRODUCT CARD CAROUSEL (Zalando-style) ---------- */
-  .cra-carousel{ width: 100%; }
-  .cra-carousel-viewport{
-    overflow: hidden;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
-  }
-  .cra-carousel-track{
-    display: flex;
-    gap: 18px;
-    width: max-content;
-    /* la distanza esatta viene calcolata via JS e scritta in --cra-shift,
-       cosi il loop e sempre perfettamente continuo, senza scatti o vuoti */
-    animation: cra-carousel-scroll 26s linear infinite;
-  }
-  .cra-carousel-set{
-    display: flex;
-    gap: 18px;
-    flex: 0 0 auto;
-  }
-  .cra-carousel-viewport:hover .cra-carousel-track{ animation-play-state: paused; }
-  @keyframes cra-carousel-scroll{
-    from{ transform: translateX(0); }
-    to{ transform: translateX(calc(-1 * var(--cra-shift, 50%))); }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .cra-carousel-track{ animation: none; }
-  }
-  .cra-product-card{
-    flex: 0 0 auto;
-    width: 168px;
-    background: var(--paper);
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.28);
-    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
-  }
-  .cra-product-card:hover{
-    transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 18px 36px rgba(0,0,0,0.4);
-  }
-  .cra-product-media{
-    position: relative;
-    aspect-ratio: 1/1;
-    background: var(--sage-tint);
-  }
-  .cra-product-media img{
-    position: absolute; inset: 0; width:100%; height:100%; object-fit: cover; z-index: 3;
-    cursor: zoom-in;
-  }
-  .cra-product-media .ph-fallback{
-    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:6px; color: var(--ink-soft); text-align:center; padding: 8px;
-  }
-  .cra-product-media .ph-fallback svg{ width: 24px; height:24px; color: var(--field); opacity: 0.5; }
-  .cra-product-body{ padding: 12px 13px 14px; }
-  .cra-product-tag{
-    display:block; font-family:'Space Mono', monospace; font-size: 10px; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--terracotta); margin-bottom: 4px;
-  }
-  .cra-product-name{
-    font-family:'Fraunces', serif; font-size: 14.5px; font-weight: 600; color: var(--ink); line-height: 1.3;
-  }
-  @media (max-width: 620px){
-    .cra-product-card{ width: 138px; }
-  }
 </style>
 </head>
 <body>
@@ -1172,7 +1070,7 @@
 
 <section class="cra" id="cra">
   <div class="wrap">
-    <div class="cra-intro reveal">
+    <div class="reveal">
       <div class="eyebrow">La nostra rete</div>
       <h2>Operiamo con il Consorzio CRA</h2>
       <p>Collaboriamo con il Consorzio CRA (Consorzio Romagnolo Agriservizi), che seleziona e distribuisce mezzi tecnici per l'agricoltura a marchio proprio — concimi, biostimolanti e fisioattivatori pensati per le esigenze reali delle aziende agricole.</p>
@@ -1181,12 +1079,14 @@
     </div>
     <div class="cra-badge reveal stagger-2">
       <span class="tag">Mezzi tecnici a marchio CRA</span>
-
-      <div class="cra-carousel">
-        <div class="cra-carousel-viewport">
-          <div class="cra-carousel-track" id="cra-carousel-track"></div>
-        </div>
-      </div>
+      <h3>Alcune linee di prodotto</h3>
+      <ul class="cra-products">
+        <li>Concimi microgranulari con rizobi azotofissatori</li>
+        <li>Fisioattivatori e biostimolanti organominerali</li>
+        <li>Concimi organo-minerali NPK liquidi</li>
+        <li>Fisioattivatori a base di leonardite</li>
+        <li>Soluzioni aminoacidiche per la crescita</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -1506,14 +1406,7 @@
   <button id="lightbox-close" aria-label="Chiudi">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
-  <div id="lightbox-content">
-    <img id="lightbox-img" src="" alt="">
-    <div id="lightbox-caption">
-      <span class="lb-tag" id="lightbox-tag"></span>
-      <div class="lb-title" id="lightbox-title"></div>
-      <p class="lb-desc" id="lightbox-desc"></p>
-    </div>
-  </div>
+  <img id="lightbox-img" src="" alt="">
 </div>
 
 <script>
@@ -1584,41 +1477,18 @@
     var lightbox = document.getElementById('lightbox');
     var lightboxImg = document.getElementById('lightbox-img');
     var closeBtn = document.getElementById('lightbox-close');
-    var caption = document.getElementById('lightbox-caption');
-    var captionTag = document.getElementById('lightbox-tag');
-    var captionTitle = document.getElementById('lightbox-title');
-    var captionDesc = document.getElementById('lightbox-desc');
 
-    function openLightbox(src, alt, tag, title, desc) {
+    function openLightbox(src, alt) {
       lightboxImg.src = src;
       lightboxImg.alt = alt || '';
-      if (desc) {
-        captionTag.textContent = tag || '';
-        captionTitle.textContent = title || '';
-        captionDesc.textContent = desc;
-        caption.classList.add('has-text');
-      } else {
-        caption.classList.remove('has-text');
-      }
       lightbox.classList.add('open');
     }
     function closeLightbox() {
       lightbox.classList.remove('open');
       lightboxImg.src = '';
-      caption.classList.remove('has-text');
     }
 
     document.addEventListener('click', function (e) {
-      var craImg = e.target.closest('.cra-product-media img[data-name]');
-      if (craImg && craImg.src) {
-        e.preventDefault();
-        var card = craImg.closest('.cra-product-card');
-        var tag = card ? card.querySelector('.cra-product-tag').textContent : '';
-        var title = card ? card.querySelector('.cra-product-name').textContent : '';
-        var desc = card ? card.dataset.desc : '';
-        openLightbox(craImg.src, craImg.alt, tag, title, desc);
-        return;
-      }
       var img = e.target.closest('.gph img[data-name], .focus-media img[data-name], .about-photo img[data-name], .novita-photo img[data-name]');
       if (img && img.src) openLightbox(img.src, img.alt);
     });
@@ -1701,68 +1571,6 @@
       });
     }, { threshold: 0.14, rootMargin: '0px 0px -60px 0px' });
     items.forEach(function (el) { io.observe(el); });
-  })();
-
-  // Carosello prodotti CRA: le card vengono generate leggendo
-  // cra-prodotti.json, cosi nomi, categorie e descrizioni si possono
-  // modificare editando solo quel file, senza toccare l'HTML.
-  (function () {
-    var track = document.getElementById('cra-carousel-track');
-    if (!track) return;
-
-    function buildSet(items, hidden) {
-      var set = document.createElement('div');
-      set.className = 'cra-carousel-set';
-      if (hidden) set.setAttribute('aria-hidden', 'true');
-      items.forEach(function (p) {
-        var a = document.createElement('a');
-        a.className = 'cra-product-card';
-        a.href = '#prodotti';
-        if (hidden) a.tabIndex = -1;
-        if (p.descrizione) a.dataset.desc = p.descrizione;
-        a.innerHTML =
-          '<div class="cra-product-media">' +
-            '<img data-name="' + (p.immagine || '') + '" alt="' + (hidden ? '' : (p.nome || '')) + '" loading="lazy" decoding="async">' +
-            '<div class="ph-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg></div>' +
-          '</div>' +
-          '<div class="cra-product-body">' +
-            '<span class="cra-product-tag">' + (p.categoria || '') + '</span>' +
-            '<span class="cra-product-name">' + (p.nome || '') + '</span>' +
-          '</div>';
-        set.appendChild(a);
-      });
-      return set;
-    }
-
-    function updateShift() {
-      var firstSet = track.querySelector('.cra-carousel-set');
-      if (!firstSet) return;
-      var trackStyle = getComputedStyle(track);
-      var gap = parseFloat(trackStyle.columnGap || trackStyle.gap) || 0;
-      var distance = firstSet.getBoundingClientRect().width + gap;
-      if (distance > 0) {
-        track.style.setProperty('--cra-shift', distance + 'px');
-      }
-    }
-
-    fetch('cra-prodotti.json')
-      .then(function (r) { return r.json(); })
-      .then(function (items) {
-        if (!Array.isArray(items) || items.length === 0) return;
-        track.appendChild(buildSet(items, false));
-        // secondo set identico (nascosto agli screen reader): garantisce il loop continuo senza vuoti
-        track.appendChild(buildSet(items, true));
-        initImageFallbacks(track);
-        updateShift();
-        window.addEventListener('load', updateShift);
-      })
-      .catch(function () { /* file non raggiungibile: il carosello resta vuoto */ });
-
-    var resizeTimer;
-    window.addEventListener('resize', function () {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(updateShift, 150);
-    });
   })();
 
   // Animazione camioncino: riparte ogni volta che l'elemento torna in vista
