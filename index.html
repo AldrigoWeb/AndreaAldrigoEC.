@@ -708,11 +708,6 @@
   #lightbox-caption .lb-title{
     font-family:'Fraunces', serif; font-size: 19px; font-weight: 600; color: var(--ink);
   }
-  #lightbox-caption .lb-desc{
-    margin-top: 12px; font-size: 14.5px; line-height: 1.7; color: var(--ink-soft);
-    white-space: pre-line; max-height: 30vh; overflow-y: auto;
-  }
-  #lightbox-content{ overflow-y: auto; }
   @media (max-width: 620px){
     #lightbox-content{ max-width: 92vw; }
     #lightbox-caption{ padding: 16px 18px 18px; }
@@ -1187,7 +1182,131 @@
       <div class="cra-carousel">
         <div class="cra-carousel-viewport">
           <div class="cra-carousel-track" id="cra-carousel-track">
-            <!-- popolato dinamicamente da cra-prodotti.json via JS -->
+            <div class="cra-carousel-set">
+              <a class="cra-product-card" href="#prodotti">
+                <div class="cra-product-media">
+                  <img data-name="cra-prod1" alt="Concime microgranulare con rizobi" loading="lazy" decoding="async">
+                  <div class="ph-fallback">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
+                  </div>
+                </div>
+                <div class="cra-product-body">
+                  <span class="cra-product-tag">Microgranulare</span>
+                  <span class="cra-product-name">Rizobi azotofissatori</span>
+                </div>
+              </a>
+              <a class="cra-product-card" href="#prodotti">
+                <div class="cra-product-media">
+                  <img data-name="cra-prod2" alt="Biostimolante organominerale" loading="lazy" decoding="async">
+                  <div class="ph-fallback">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
+                  </div>
+                </div>
+                <div class="cra-product-body">
+                  <span class="cra-product-tag">Biostimolante</span>
+                  <span class="cra-product-name">Organominerale</span>
+                </div>
+              </a>
+              <a class="cra-product-card" href="#prodotti">
+                <div class="cra-product-media">
+                  <img data-name="cra-prod3" alt="Concime organo-minerale NPK liquido" loading="lazy" decoding="async">
+                  <div class="ph-fallback">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
+                  </div>
+                </div>
+                <div class="cra-product-body">
+                  <span class="cra-product-tag">NPK Liquido</span>
+                  <span class="cra-product-name">Organo-minerale</span>
+                </div>
+              </a>
+              <a class="cra-product-card" href="#prodotti">
+                <div class="cra-product-media">
+                  <img data-name="cra-prod4" alt="Fisioattivatore a base di leonardite" loading="lazy" decoding="async">
+                  <div class="ph-fallback">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
+                  </div>
+                </div>
+                <div class="cra-product-body">
+                  <span class="cra-product-tag">Fisioattivatore</span>
+                  <span class="cra-product-name">Base leonardite</span>
+                </div>
+              </a>
+              <a class="cra-product-card" href="#prodotti">
+                <div class="cra-product-media">
+                  <img data-name="cra-prod5" alt="Soluzione aminoacidica per la crescita" loading="lazy" decoding="async">
+                  <div class="ph-fallback">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
+                  </div>
+                </div>
+                <div class="cra-product-body">
+                  <span class="cra-product-tag">Aminoacidico</span>
+                  <span class="cra-product-name">Stimolo crescita</span>
+                </div>
+              </a>
+            </div>
+            <!-- secondo set identico: garantisce il loop continuo senza vuoti -->
+            <div class="cra-carousel-set" aria-hidden="true">
+              <a class="cra-product-card" href="#prodotti" tabindex="-1">
+                <div class="cra-product-media">
+                  <img data-name="cra-prod1" alt="" loading="lazy" decoding="async">
+                  <div class="ph-fallback">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
+                  </div>
+                </div>
+                <div class="cra-product-body">
+                  <span class="cra-product-tag">Microgranulare</span>
+                  <span class="cra-product-name">Rizobi azotofissatori</span>
+                </div>
+              </a>
+              <a class="cra-product-card" href="#prodotti" tabindex="-1">
+                <div class="cra-product-media">
+                  <img data-name="cra-prod2" alt="" loading="lazy" decoding="async">
+                  <div class="ph-fallback">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
+                  </div>
+                </div>
+                <div class="cra-product-body">
+                  <span class="cra-product-tag">Biostimolante</span>
+                  <span class="cra-product-name">Organominerale</span>
+                </div>
+              </a>
+              <a class="cra-product-card" href="#prodotti" tabindex="-1">
+                <div class="cra-product-media">
+                  <img data-name="cra-prod3" alt="" loading="lazy" decoding="async">
+                  <div class="ph-fallback">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
+                  </div>
+                </div>
+                <div class="cra-product-body">
+                  <span class="cra-product-tag">NPK Liquido</span>
+                  <span class="cra-product-name">Organo-minerale</span>
+                </div>
+              </a>
+              <a class="cra-product-card" href="#prodotti" tabindex="-1">
+                <div class="cra-product-media">
+                  <img data-name="cra-prod4" alt="" loading="lazy" decoding="async">
+                  <div class="ph-fallback">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
+                  </div>
+                </div>
+                <div class="cra-product-body">
+                  <span class="cra-product-tag">Fisioattivatore</span>
+                  <span class="cra-product-name">Base leonardite</span>
+                </div>
+              </a>
+              <a class="cra-product-card" href="#prodotti" tabindex="-1">
+                <div class="cra-product-media">
+                  <img data-name="cra-prod5" alt="" loading="lazy" decoding="async">
+                  <div class="ph-fallback">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
+                  </div>
+                </div>
+                <div class="cra-product-body">
+                  <span class="cra-product-tag">Aminoacidico</span>
+                  <span class="cra-product-name">Stimolo crescita</span>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -1510,14 +1629,7 @@
   <button id="lightbox-close" aria-label="Chiudi">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
-  <div id="lightbox-content">
-    <img id="lightbox-img" src="" alt="">
-    <div id="lightbox-caption">
-      <span class="lb-tag" id="lightbox-tag"></span>
-      <div class="lb-title" id="lightbox-title"></div>
-      <p class="lb-desc" id="lightbox-desc"></p>
-    </div>
-  </div>
+  <img id="lightbox-img" src="" alt="">
 </div>
 
 <script>
@@ -1583,55 +1695,25 @@
     next.addEventListener('click', function () { grid.scrollBy({ left: step, behavior: 'smooth' }); });
   })();
 
-  // Lightbox: clic su una foto caricata (o su una card prodotto CRA) per ingrandirla
+  // Lightbox: clic su una foto caricata per ingrandirla
   (function () {
     var lightbox = document.getElementById('lightbox');
     var lightboxImg = document.getElementById('lightbox-img');
-    var lightboxTag = document.getElementById('lightbox-tag');
-    var lightboxTitle = document.getElementById('lightbox-title');
-    var lightboxDesc = document.getElementById('lightbox-desc');
-    var lightboxCaption = document.getElementById('lightbox-caption');
     var closeBtn = document.getElementById('lightbox-close');
 
-    function openLightbox(src, alt, opts) {
-      opts = opts || {};
+    function openLightbox(src, alt) {
       lightboxImg.src = src;
       lightboxImg.alt = alt || '';
-      if (opts.tag || opts.title || opts.desc) {
-        lightboxTag.textContent = opts.tag || '';
-        lightboxTitle.textContent = opts.title || '';
-        lightboxDesc.textContent = opts.desc || '';
-        lightboxCaption.classList.add('has-text');
-      } else {
-        lightboxTag.textContent = '';
-        lightboxTitle.textContent = '';
-        lightboxDesc.textContent = '';
-        lightboxCaption.classList.remove('has-text');
-      }
       lightbox.classList.add('open');
     }
     function closeLightbox() {
       lightbox.classList.remove('open');
       lightboxImg.src = '';
     }
-    window.openProductLightbox = openLightbox;
 
     document.addEventListener('click', function (e) {
-      var productCard = e.target.closest('.cra-product-card[data-tag]');
-      if (productCard) {
-        e.preventDefault();
-        var img = productCard.querySelector('img[data-name]');
-        if (img && img.src) {
-          openLightbox(img.src, img.alt, {
-            tag: productCard.dataset.tag,
-            title: productCard.dataset.title,
-            desc: productCard.dataset.desc
-          });
-        }
-        return;
-      }
-      var img2 = e.target.closest('.gph img[data-name], .focus-media img[data-name], .about-photo img[data-name], .novita-photo img[data-name]');
-      if (img2 && img2.src) openLightbox(img2.src, img2.alt);
+      var img = e.target.closest('.gph img[data-name], .focus-media img[data-name], .about-photo img[data-name], .novita-photo img[data-name]');
+      if (img && img.src) openLightbox(img.src, img.alt);
     });
     closeBtn.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', function (e) {
@@ -1640,70 +1722,6 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeLightbox();
     });
-  })();
-
-  // Carosello prodotti CRA: costruisce le card a partire da cra-prodotti.json
-  // (doppio set identico per garantire il loop continuo) e le collega alla lightbox.
-  (function () {
-    var track = document.getElementById('cra-carousel-track');
-    if (!track) return;
-
-    function cardHTML(p, hidden) {
-      var safeAlt = (p.nome || '').replace(/"/g, '&quot;');
-      return (
-        '<a class="cra-product-card" href="#prodotti"' +
-          (hidden ? ' tabindex="-1" aria-hidden="true"' : '') +
-          ' data-tag="' + (p.categoria || '').replace(/"/g, '&quot;') + '"' +
-          ' data-title="' + safeAlt + '"' +
-          ' data-desc="' + (p.descrizione || '').replace(/"/g, '&quot;') + '">' +
-          '<div class="cra-product-media">' +
-            '<img data-name="' + p.immagine + '" alt="' + safeAlt + '" loading="lazy" decoding="async">' +
-            '<div class="ph-fallback">' +
-              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>' +
-            '</div>' +
-          '</div>' +
-          '<div class="cra-product-body">' +
-            '<span class="cra-product-tag">' + (p.categoria || '') + '</span>' +
-            '<span class="cra-product-name">' + (p.nome || '') + '</span>' +
-          '</div>' +
-        '</a>'
-      );
-    }
-
-    fetch('cra-prodotti.json')
-      .then(function (r) { return r.json(); })
-      .then(function (products) {
-        if (!Array.isArray(products) || products.length === 0) return;
-        var setA = document.createElement('div');
-        setA.className = 'cra-carousel-set';
-        setA.innerHTML = products.map(function (p) { return cardHTML(p, false); }).join('');
-        var setB = document.createElement('div');
-        setB.className = 'cra-carousel-set';
-        setB.setAttribute('aria-hidden', 'true');
-        setB.innerHTML = products.map(function (p) { return cardHTML(p, true); }).join('');
-        track.appendChild(setA);
-        track.appendChild(setB);
-
-        initImageFallbacks(track);
-
-        var firstSet = track.querySelector('.cra-carousel-set');
-        function updateShift() {
-          var trackStyle = getComputedStyle(track);
-          var gap = parseFloat(trackStyle.columnGap || trackStyle.gap) || 0;
-          var distance = firstSet.getBoundingClientRect().width + gap;
-          if (distance > 0) track.style.setProperty('--cra-shift', distance + 'px');
-        }
-        updateShift();
-        window.addEventListener('load', updateShift);
-        var resizeTimer;
-        window.addEventListener('resize', function () {
-          clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(updateShift, 150);
-        });
-      })
-      .catch(function (err) {
-        console.error('Errore nel caricamento di cra-prodotti.json:', err);
-      });
   })();
 
   // Modal Privacy & Cookie
@@ -1776,6 +1794,35 @@
       });
     }, { threshold: 0.14, rootMargin: '0px 0px -60px 0px' });
     items.forEach(function (el) { io.observe(el); });
+  })();
+
+  // Carosello prodotti CRA: calcola via JS la larghezza esatta del primo
+  // "set" di card (piu il gap che lo separa dal secondo) e la usa come
+  // distanza di scroll dell'animazione, cosi il loop e sempre continuo:
+  // appena l'ultima card del primo giro esce a sinistra, subentra la
+  // successiva senza scatti ne spazi vuoti.
+  (function () {
+    var track = document.getElementById('cra-carousel-track');
+    if (!track) return;
+    var firstSet = track.querySelector('.cra-carousel-set');
+    if (!firstSet) return;
+
+    function updateShift() {
+      var trackStyle = getComputedStyle(track);
+      var gap = parseFloat(trackStyle.columnGap || trackStyle.gap) || 0;
+      var distance = firstSet.getBoundingClientRect().width + gap;
+      if (distance > 0) {
+        track.style.setProperty('--cra-shift', distance + 'px');
+      }
+    }
+
+    updateShift();
+    window.addEventListener('load', updateShift);
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(updateShift, 150);
+    });
   })();
 
   // Animazione camioncino: riparte ogni volta che l'elemento torna in vista
