@@ -1071,7 +1071,7 @@
 
 <div class="value-strip">
   <div class="wrap">
-    <a class="value-tile reveal" href="analisi-del-terreno/">
+    <a class="value-tile reveal" href="#prodotti">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle pathLength="1" cx="7" cy="7" r="2"/><circle pathLength="1" cx="17" cy="7" r="2"/><circle pathLength="1" cx="12" cy="14" r="2"/><path pathLength="1" d="M12 16v5M7 9v3l4 2M17 9v3l-4 2"/></svg>
       <h3>Analisi del terreno</h3>
       <p>Piano di concimazione personalizzato, costruito sui risultati reali del tuo terreno.</p>
