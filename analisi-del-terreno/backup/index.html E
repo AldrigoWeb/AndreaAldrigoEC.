@@ -616,30 +616,7 @@
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
-  var data = {
-    top: [
-      { sym:'pH', full:'pH del suolo', hint:'Equilibrio acido-base', desc:'Determina la disponibilità reale degli elementi nutritivi per la pianta: anche un terreno ricco può risultare povero se il pH non è nel range corretto.' },
-      { sym:'Ca/Mg', full:'Rapporto Calcio/Magnesio', hint:'Struttura del terreno', desc:'Un rapporto squilibrato compromette la struttura del terreno e l\'assorbimento degli altri elementi nutritivi da parte delle radici.' }
-    ],
-    mid: [
-      { sym:'N', full:'Azoto', hint:'Crescita vegetativa', desc:'Motore della crescita vegetativa: guida lo sviluppo di foglie e steli nelle prime fasi della coltura.' },
-      { sym:'P', full:'Fosforo', hint:'Radici e fioritura', desc:'Fondamentale per lo sviluppo radicale e per la fioritura e allegagione dei frutti.' },
-      { sym:'K', full:'Potassio', hint:'Qualità del raccolto', desc:'Regola l\'equilibrio idrico della pianta e migliora la qualità e la conservabilità del raccolto.' }
-    ],
-    deep: [
-      { sym:'S', full:'Zolfo', hint:'Sintesi proteica', desc:'Elemento mesonutriente coinvolto nella sintesi proteica e nella qualità nutrizionale della pianta.' },
-      { sym:'Ca', full:'Calcio', hint:'Pareti cellulari', desc:'Rinforza le pareti cellulari e migliora la struttura del terreno, contrastando la compattazione.' },
-      { sym:'Mg', full:'Magnesio', hint:'Clorofilla', desc:'Componente centrale della clorofilla: la sua carenza si manifesta con ingiallimenti fogliari.' },
-      { sym:'Fe·Mn·Zn', full:'Microelementi', hint:'Ferro, manganese, zinco, rame, boro, sodio', desc:'Necessari in piccole quantità ma indispensabili per lo sviluppo equilibrato della pianta: ferro, manganese, zinco, rame, boro e sodio.' }
-    ],
-    root: [
-      { sym:'pH', full:'Reazione del suolo', hint:'Acidità o alcalinità', desc:'Un pH troppo alto o troppo basso riduce la disponibilità di molti oligoelementi per la pianta, anche quando sono presenti in quantità sufficiente nel terreno.' },
-      { sym:'C.S.C.', full:'Capacità di scambio cationico', hint:'Riserva di nutrienti', desc:'Indica quanto il terreno è in grado di trattenere e rendere disponibili gli elementi nutritivi per le radici nel tempo.' },
-      { sym:'M.O.', full:'Materia organica', hint:'Fertilità e struttura', desc:'Migliora la struttura del terreno, la ritenzione idrica e sostiene l\'attività biologica del suolo.' },
-      { sym:'E.C.', full:'Conducibilità elettrica', hint:'Salinità del terreno', desc:'Misura la concentrazione di sali disciolti nel terreno: valori troppo alti possono ostacolare l\'assorbimento idrico delle radici.' },
-      { sym:'Sa·Li·Ar', full:'Tessitura del suolo', hint:'Sabbia, limo, argilla', desc:'Il rapporto tra sabbia, limo e argilla determina drenaggio, aerazione e capacità del terreno di trattenere acqua e nutrienti.' }
-    ]
-  };
+  var data = {};
 
   function buildGrid(gridId, items){
     var grid = document.getElementById(gridId);
@@ -655,10 +632,16 @@
       grid.appendChild(card);
     });
   }
-  buildGrid('gridTop', data.top);
-  buildGrid('gridMid', data.mid);
-  buildGrid('gridDeep', data.deep);
-  buildGrid('gridRoot', data.root);
+  fetch('parametri-terreno.json')
+    .then(function (r) { return r.json(); })
+    .then(function (json) {
+      data = json;
+      buildGrid('gridTop', data.top || []);
+      buildGrid('gridMid', data.mid || []);
+      buildGrid('gridDeep', data.deep || []);
+      buildGrid('gridRoot', data.root || []);
+    })
+    .catch(function () { console.error('Impossibile caricare parametri-terreno.json'); });
 
   /* ---------- Overlay dettaglio, animato con GSAP ---------- */
   var overlay = document.getElementById('detailOverlay');
