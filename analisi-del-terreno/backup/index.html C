@@ -151,7 +151,7 @@
     position: relative;
     min-height: 100vh;
     display:flex; flex-direction:column; justify-content:center;
-    padding: 120px 10vw 120px 9vw;
+    padding: 120px 8vw;
     z-index: 2;
   }
   .layer-heading{ max-width: 640px; margin-bottom: 64px; position: relative; z-index: 2; }
@@ -175,7 +175,7 @@
     display:grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 20px;
-    max-width: 1040px;
+    max-width: 1080px;
   }
   .param-card{
     position: relative;
@@ -253,46 +253,43 @@
     .back-home{ top: 14px; left: 14px; padding: 8px 12px; font-size: 10.5px; }
   }
 
-  /* ---------- INDICATORE DI PROFONDITA' LATERALE (barra ingrandita e bilanciata) ---------- */
+  /* ---------- INDICATORE DI PROFONDITA' LATERALE ---------- */
   .depth-nav{
-    position: fixed; right: 30px; top: 50%;
+    position: fixed; right: 34px; top: 50%;
     transform: translateY(-50%);
     z-index: 55;
-    display: flex; flex-direction: column; gap: 28px;
+    display: flex; flex-direction: column; gap: 34px;
   }
   .depth-nav::before{
     content: "";
-    position: absolute; top: 8px; bottom: 8px; right: 7px; width: 2px;
-    background: rgba(251,249,243,0.12);
-    border-radius: 2px;
+    position: absolute; top: -22px; bottom: -22px; right: 4px; width: 1px;
+    background: rgba(251,249,243,0.16);
   }
   .depth-nav-progress{
-    position: absolute; top: 8px; right: 7px; width: 2px; height: 0%;
-    background: linear-gradient(180deg, var(--wheat-light), var(--wheat));
-    border-radius: 2px;
-    box-shadow: 0 0 10px rgba(231,200,124,0.7);
+    position: absolute; top: -22px; right: 4px; width: 1px; height: 0%;
+    background: var(--wheat-light);
+    box-shadow: 0 0 8px rgba(231,200,124,0.6);
     transition: height 0.1s linear;
   }
   .depth-nav-item{
     position: relative;
-    display: flex; align-items: center; justify-content: flex-end; gap: 14px;
+    display: flex; align-items: center; justify-content: flex-end; gap: 12px;
     text-decoration: none;
-    padding-right: 8px;
   }
   .depth-label{
-    font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.08em;
-    text-transform: uppercase; color: rgba(251,249,243,0.6); text-align: right;
-    opacity: 0; transform: translateX(10px);
-    transition: opacity 0.28s var(--ease), transform 0.28s var(--ease), color 0.28s ease;
+    font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: rgba(251,249,243,0.55); text-align: right;
+    opacity: 0; transform: translateX(8px);
+    transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), color 0.25s ease;
     white-space: nowrap;
   }
   .depth-label small{
-    display: block; margin-top: 3px; font-size: 10px; letter-spacing: 0.02em;
-    text-transform: none; opacity: 0.78;
+    display: block; margin-top: 2px; font-size: 9px; letter-spacing: 0.02em;
+    text-transform: none; opacity: 0.75;
   }
   .depth-dot{
-    flex-shrink: 0; width: 16px; height: 16px; border-radius: 50%;
-    background: rgba(251,249,243,0.22); border: 2px solid rgba(251,249,243,0.42);
+    flex-shrink: 0; width: 10px; height: 10px; border-radius: 50%;
+    background: rgba(251,249,243,0.28); border: 1px solid rgba(251,249,243,0.4);
     transition: all 0.3s var(--ease);
   }
   .depth-nav-item:hover .depth-label,
@@ -301,11 +298,8 @@
   .depth-nav-item:hover .depth-dot,
   .depth-nav-item.active .depth-dot{
     background: var(--wheat-light); border-color: var(--wheat-light);
-    box-shadow: 0 0 16px rgba(231,200,124,0.75);
-    transform: scale(1.3);
-  }
-  @media (max-width: 1100px){
-    .depth-nav{ right: 16px; gap: 24px; }
+    box-shadow: 0 0 12px rgba(231,200,124,0.65);
+    transform: scale(1.35);
   }
   @media (max-width: 980px){
     .depth-nav{ display: none; }
@@ -347,11 +341,11 @@
   /* ---------- SEZIONE CONTATTI ---------- */
   .contact-section{
     position: relative; z-index: 2;
-    padding: 120px 9vw 100px;
+    padding: 120px 8vw 100px;
   }
   .contact-inner{
     display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 64px;
-    max-width: 1040px; align-items: start;
+    max-width: 1080px; align-items: start;
   }
   .contact-copy p{ margin-top: 18px; color: rgba(251,249,243,0.68); font-size: 16px; max-width: 42ch; }
   .contact-info{ margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
@@ -430,7 +424,7 @@
     position: relative; z-index: 2;
     background: #120E09;
     border-top: 1px solid rgba(251,249,243,0.1);
-    padding: 34px 9vw;
+    padding: 34px 8vw;
     display: flex; justify-content: space-between; align-items: center;
     flex-wrap: wrap; gap: 14px;
   }
@@ -442,9 +436,6 @@
   }
   .footer-back:hover{ border-color: var(--wheat-light); }
 </style>
-  <meta property="og:image" content="https://bolt.new/static/og_default.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
 </head>
 <body>
 
@@ -804,18 +795,17 @@
   var decorDeep = document.getElementById('decorDeep');
   var decorRoot = document.getElementById('decorRoot');
 
-  function addSeep(container, count, opacity, w, h, depthFrac){
-    depthFrac = depthFrac || 1;
-    var yEnd = Math.round(h * depthFrac);
-    var g = '<g fill="none" stroke="rgba(170,205,222,' + opacity + ')" stroke-width="1.6" stroke-linecap="round">';
+  function addSeep(container, count, opacity, w, h){
+    var g = '<g fill="none" stroke="rgba(196,220,232,' + opacity + ')" stroke-width="2" stroke-linecap="round">';
     var paths = [];
     for (var i = 0; i < count; i++){
       var x = (w / (count + 1)) * (i + 1) + gsap.utils.random(-20, 20);
       var y0 = 0;
-      var y1 = yEnd * 0.45;
-      var xMid = x + gsap.utils.random(-12, 12);
-      var xEnd = x + gsap.utils.random(-10, 10);
-      var d = 'M' + x + ' ' + y0 + ' Q' + xMid + ' ' + y1 + ' ' + xEnd + ' ' + yEnd;
+      var y1 = h * 0.4;
+      var y2 = h;
+      var xMid = x + gsap.utils.random(-14, 14);
+      var xEnd = x + gsap.utils.random(-18, 18);
+      var d = 'M' + x + ' ' + y0 + ' Q' + xMid + ' ' + y1 + ' ' + xEnd + ' ' + y2;
       g += '<path pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" d="' + d + '"/>';
     }
     g += '</g>';
@@ -826,18 +816,18 @@
     return el.querySelectorAll('path');
   }
 
-  var seepTop = addSeep(decorTop, 4, 0.4, 1200, 620, 0.38);
-  var seepMid = addSeep(decorMid, 3, 0.26, 1200, 620, 0.3);
+  var seepTop = addSeep(decorTop, 5, 0.5, 1200, 620);
+  var seepMid = addSeep(decorMid, 4, 0.3, 1200, 620);
 
   gsap.to(seepTop, {
     strokeDashoffset: 0,
-    stagger: 0.1,
+    stagger: 0.08,
     ease: 'none',
-    scrollTrigger: { trigger: decorTop.closest('.layer-section'), start: 'top bottom', end: 'center 60%', scrub: true }
+    scrollTrigger: { trigger: decorTop.closest('.layer-section'), start: 'top bottom', end: 'bottom 40%', scrub: true }
   });
   gsap.to(seepMid, {
     strokeDashoffset: 0,
-    stagger: 0.1,
+    stagger: 0.08,
     ease: 'none',
     scrollTrigger: { trigger: decorMid.closest('.layer-section'), start: 'top bottom', end: 'center center', scrub: true }
   });

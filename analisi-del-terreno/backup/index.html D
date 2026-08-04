@@ -255,19 +255,25 @@
 
   /* ---------- INDICATORE DI PROFONDITA' LATERALE (barra ingrandita e bilanciata) ---------- */
   .depth-nav{
-    position: fixed; right: 30px; top: 50%;
+    position: fixed; right: 32px; top: 50%;
     transform: translateY(-50%);
     z-index: 55;
-    display: flex; flex-direction: column; gap: 28px;
+    display: flex; flex-direction: column; gap: 30px;
+    padding: 26px 18px 26px 22px;
+    background: rgba(18,14,9,0.42);
+    border: 1px solid rgba(251,249,243,0.12);
+    border-radius: 22px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 18px 44px rgba(0,0,0,0.32);
   }
   .depth-nav::before{
     content: "";
-    position: absolute; top: 8px; bottom: 8px; right: 7px; width: 2px;
-    background: rgba(251,249,243,0.12);
+    position: absolute; top: 20px; bottom: 20px; right: 32px; width: 2px;
+    background: rgba(251,249,243,0.14);
     border-radius: 2px;
   }
   .depth-nav-progress{
-    position: absolute; top: 8px; right: 7px; width: 2px; height: 0%;
+    position: absolute; top: 20px; right: 32px; width: 2px; height: 0%;
     background: linear-gradient(180deg, var(--wheat-light), var(--wheat));
     border-radius: 2px;
     box-shadow: 0 0 10px rgba(231,200,124,0.7);
@@ -305,7 +311,8 @@
     transform: scale(1.3);
   }
   @media (max-width: 1100px){
-    .depth-nav{ right: 16px; gap: 24px; }
+    .depth-nav{ right: 18px; padding: 22px 14px 22px 16px; gap: 26px; }
+    .depth-nav::before, .depth-nav-progress{ right: 26px; }
   }
   @media (max-width: 980px){
     .depth-nav{ display: none; }
@@ -804,18 +811,17 @@
   var decorDeep = document.getElementById('decorDeep');
   var decorRoot = document.getElementById('decorRoot');
 
-  function addSeep(container, count, opacity, w, h, depthFrac){
-    depthFrac = depthFrac || 1;
-    var yEnd = Math.round(h * depthFrac);
-    var g = '<g fill="none" stroke="rgba(170,205,222,' + opacity + ')" stroke-width="1.6" stroke-linecap="round">';
+  function addSeep(container, count, opacity, w, h){
+    var g = '<g fill="none" stroke="rgba(196,220,232,' + opacity + ')" stroke-width="2" stroke-linecap="round">';
     var paths = [];
     for (var i = 0; i < count; i++){
       var x = (w / (count + 1)) * (i + 1) + gsap.utils.random(-20, 20);
       var y0 = 0;
-      var y1 = yEnd * 0.45;
-      var xMid = x + gsap.utils.random(-12, 12);
-      var xEnd = x + gsap.utils.random(-10, 10);
-      var d = 'M' + x + ' ' + y0 + ' Q' + xMid + ' ' + y1 + ' ' + xEnd + ' ' + yEnd;
+      var y1 = h * 0.4;
+      var y2 = h;
+      var xMid = x + gsap.utils.random(-14, 14);
+      var xEnd = x + gsap.utils.random(-18, 18);
+      var d = 'M' + x + ' ' + y0 + ' Q' + xMid + ' ' + y1 + ' ' + xEnd + ' ' + y2;
       g += '<path pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" d="' + d + '"/>';
     }
     g += '</g>';
@@ -826,18 +832,18 @@
     return el.querySelectorAll('path');
   }
 
-  var seepTop = addSeep(decorTop, 4, 0.4, 1200, 620, 0.38);
-  var seepMid = addSeep(decorMid, 3, 0.26, 1200, 620, 0.3);
+  var seepTop = addSeep(decorTop, 5, 0.5, 1200, 620);
+  var seepMid = addSeep(decorMid, 4, 0.3, 1200, 620);
 
   gsap.to(seepTop, {
     strokeDashoffset: 0,
-    stagger: 0.1,
+    stagger: 0.08,
     ease: 'none',
-    scrollTrigger: { trigger: decorTop.closest('.layer-section'), start: 'top bottom', end: 'center 60%', scrub: true }
+    scrollTrigger: { trigger: decorTop.closest('.layer-section'), start: 'top bottom', end: 'bottom 40%', scrub: true }
   });
   gsap.to(seepMid, {
     strokeDashoffset: 0,
-    stagger: 0.1,
+    stagger: 0.08,
     ease: 'none',
     scrollTrigger: { trigger: decorMid.closest('.layer-section'), start: 'top bottom', end: 'center center', scrub: true }
   });
