@@ -1,44 +1,3 @@
-
-/
-sito
-sito
-
-
-
-
-
-
-
-Recenti
-Aggiornamento index per fetch cra-prodotti.json
-1 ora fa
-Istruzioni
-Aggiungi istruzioni per personalizzare le risposte di Claude
-
-Memoria
-Solo tu
-Purpose & context Vinci is building and maintaining the website for Andrea Aldrigo & C., an agricultural supply company (andrealdrigo.it). The work spans both ongoing maintenance/feature development and a broader push toward a multi-page architecture optimized for SEO and premium visual presentation. The site is built with HTML/CSS/JavaScript, version-controlled and deployed via GitHub. Current state Two parallel workstreams are active: CRA product carousel/lightbox — Recently refactored from hardcoded cards to a JSON-driven system (cra-prodotti.json), with product names, categories, descriptions, and image references stored externally so content can be edited without touching index.html. The lightbox displays full descriptions alongside enlarged images. Established behavior: the entire card (not just the image) triggers the lightbox. Images are stored in the images/ folder (cra-prod1.png, cra-prod2.png, etc.). Multi-page architecture — A new "Analisi del Terreno" (soil analysis) page is underway as the first of several planned standalone pages. Copy has been drafted (the service supports both farm visits by a technician and client-brought samples; microelements covered include iron, manganese, zinc, copper, boron, and sodium). Two HTML prototypes of a soil cross-section visual concept have been built, progressing from a card-style with hotspot pings to a full-page immersive version with animated grass blades, scroll-triggered layer sections, and slide-up detail panels. On the horizon Completing and refining the "Analisi del Terreno" page through the remaining phases: visual concept finalization, full development, and SEO/schema markup Continuing the five-phase roadmap (architecture → copy → visual concept → development → SEO/schema) for additional service pages Broader SEO goals tied to the multi-page architecture Key learnings & principles file:// protocol blocks fetch requests — local testing via file:// causes silent CORS failures; deployment testing is required for JSON-driven features JSON string formatting — literal newlines inside JSON string values break parsing; line breaks must use \n escape sequences Step-by-step development is preferred — Vinci works incrementally, building and testing each stage before moving to the next Approach & patterns Prefers a strict, step-by-step development process with progressive prototyping Design direction for new pages: premium, creative, modern — fluid animations, fade-ins, scale effects, full-page immersive layouts; explicitly not contained or boxed Content is separated from markup where possible (e.g., JSON for product data) Collaborative copy drafting: Vinci confirms business-specific details (service logistics, product specs) and Claude shapes the language Tools & resources HTML/CSS/JavaScript (vanilla) GitHub (version control and deployment) External JSON files for dynamic content management
-
-Ultimo aggiornamento 15 ore fa
-
-Contesto
-
-index.html
-1852 righe
-
-html
-
-
-
-cra-prodotti.json
-49 righe
-
-json
-
-
-index.html
-
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -1047,7 +1006,7 @@ index.html
     <label class="burger" for="nav-toggle">☰</label>
   <nav>
   <a href="#chi-siamo">Chi siamo</a>
-  <a href="#galleria">Dal campo</a>
+  <a href="https://www.andrealdrigo.it/analisi-del-terreno/">Analisi Terreno</a>
   <a href="#cra">CRA</a>
   <a href="#territorio">Territorio</a>
   <a href="#prodotti">Prodotti</a>
