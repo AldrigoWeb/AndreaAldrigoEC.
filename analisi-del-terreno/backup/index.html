@@ -107,11 +107,6 @@
   .hero p{
     margin-top: 26px; font-size: 18px; color: #2E3B22; max-width: 52ch; margin-left:auto; margin-right:auto;
   }
-  .hero-cta{
-    margin-top: 34px;
-    position: relative;
-    z-index: 3;
-  }
   .scroll-cue{
     position:absolute; bottom: 34px; left:50%; transform: translateX(-50%);
     z-index: 3; display:flex; flex-direction:column; align-items:center; gap:8px;
@@ -487,9 +482,6 @@
       <div class="hero-eyebrow">Consulenza agronomica</div>
       <h1><span class="line-wrap"><span class="line">Sotto la superficie</span></span><span class="line-wrap"><span class="line">si nasconde la risposta</span></span></h1>
       <p>Preleviamo il campione, lo analizziamo in laboratorio e trasformiamo i risultati in un piano di concimazione su misura per la tua coltura.</p>
-      <div class="hero-cta">
-        <a class="cta-btn" href="#contattiTerreno">Prenota l'analisi →</a>
-      </div>
     </div>
     <div class="scroll-cue">
       <span>Scorri per scendere nel terreno</span>
@@ -567,11 +559,7 @@
       </div>
 
       <div class="contact-form-wrap reveal-contact">
-        <form class="soil-form" id="soilForm" action="https://formsubmit.co/ajax/goeand@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="Nuova richiesta — Analisi del Terreno">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <form class="soil-form" id="soilForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
           <div class="form-row">
             <label>Nome e cognome
               <input type="text" name="nome" required autocomplete="name">
@@ -912,7 +900,6 @@
     .from('.hero-eyebrow', { opacity: 0, y: 22, duration: 0.8 }, 0.1)
     .from('.hero h1 .line', { yPercent: 110, duration: 1, stagger: 0.14, ease: 'power4.out' }, 0.25)
     .from('.hero p', { opacity: 0, y: 24, duration: 0.9 }, 0.65)
-    .from('.hero-cta', { opacity: 0, y: 20, duration: 0.8 }, 0.8)
     .from('.scroll-cue', { opacity: 0, y: 16, duration: 0.7 }, 0.95)
     .from('.hero-grass', { opacity: 0, duration: 0.8 }, 0.15);
 
