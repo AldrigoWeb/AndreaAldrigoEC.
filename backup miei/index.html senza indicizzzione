@@ -1,75 +1,10 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<script>
-  // Impedisce al browser di ripartire dal punto in cui era rimasto lo scroll al refresh:
-  // ogni caricamento della pagina parte sempre dall'inizio (in alto).
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
-  window.scrollTo(0, 0);
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Andrea Aldrigo & C. — Sementi, Fitosanitari e Concimi a Pernumia</title>
 <meta name="description" content="Andrea Aldrigo & C. S.a.s. — rivendita di sementi, prodotti fitosanitari e concimi (dal granulare alla fertirrigazione) a Pernumia, tra Bassa Padovana e Colli Euganei. In collaborazione con il Consorzio CRA.">
-<link rel="canonical" href="https://www.andrealdrigo.it/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Andrea Aldrigo & C. — Sementi, Fitosanitari e Concimi a Pernumia">
-<meta property="og:description" content="Rivendita di sementi, prodotti fitosanitari e concimi a Pernumia, tra Bassa Padovana e Colli Euganei. In collaborazione con il Consorzio CRA.">
-<meta property="og:url" content="https://www.andrealdrigo.it/">
-<!-- TODO: se hai un'immagine di copertina dedicata (es. il camion o il team), sostituisci il
-     percorso qui sotto con quella reale, altrimenti lasciala così se images/team.jpg esiste già. -->
-<meta property="og:image" content="https://www.andrealdrigo.it/images/team.jpg">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Andrea Aldrigo & C.",
-  "url": "https://www.andrealdrigo.it/"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Andrea Aldrigo & C.",
-  "image": "https://www.andrealdrigo.it/images/team.jpg",
-  "url": "https://www.andrealdrigo.it/",
-  "telephone": "+393484425820",
-  "email": "goeand@gmail.com",
-  "priceRange": "€€",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Via Monselice, 2",
-    "postalCode": "35020",
-    "addressLocality": "Pernumia",
-    "addressRegion": "PD",
-    "addressCountry": "IT"
-  },
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "opens": "08:00",
-      "closes": "12:30"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "opens": "14:30",
-      "closes": "18:30"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Saturday",
-      "opens": "08:30",
-      "closes": "12:00"
-    }
-  ],
-  "sameAs": []
-}
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Libre+Franklin:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
