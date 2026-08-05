@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+<script>
+  // Impedisce al browser di ripartire dal punto in cui era rimasto lo scroll al refresh:
+  // ogni caricamento della pagina parte sempre dall'inizio (in alto).
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anteprima — Analisi del Terreno</title>
@@ -985,11 +993,7 @@
     .from('.cta-section p', { opacity: 0, y: 20, duration: 0.8 }, '-=0.55')
     .from('.cta-btn', { opacity: 0, y: 18, scale: 0.9, duration: 0.6, ease: 'back.out(1.7)' }, '-=0.4');
 
-  /* ---------- Reveal sezione contatti ---------- */
-  gsap.from('.reveal-contact', {
-    opacity: 0, y: 34, duration: 0.8, stagger: 0.15, ease: 'power3.out',
-    scrollTrigger: { trigger: '.contact-section', start: 'top 75%', once: true }
-  });
+  /* ---------- Sezione contatti: nessuna animazione a comparsa, sempre visibile ---------- */
 
   /* ---------- Form contatti: invio via Formspree con stato di conferma/errore ---------- */
   (function () {
