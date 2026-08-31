@@ -1,12 +1,72 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+<script>
+  // Impedisce al browser di ripartire dal punto in cui era rimasto lo scroll al refresh:
+  // ogni caricamento della pagina parte sempre dall'inizio (in alto).
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anteprima — Analisi del Terreno</title>
+<title>Analisi del Terreno e Piano di Concimazione | Andrea Aldrigo & C. — Pernumia</title>
+<meta name="description" content="Analisi del terreno con prelievo in azienda o campione portato da te: laboratorio, interpretazione dei risultati e piano di concimazione personalizzato per la tua coltura. Andrea Aldrigo & C., Pernumia (PD).">
+<link rel="canonical" href="https://www.andrealdrigo.it/analisi-del-terreno/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Analisi del Terreno e Piano di Concimazione | Andrea Aldrigo & C.">
+<meta property="og:description" content="Prelievo del campione, analisi in laboratorio e piano di concimazione su misura per la tua coltura.">
+<meta property="og:url" content="https://www.andrealdrigo.it/analisi-del-terreno/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Andrea Aldrigo & C.",
+      "item": "https://www.andrealdrigo.it/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Analisi del Terreno",
+      "item": "https://www.andrealdrigo.it/analisi-del-terreno/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Analisi del terreno agricolo",
+  "name": "Analisi del Terreno e Piano di Concimazione",
+  "description": "Prelievo del campione di terreno in azienda o consegnato dal cliente, analisi di laboratorio e piano di concimazione personalizzato in base ai risultati.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Andrea Aldrigo & C.",
+    "url": "https://www.andrealdrigo.it/",
+    "telephone": "+393484425820",
+    "email": "goeand@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Via Monselice, 2",
+      "postalCode": "35020",
+      "addressLocality": "Pernumia",
+      "addressRegion": "PD",
+      "addressCountry": "IT"
+    }
+  },
+  "areaServed": "Bassa Padovana e Colli Euganei",
+  "url": "https://www.andrealdrigo.it/analisi-del-terreno/"
+}
+</script>
 <style>
   :root{
     --forest: #253B23;
@@ -106,6 +166,11 @@
   .hero h1 .line{ display:block; }
   .hero p{
     margin-top: 26px; font-size: 18px; color: #2E3B22; max-width: 52ch; margin-left:auto; margin-right:auto;
+  }
+  .hero-cta{
+    margin-top: 34px;
+    position: relative;
+    z-index: 3;
   }
   .scroll-cue{
     position:absolute; bottom: 34px; left:50%; transform: translateX(-50%);
@@ -328,6 +393,13 @@
     .detail-overlay{ align-items:center; }
     .detail-card{ border-radius:20px; }
   }
+  .detail-overlay.is-open-fallback{
+    background: rgba(15,12,6,0.6);
+    pointer-events: auto;
+  }
+  .detail-overlay.is-open-fallback .detail-card{
+    opacity: 1; transform: none;
+  }
   .detail-card .close{
     float:right; width:34px; height:34px; border-radius:50%;
     background: var(--sage-tint, #EEF1E4); border:none; cursor:pointer;
@@ -442,9 +514,10 @@
   }
   .footer-back:hover{ border-color: var(--wheat-light); }
 </style>
-  <meta property="og:image" content="https://bolt.new/static/og_default.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
+  <!-- TODO: quando hai un'immagine dedicata per questa pagina (es. images/terreno-cover.jpg),
+       aggiungi qui <meta property="og:image" content="https://www.andrealdrigo.it/images/terreno-cover.jpg">
+       e il corrispondente <meta name="twitter:image" ...> — per ora li ho tolti perché
+       puntavano a un'immagine placeholder generica non tua. -->
 </head>
 <body>
 
@@ -482,6 +555,9 @@
       <div class="hero-eyebrow">Consulenza agronomica</div>
       <h1><span class="line-wrap"><span class="line">Sotto la superficie</span></span><span class="line-wrap"><span class="line">si nasconde la risposta</span></span></h1>
       <p>Preleviamo il campione, lo analizziamo in laboratorio e trasformiamo i risultati in un piano di concimazione su misura per la tua coltura.</p>
+      <div class="hero-cta">
+        <a class="cta-btn" href="#contattiTerreno">Prenota l'analisi →</a>
+      </div>
     </div>
     <div class="scroll-cue">
       <span>Scorri per scendere nel terreno</span>
@@ -559,7 +635,11 @@
       </div>
 
       <div class="contact-form-wrap reveal-contact">
-        <form class="soil-form" id="soilForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <form class="soil-form" id="soilForm" action="https://formsubmit.co/ajax/goeand@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Nuova richiesta — Analisi del Terreno">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-row">
             <label>Nome e cognome
               <input type="text" name="nome" required autocomplete="name">
@@ -614,7 +694,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-  gsap.registerPlugin(ScrollTrigger);
+(function () {
+
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
 
   var data = {
     top: [
@@ -660,13 +744,41 @@
   buildGrid('gridDeep', data.deep);
   buildGrid('gridRoot', data.root);
 
-  /* ---------- Overlay dettaglio, animato con GSAP ---------- */
+  /* ---------- Da qui in poi: tutto ciò che NON richiede GSAP resta comunque eseguito ---------- */
+
   var overlay = document.getElementById('detailOverlay');
   var detailCard = overlay.querySelector('.detail-card');
   var detailTag = document.getElementById('detailTag');
   var detailTitle = document.getElementById('detailTitle');
   var detailDesc = document.getElementById('detailDesc');
   var detailClose = document.getElementById('detailClose');
+
+  function openDetailStatic(p){
+    detailTag.textContent = p.sym;
+    detailTitle.textContent = p.full;
+    detailDesc.textContent = p.desc;
+    overlay.classList.add('is-open-fallback');
+  }
+  function closeDetailStatic(){
+    overlay.classList.remove('is-open-fallback');
+  }
+
+  /* ---------- Se GSAP/ScrollTrigger non sono disponibili (CDN lento o bloccato) ----------
+     mostriamo comunque tutto il contenuto senza animazioni, invece di lasciarlo nascosto. */
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    document.querySelectorAll('.param-card').forEach(function (card, i) {
+      var items = [].concat(data.top, data.mid, data.deep, data.root);
+      card.addEventListener('click', function () { openDetailStatic(items[i] || items[0]); });
+    });
+    detailClose.addEventListener('click', closeDetailStatic);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeDetailStatic(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDetailStatic(); });
+    return; // niente animazioni, ma nessun elemento resta nascosto
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ---------- Overlay dettaglio, animato con GSAP ---------- */
   var isDesktop = window.matchMedia('(min-width: 720px)').matches;
 
   gsap.set(overlay, { backgroundColor: 'rgba(15,12,6,0)' });
@@ -900,6 +1012,7 @@
     .from('.hero-eyebrow', { opacity: 0, y: 22, duration: 0.8 }, 0.1)
     .from('.hero h1 .line', { yPercent: 110, duration: 1, stagger: 0.14, ease: 'power4.out' }, 0.25)
     .from('.hero p', { opacity: 0, y: 24, duration: 0.9 }, 0.65)
+    .from('.hero-cta', { opacity: 0, y: 20, duration: 0.8 }, 0.8)
     .from('.scroll-cue', { opacity: 0, y: 16, duration: 0.7 }, 0.95)
     .from('.hero-grass', { opacity: 0, duration: 0.8 }, 0.15);
 
@@ -933,11 +1046,7 @@
     .from('.cta-section p', { opacity: 0, y: 20, duration: 0.8 }, '-=0.55')
     .from('.cta-btn', { opacity: 0, y: 18, scale: 0.9, duration: 0.6, ease: 'back.out(1.7)' }, '-=0.4');
 
-  /* ---------- Reveal sezione contatti ---------- */
-  gsap.from('.reveal-contact', {
-    opacity: 0, y: 34, duration: 0.8, stagger: 0.15, ease: 'power3.out',
-    scrollTrigger: { trigger: '.contact-section', start: 'top 75%', once: true }
-  });
+  /* ---------- Sezione contatti: nessuna animazione a comparsa, sempre visibile ---------- */
 
   /* ---------- Form contatti: invio via Formspree con stato di conferma/errore ---------- */
   (function () {
@@ -996,6 +1105,19 @@
   document.querySelectorAll('.param-grid').forEach(function(grid){
     grid.style.perspective = '800px';
   });
+
+  /* ---------- Ricalcolo posizioni ScrollTrigger ----------
+     I web font (Fraunces/Inter/Space Mono) possono caricarsi dopo il primo render e
+     cambiare l'altezza delle sezioni: senza un refresh, alcune sezioni (es. il blocco
+     contatti/prenotazione in fondo) possono restare con opacity:0 se al reload il
+     browser riparte da uno scroll diverso da zero. Questo risolve il problema. */
+  function refreshScrollTrigger(){ ScrollTrigger.refresh(); }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(refreshScrollTrigger);
+  }
+  window.addEventListener('load', refreshScrollTrigger);
+
+})();
 </script>
 
 </body>

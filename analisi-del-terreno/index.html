@@ -181,6 +181,103 @@
   .scroll-cue svg{ width:16px; height:16px; animation: bob 1.8s ease-in-out infinite; }
   @keyframes bob{ 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(7px);} }
 
+  /* ---------- FRECCIA GUIDA "ECCO COME FUNZIONA" ---------- */
+  .curly-hint{
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin: 0 auto 22px;
+    width: fit-content;
+    color: var(--wheat-light);
+  }
+  .curly-hint-label{
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 15.5px;
+    color: var(--wheat-light);
+    transform: rotate(-2deg);
+  }
+  .curly-hint-arrow{
+    width: 58px;
+    height: 48px;
+    opacity: 0.85;
+  }
+
+  /* ---------- CERTIFICAZIONE / LABORATORIO PARTNER ---------- */
+  .cert-section{
+    position: relative; z-index: 2;
+    padding: 68px 9vw 8px;
+  }
+  .cert-card{
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    background: rgba(251,249,243,0.05);
+    border: 1px solid rgba(251,249,243,0.14);
+    border-radius: 16px;
+    padding: 30px 36px;
+  }
+  .cert-logo{
+    flex: 0 0 auto;
+    width: 128px;
+    height: 76px;
+    border-radius: 10px;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cert-logo img{
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: contain;
+    padding: 14px;
+    z-index: 2;
+  }
+  .cert-logo-fallback{
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--forest-deep);
+    opacity: 0.5;
+  }
+  .cert-text{ min-width: 0; }
+  .cert-text .layer-tag{ margin-bottom: 10px; }
+  .cert-text h3{ font-size: 21px; color: var(--paper); }
+  .cert-text p{ margin-top: 10px; color: rgba(251,249,243,0.68); font-size: 15px; max-width: 58ch; }
+  .cert-text .megalab-link{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--wheat-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(231,200,124,0.4);
+    padding-bottom: 2px;
+    width: fit-content;
+  }
+  .cert-text .megalab-link:hover{ border-color: var(--wheat-light); }
+  @media (max-width: 720px){
+    .cert-card{ flex-direction: column; text-align: center; padding: 28px 24px; }
+    .cert-text .layer-tag{ justify-content: center; }
+    .cert-text .layer-tag::before{ display:none; }
+    .cert-text p{ margin-left: auto; margin-right: auto; }
+    .cert-text .megalab-link{ margin-left: auto; margin-right: auto; }
+  }
+
   /* ---------- STRATI ---------- */
   /* ---------- DECORAZIONI SOTTOSUOLO ---------- */
   .decor{
@@ -565,6 +662,29 @@
     </div>
   </section>
 
+  <section class="cert-section" id="certificazione">
+    <div class="curly-hint" aria-hidden="true">
+      <span class="curly-hint-label">Ecco come funziona</span>
+      <svg class="curly-hint-arrow" viewBox="0 0 90 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 4C6 4 3 30 22 38C41 46 30 12 50 14C70 16 55 50 78 52C84 52.6 88 50 88 50" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4 6"/>
+        <path d="M78 44L90 52L80 62" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="cert-card">
+      <div class="cert-logo">
+        <img data-name="yara-logo" alt="Yara">
+        <span class="cert-logo-fallback">YARA</span>
+      </div>
+      <div class="cert-text">
+        <div class="layer-tag">Laboratorio partner</div>
+        <h3>Analisi certificata Yara</h3>
+        <p>Il tuo campione viene analizzato attraverso Yara: ti consegniamo un referto ufficiale con tutti i parametri del terreno, la base su cui costruiamo insieme il piano di concimazione.</p>
+        <p>Il referto nasce da Yara Megalab™, il sistema che Yara utilizza dal 1990 per interpretare i dati delle analisi del terreno e trasformarli in indicazioni di concimazione. Opera tutto l'anno, 24 ore su 24, attraverso una rete internazionale di laboratori accreditati.</p>
+        <a class="megalab-link" href="https://www.yara.it/concimi-e-biostimolanti/strumenti-servizi/megalab/" target="_blank" rel="noopener">Scopri di più su Yara Megalab™ →</a>
+      </div>
+    </div>
+  </section>
+
   <section class="layer-section" data-layer="top" id="layerTop">
     <div class="decor" id="decorTop"></div>
     <div class="layer-heading">
@@ -699,6 +819,25 @@
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
+
+  /* ---------- Logo Yara: prova varie estensioni in images/, come nel resto del sito ---------- */
+  (function () {
+    document.querySelectorAll('img[data-name]').forEach(function (img) {
+      var exts = ['png', 'svg', 'jpg', 'jpeg', 'webp', 'PNG', 'JPG'];
+      var i = 0;
+      function tryNext () {
+        if (i >= exts.length) { img.style.display = 'none'; return; }
+        img.src = '../images/' + img.dataset.name + '.' + exts[i];
+        i++;
+      }
+      img.onerror = tryNext;
+      img.onload = function () {
+        var fallback = img.parentElement.querySelector('.cert-logo-fallback');
+        if (fallback) fallback.style.display = 'none';
+      };
+      tryNext();
+    });
+  })();
 
   var data = {
     top: [
@@ -1023,6 +1162,17 @@
     scale: 0.94,
     ease: 'none',
     scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+  });
+
+  /* ---------- Reveal della sezione certificazione ---------- */
+  gsap.from('.cert-card', {
+    opacity: 0, y: 30, duration: 0.8, ease: 'power3.out',
+    scrollTrigger: { trigger: '.cert-section', start: 'top 85%', once: true }
+  });
+
+  gsap.from('.curly-hint', {
+    opacity: 0, y: 16, duration: 0.7, ease: 'power3.out',
+    scrollTrigger: { trigger: '.cert-section', start: 'top 90%', once: true }
   });
 
   /* ---------- Reveal di ogni strato: tag, titolo, testo e card in stagger ---------- */
