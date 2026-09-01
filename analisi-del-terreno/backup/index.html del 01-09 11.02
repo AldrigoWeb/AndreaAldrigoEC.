@@ -135,13 +135,13 @@
   .hero-inner{
     position:relative; z-index: 3;
     width: 100%; max-width: 1180px; margin: 0 auto;
-    display:flex; align-items:flex-start; justify-content:space-between;
+    display:flex; align-items:flex-end; justify-content:space-between;
     gap: 56px; flex-wrap: wrap;
   }
-  .hero-content{ max-width: 610px; }
+  .hero-content{ max-width: 540px; }
   .hero-eyebrow{
     font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.16em;
-    text-transform:uppercase; color: var(--forest-deep); margin-bottom: 22px;
+    text-transform:uppercase; color: var(--forest-deep); margin-bottom: 20px;
     display:flex; align-items:center; gap:10px;
   }
   .hero-eyebrow::before{ content:""; width:24px; height:1px; background: var(--forest-deep); opacity:0.55; }
@@ -152,22 +152,10 @@
     color: var(--forest-deep);
     line-height: 1.22;
     letter-spacing: -0.005em;
-    padding-top: 6px;
-  }
-  .hero-title-curve{ display: inline; }
-  .htw{
-    display: inline-block;
-    transform: rotate(var(--r, 0deg)) translateY(var(--y, 0px));
-    transform-origin: center bottom;
-  }
-  .sr-only{
-    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
   }
   .hero p{
-    margin-top: 22px; font-size: 16px; color: #2E3B22; max-width: 58ch; line-height: 1.7;
+    margin-top: 20px; font-size: 16.5px; color: #2E3B22; max-width: 46ch;
   }
-  .hero-lead strong{ color: var(--forest-deep); font-weight: 700; }
   .hero-actions{
     margin-top: 30px;
     display:flex; align-items:center; gap: 14px; flex-wrap: wrap;
@@ -714,8 +702,8 @@
     <div class="hero-inner">
       <div class="hero-content">
         <div class="hero-eyebrow">Consulenza agronomica</div>
-        <h1 id="heroTitle">Analisi del terreno e piano di concimazione</h1>
-        <p class="hero-lead"><strong>Partiamo dall'analisi del terreno per capire esattamente di cosa ha bisogno la coltura.</strong> Valutiamo disponibilità di nutrienti, pH e caratteristiche del suolo, interpretiamo i dati e definiamo un piano di concimazione su misura. Stabilendo <strong>quali elementi distribuire, in quale quantità e nel momento più opportuno</strong>, ottimizziamo l'impiego dei fertilizzanti, riduciamo gli sprechi e mettiamo la coltura nelle migliori condizioni per esprimere <strong>massima resa e qualità</strong>.</p>
+        <h1>Analisi del terreno e piano di concimazione</h1>
+        <p>Preleviamo il campione, lo analizziamo in laboratorio e trasformiamo i risultati in un piano di concimazione su misura per la tua coltura.</p>
         <div class="hero-actions">
           <a class="cta-btn" href="#contattiTerreno">Prenota l'analisi →</a>
           <a class="btn-hero-outline" href="tel:+393484425820">
@@ -906,37 +894,6 @@
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
-
-  /* ---------- Titolo hero leggermente ad arco: parola per parola ---------- */
-  (function () {
-    var h1 = document.getElementById('heroTitle');
-    if (!h1) return;
-    var text = h1.textContent.trim();
-    var words = text.split(/\s+/);
-    var n = words.length;
-    h1.textContent = '';
-
-    var srOnly = document.createElement('span');
-    srOnly.className = 'sr-only';
-    srOnly.textContent = text;
-    h1.appendChild(srOnly);
-
-    var wrap = document.createElement('span');
-    wrap.className = 'hero-title-curve';
-    wrap.setAttribute('aria-hidden', 'true');
-    words.forEach(function (w, i) {
-      var t = n > 1 ? (i - (n - 1) / 2) / ((n - 1) / 2) : 0;
-      var rotate = (t * 5).toFixed(2);
-      var lift = (t * t * 9).toFixed(1);
-      var span = document.createElement('span');
-      span.className = 'htw';
-      span.style.setProperty('--r', rotate + 'deg');
-      span.style.setProperty('--y', lift + 'px');
-      span.textContent = w + (i < n - 1 ? '\u00A0' : '');
-      wrap.appendChild(span);
-    });
-    h1.appendChild(wrap);
-  })();
 
   /* ---------- Logo Yara: prova varie estensioni in images/, come nel resto del sito ---------- */
   (function () {
@@ -1254,11 +1211,11 @@
 
   gsap.timeline({ defaults: { ease: 'power3.out' } })
     .from('.hero-eyebrow', { opacity: 0, y: 18, duration: 0.7 }, 0.1)
-    .from('.hero h1 .htw', { opacity: 0, y: 20, duration: 0.7, stagger: 0.045, ease: 'power3.out' }, 0.25)
-    .from('.hero p', { opacity: 0, y: 20, duration: 0.8 }, 0.6)
-    .from('.hero-actions', { opacity: 0, y: 16, duration: 0.7 }, 0.85)
-    .from('.hero-steps', { opacity: 0, y: 22, duration: 0.8 }, 0.7)
-    .from('.scroll-cue', { opacity: 0, y: 14, duration: 0.6 }, 1.05)
+    .from('.hero h1', { opacity: 0, y: 26, duration: 0.85 }, 0.25)
+    .from('.hero p', { opacity: 0, y: 20, duration: 0.8 }, 0.45)
+    .from('.hero-actions', { opacity: 0, y: 16, duration: 0.7 }, 0.62)
+    .from('.hero-steps', { opacity: 0, y: 22, duration: 0.8 }, 0.5)
+    .from('.scroll-cue', { opacity: 0, y: 14, duration: 0.6 }, 0.85)
     .from('.hero-grass', { opacity: 0, duration: 0.7 }, 0.15);
 
   /* L'hero esce con un effetto di profondità mentre si inizia a scendere nel terreno */

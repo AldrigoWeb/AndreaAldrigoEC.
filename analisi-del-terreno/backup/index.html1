@@ -20,7 +20,7 @@
 <meta property="og:url" content="https://www.andrealdrigo.it/analisi-del-terreno/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Libre+Franklin:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -88,7 +88,7 @@
   body{
     background: #7C6339;
     color: var(--paper);
-    font-family: 'Libre Franklin', sans-serif;
+    font-family: 'Inter', sans-serif;
     line-height: 1.65;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
@@ -115,9 +115,11 @@
   /* ---------- HERO ---------- */
   .hero{
     position: relative;
-    min-height: 96vh;
-    display:flex; flex-direction:column; justify-content:center;
-    padding: 160px 6vw 190px;
+    height: 100vh;
+    min-height: 640px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding: 0 24px;
     overflow: hidden;
   }
   .hero-sky{
@@ -131,110 +133,45 @@
   .wheat-stalk{
     position:absolute; bottom:0;
     transform-origin: bottom center;
+    animation: sway 3.6s ease-in-out infinite;
   }
-  .hero-inner{
-    position:relative; z-index: 3;
-    width: 100%; max-width: 1180px; margin: 0 auto;
-    display:flex; align-items:flex-start; justify-content:space-between;
-    gap: 56px; flex-wrap: wrap;
+  @keyframes sway{
+    0%,100%{ transform: rotate(-2.5deg); }
+    50%{ transform: rotate(3.5deg); }
   }
-  .hero-content{ max-width: 610px; }
+  .hero-rain{
+    position:absolute; inset:0; z-index:2; overflow:hidden; pointer-events:none;
+  }
+  .rain-drop{
+    position:absolute; top:-8%;
+    width:2px; height:22px; border-radius:2px;
+    background: linear-gradient(180deg, rgba(230,240,246,0), rgba(210,230,240,0.6));
+    animation: rainfall linear infinite;
+  }
+  @keyframes rainfall{
+    0%{ transform: translate(0,0); }
+    100%{ transform: translate(-22px, 118vh); }
+  }
+  .hero-content{ position:relative; z-index: 3; max-width: 760px; }
   .hero-eyebrow{
-    font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.16em;
+    font-family:'Space Mono', monospace; font-size:12.5px; letter-spacing:0.2em;
     text-transform:uppercase; color: var(--forest-deep); margin-bottom: 22px;
-    display:flex; align-items:center; gap:10px;
   }
-  .hero-eyebrow::before{ content:""; width:24px; height:1px; background: var(--forest-deep); opacity:0.55; }
   .hero h1{
-    font-family: 'Source Serif 4', serif;
-    font-weight: 700;
-    font-size: clamp(2rem, 3.4vw, 2.9rem);
+    font-size: clamp(2.6rem, 7vw, 5.2rem);
     color: var(--forest-deep);
-    line-height: 1.22;
-    letter-spacing: -0.005em;
-    padding-top: 6px;
+    line-height: 1.08;
   }
-  .hero-title-curve{ display: inline; }
-  .htw{
-    display: inline-block;
-    transform: rotate(var(--r, 0deg)) translateY(var(--y, 0px));
-    transform-origin: center bottom;
-  }
-  .sr-only{
-    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
-  }
+  .hero h1 .line-wrap{ display:block; overflow:hidden; }
+  .hero h1 .line{ display:block; }
   .hero p{
-    margin-top: 22px; font-size: 16px; color: #2E3B22; max-width: 58ch; line-height: 1.7;
+    margin-top: 26px; font-size: 18px; color: #2E3B22; max-width: 52ch; margin-left:auto; margin-right:auto;
   }
-  .hero-lead strong{ color: var(--forest-deep); font-weight: 700; }
-  .hero-actions{
-    margin-top: 30px;
-    display:flex; align-items:center; gap: 14px; flex-wrap: wrap;
-  }
-  .btn-hero-outline{
-    display:inline-flex; align-items:center; gap:9px;
-    border: 1.5px solid rgba(37,59,35,0.4);
-    color: var(--forest-deep);
-    font-weight:700; font-size:14.5px;
-    padding: 13.5px 24px; border-radius:6px;
-    text-decoration:none;
-    transition: border-color 0.15s ease, background 0.15s ease;
-  }
-  .btn-hero-outline:hover{ border-color: var(--forest-deep); background: rgba(37,59,35,0.07); }
-  .btn-hero-outline svg{ width:16px; height:16px; }
-
-  /* Box "i passaggi del servizio", affiancato al testo */
-  .hero-steps{
-    position: relative; z-index: 3;
-    flex: 0 0 auto;
-    width: 306px;
-    max-width: 100%;
-    background: var(--paper);
-    border: 1px solid rgba(35,39,27,0.08);
-    border-radius: 14px;
-    padding: 28px 27px 24px;
-    box-shadow: 0 18px 40px rgba(20,16,8,0.22);
-  }
-  .hero-steps-label{
-    display:flex; align-items:center; gap: 8px;
-    font-family:'Space Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--terracotta); margin-bottom: 20px;
-  }
-  .hero-steps-label svg{ width: 14px; height: 14px; }
-  .hero-step{
+  .hero-cta{
+    margin-top: 34px;
     position: relative;
-    display:flex; gap: 15px; align-items:flex-start;
-    padding-bottom: 22px;
+    z-index: 3;
   }
-  .hero-step:last-child{ padding-bottom: 0; }
-  .hero-step:not(:last-child)::before{
-    content:"";
-    position: absolute;
-    left: 14px; top: 32px; bottom: 2px;
-    width: 1.5px;
-    background: rgba(35,39,27,0.14);
-  }
-  .hero-step-num{
-    position: relative; z-index: 2;
-    flex: 0 0 auto;
-    width: 29px; height: 29px;
-    border-radius: 50%;
-    background: var(--forest);
-    color: var(--paper);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Space Mono', monospace; font-size: 12px; font-weight:700;
-  }
-  .hero-step strong{ display:block; font-family:'Fraunces', serif; font-size: 15px; color: var(--forest-deep); font-weight:600; padding-top: 4px; }
-  .hero-step p{ margin-top: 4px; font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
-  @media (max-width: 980px){
-    .hero-inner{ align-items: flex-start; }
-    .hero-steps{ width: 100%; }
-  }
-  @media (max-width: 620px){
-    .hero{ padding: 148px 6vw 180px; }
-  }
-
   .scroll-cue{
     position:absolute; bottom: 34px; left:50%; transform: translateX(-50%);
     z-index: 3; display:flex; flex-direction:column; align-items:center; gap:8px;
@@ -243,103 +180,6 @@
   .scroll-cue span{ font-family:'Space Mono', monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; }
   .scroll-cue svg{ width:16px; height:16px; animation: bob 1.8s ease-in-out infinite; }
   @keyframes bob{ 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(7px);} }
-
-  /* ---------- FRECCIA GUIDA "ECCO COME FUNZIONA" ---------- */
-  .curly-hint{
-    position: relative;
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    margin: 0 auto 22px;
-    width: fit-content;
-    color: var(--wheat-light);
-  }
-  .curly-hint-label{
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: 15.5px;
-    color: var(--wheat-light);
-    transform: rotate(-2deg);
-  }
-  .curly-hint-arrow{
-    width: 58px;
-    height: 48px;
-    opacity: 0.85;
-  }
-
-  /* ---------- CERTIFICAZIONE / LABORATORIO PARTNER ---------- */
-  .cert-section{
-    position: relative; z-index: 2;
-    padding: 68px 9vw 8px;
-  }
-  .cert-card{
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    background: rgba(251,249,243,0.05);
-    border: 1px solid rgba(251,249,243,0.14);
-    border-radius: 16px;
-    padding: 30px 36px;
-  }
-  .cert-logo{
-    flex: 0 0 auto;
-    width: 128px;
-    height: 76px;
-    border-radius: 10px;
-    background: var(--paper);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .cert-logo img{
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: contain;
-    padding: 14px;
-    z-index: 2;
-  }
-  .cert-logo-fallback{
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--forest-deep);
-    opacity: 0.5;
-  }
-  .cert-text{ min-width: 0; }
-  .cert-text .layer-tag{ margin-bottom: 10px; }
-  .cert-text h3{ font-size: 21px; color: var(--paper); }
-  .cert-text p{ margin-top: 10px; color: rgba(251,249,243,0.68); font-size: 15px; max-width: 58ch; }
-  .cert-text .megalab-link{
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 14px;
-    font-family: 'Space Mono', monospace;
-    font-size: 12.5px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--wheat-light);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(231,200,124,0.4);
-    padding-bottom: 2px;
-    width: fit-content;
-  }
-  .cert-text .megalab-link:hover{ border-color: var(--wheat-light); }
-  @media (max-width: 720px){
-    .cert-card{ flex-direction: column; text-align: center; padding: 28px 24px; }
-    .cert-text .layer-tag{ justify-content: center; }
-    .cert-text .layer-tag::before{ display:none; }
-    .cert-text p{ margin-left: auto; margin-right: auto; }
-    .cert-text .megalab-link{ margin-left: auto; margin-right: auto; }
-  }
 
   /* ---------- STRATI ---------- */
   /* ---------- DECORAZIONI SOTTOSUOLO ---------- */
@@ -455,12 +295,11 @@
   }
   .cta-btn{
     margin-top: 34px; display:inline-flex; align-items:center; gap:10px;
-    background: var(--forest); color: var(--paper); font-weight:700; font-size:15px;
-    padding: 15px 28px; border-radius:6px; text-decoration:none;
+    background: var(--wheat-light); color: var(--forest-deep); font-weight:700; font-size:15px;
+    padding: 16px 30px; border-radius:8px; text-decoration:none;
     transition: background 0.15s ease, box-shadow 0.15s ease;
   }
-  .cta-btn:hover{ background: var(--forest-deep); box-shadow: 0 10px 24px rgba(0,0,0,0.22); }
-  .hero-actions .cta-btn{ margin-top: 0; }
+  .cta-btn:hover{ background: var(--paper); box-shadow: 0 14px 30px rgba(0,0,0,0.25); }
 
   /* ---------- LINK TORNA ALLA HOME ---------- */
   .back-home{
@@ -616,7 +455,7 @@
     text-transform: uppercase; color: rgba(251,249,243,0.55);
   }
   .soil-form input, .soil-form textarea{
-    font-family: 'Libre Franklin', sans-serif; font-size: 15px; color: var(--paper);
+    font-family: 'Inter', sans-serif; font-size: 15px; color: var(--paper);
     background: rgba(0,0,0,0.18); border: 1px solid rgba(251,249,243,0.18);
     border-radius: 8px; padding: 12px 14px; resize: vertical;
     transition: border-color 0.2s ease, background 0.2s ease;
@@ -626,7 +465,7 @@
   }
   .soil-form input::placeholder, .soil-form textarea::placeholder{ color: rgba(251,249,243,0.35); }
   .form-submit{
-    margin-top: 6px; border: none; cursor: pointer; font-family: 'Libre Franklin', sans-serif;
+    margin-top: 6px; border: none; cursor: pointer; font-family: 'Inter', sans-serif;
     justify-content: center;
   }
   .form-submit:disabled{ opacity: 0.7; cursor: default; }
@@ -711,64 +550,18 @@
   <section class="hero">
     <div class="hero-sky"></div>
     <div class="hero-grass" id="grass"></div>
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="hero-eyebrow">Consulenza agronomica</div>
-        <h1 id="heroTitle">Analisi del terreno e piano di concimazione</h1>
-        <p class="hero-lead"><strong>Partiamo dall'analisi del terreno per capire esattamente di cosa ha bisogno la coltura.</strong> Valutiamo disponibilità di nutrienti, pH e caratteristiche del suolo, interpretiamo i dati e definiamo un piano di concimazione su misura. Stabilendo <strong>quali elementi distribuire, in quale quantità e nel momento più opportuno</strong>, ottimizziamo l'impiego dei fertilizzanti, riduciamo gli sprechi e mettiamo la coltura nelle migliori condizioni per esprimere <strong>massima resa e qualità</strong>.</p>
-        <div class="hero-actions">
-          <a class="cta-btn" href="#contattiTerreno">Prenota l'analisi →</a>
-          <a class="btn-hero-outline" href="tel:+393484425820">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.5 3.5h3l1.5 4-2 1.3a11 11 0 0 0 4.7 4.7l1.3-2 4 1.5v3a1.7 1.7 0 0 1-1.8 1.7A14.7 14.7 0 0 1 4.8 5.3 1.7 1.7 0 0 1 6.5 3.5Z"/></svg>
-            348 442 5820
-          </a>
-        </div>
-      </div>
-      <div class="hero-steps">
-        <div class="hero-steps-label">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>
-          I passaggi
-        </div>
-        <div class="hero-step">
-          <span class="hero-step-num">1</span>
-          <div><strong>Prelievo</strong><p>In azienda, oppure porti tu il campione</p></div>
-        </div>
-        <div class="hero-step">
-          <span class="hero-step-num">2</span>
-          <div><strong>Laboratorio Yara</strong><p>Analisi e referto ufficiale</p></div>
-        </div>
-        <div class="hero-step">
-          <span class="hero-step-num">3</span>
-          <div><strong>Piano su misura</strong><p>Strategia di concimazione personalizzata</p></div>
-        </div>
+    <div class="hero-rain" id="heroRain"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Consulenza agronomica</div>
+      <h1><span class="line-wrap"><span class="line">Sotto la superficie</span></span><span class="line-wrap"><span class="line">si nasconde la risposta</span></span></h1>
+      <p>Preleviamo il campione, lo analizziamo in laboratorio e trasformiamo i risultati in un piano di concimazione su misura per la tua coltura.</p>
+      <div class="hero-cta">
+        <a class="cta-btn" href="#contattiTerreno">Prenota l'analisi →</a>
       </div>
     </div>
     <div class="scroll-cue">
       <span>Scorri per scendere nel terreno</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
-    </div>
-  </section>
-
-  <section class="cert-section" id="certificazione">
-    <div class="curly-hint" aria-hidden="true">
-      <span class="curly-hint-label">Ecco come funziona</span>
-      <svg class="curly-hint-arrow" viewBox="0 0 90 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6 4C6 4 3 30 22 38C41 46 30 12 50 14C70 16 55 50 78 52C84 52.6 88 50 88 50" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4 6"/>
-        <path d="M78 44L90 52L80 62" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <div class="cert-card">
-      <div class="cert-logo">
-        <img data-name="yara-logo" alt="Yara">
-        <span class="cert-logo-fallback">YARA</span>
-      </div>
-      <div class="cert-text">
-        <div class="layer-tag">Laboratorio partner</div>
-        <h3>Analisi certificata Yara</h3>
-        <p>Il tuo campione viene analizzato attraverso Yara: ti consegniamo un referto ufficiale con tutti i parametri del terreno, la base su cui costruiamo insieme il piano di concimazione.</p>
-        <p>Il referto nasce da Yara Megalab™, il sistema che Yara utilizza dal 1990 per interpretare i dati delle analisi del terreno e trasformarli in indicazioni di concimazione. Opera tutto l'anno, 24 ore su 24, attraverso una rete internazionale di laboratori accreditati.</p>
-        <a class="megalab-link" href="https://www.yara.it/concimi-e-biostimolanti/strumenti-servizi/megalab/" target="_blank" rel="noopener">Scopri di più su Yara Megalab™ →</a>
-      </div>
     </div>
   </section>
 
@@ -906,56 +699,6 @@
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
-
-  /* ---------- Titolo hero leggermente ad arco: parola per parola ---------- */
-  (function () {
-    var h1 = document.getElementById('heroTitle');
-    if (!h1) return;
-    var text = h1.textContent.trim();
-    var words = text.split(/\s+/);
-    var n = words.length;
-    h1.textContent = '';
-
-    var srOnly = document.createElement('span');
-    srOnly.className = 'sr-only';
-    srOnly.textContent = text;
-    h1.appendChild(srOnly);
-
-    var wrap = document.createElement('span');
-    wrap.className = 'hero-title-curve';
-    wrap.setAttribute('aria-hidden', 'true');
-    words.forEach(function (w, i) {
-      var t = n > 1 ? (i - (n - 1) / 2) / ((n - 1) / 2) : 0;
-      var rotate = (t * 5).toFixed(2);
-      var lift = (t * t * 9).toFixed(1);
-      var span = document.createElement('span');
-      span.className = 'htw';
-      span.style.setProperty('--r', rotate + 'deg');
-      span.style.setProperty('--y', lift + 'px');
-      span.textContent = w + (i < n - 1 ? '\u00A0' : '');
-      wrap.appendChild(span);
-    });
-    h1.appendChild(wrap);
-  })();
-
-  /* ---------- Logo Yara: prova varie estensioni in images/, come nel resto del sito ---------- */
-  (function () {
-    document.querySelectorAll('img[data-name]').forEach(function (img) {
-      var exts = ['png', 'svg', 'jpg', 'jpeg', 'webp', 'PNG', 'JPG'];
-      var i = 0;
-      function tryNext () {
-        if (i >= exts.length) { img.style.display = 'none'; return; }
-        img.src = '../images/' + img.dataset.name + '.' + exts[i];
-        i++;
-      }
-      img.onerror = tryNext;
-      img.onload = function () {
-        var fallback = img.parentElement.querySelector('.cert-logo-fallback');
-        if (fallback) fallback.style.display = 'none';
-      };
-      tryNext();
-    });
-  })();
 
   var data = {
     top: [
@@ -1129,6 +872,19 @@
     grassEl.appendChild(el);
   }
 
+  /* ---------- Pioggia nell'hero ---------- */
+  var rainEl = document.getElementById('heroRain');
+  var dropCount = 70;
+  for (var r = 0; r < dropCount; r++){
+    var d = document.createElement('div');
+    d.className = 'rain-drop';
+    d.style.left = (Math.random() * 100) + '%';
+    d.style.animationDuration = (1.1 + Math.random() * 1.2) + 's';
+    d.style.animationDelay = (Math.random() * 2.5) + 's';
+    d.style.opacity = 0.4 + Math.random() * 0.5;
+    rainEl.appendChild(d);
+  }
+
   /* ---------- Texture del sottosuolo: radici, sassi, sedimenti, particelle ---------- */
   function svgEl(html, w, h){
     var wrap = document.createElement('div');
@@ -1253,32 +1009,20 @@
 
 
   gsap.timeline({ defaults: { ease: 'power3.out' } })
-    .from('.hero-eyebrow', { opacity: 0, y: 18, duration: 0.7 }, 0.1)
-    .from('.hero h1 .htw', { opacity: 0, y: 20, duration: 0.7, stagger: 0.045, ease: 'power3.out' }, 0.25)
-    .from('.hero p', { opacity: 0, y: 20, duration: 0.8 }, 0.6)
-    .from('.hero-actions', { opacity: 0, y: 16, duration: 0.7 }, 0.85)
-    .from('.hero-steps', { opacity: 0, y: 22, duration: 0.8 }, 0.7)
-    .from('.scroll-cue', { opacity: 0, y: 14, duration: 0.6 }, 1.05)
-    .from('.hero-grass', { opacity: 0, duration: 0.7 }, 0.15);
+    .from('.hero-eyebrow', { opacity: 0, y: 22, duration: 0.8 }, 0.1)
+    .from('.hero h1 .line', { yPercent: 110, duration: 1, stagger: 0.14, ease: 'power4.out' }, 0.25)
+    .from('.hero p', { opacity: 0, y: 24, duration: 0.9 }, 0.65)
+    .from('.hero-cta', { opacity: 0, y: 20, duration: 0.8 }, 0.8)
+    .from('.scroll-cue', { opacity: 0, y: 16, duration: 0.7 }, 0.95)
+    .from('.hero-grass', { opacity: 0, duration: 0.8 }, 0.15);
 
   /* L'hero esce con un effetto di profondità mentre si inizia a scendere nel terreno */
-  gsap.to('.hero-inner, .scroll-cue', {
+  gsap.to('.hero-content, .scroll-cue', {
     opacity: 0,
     y: -60,
-    scale: 0.96,
+    scale: 0.94,
     ease: 'none',
     scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
-  });
-
-  /* ---------- Reveal della sezione certificazione ---------- */
-  gsap.from('.cert-card', {
-    opacity: 0, y: 30, duration: 0.8, ease: 'power3.out',
-    scrollTrigger: { trigger: '.cert-section', start: 'top 85%', once: true }
-  });
-
-  gsap.from('.curly-hint', {
-    opacity: 0, y: 16, duration: 0.7, ease: 'power3.out',
-    scrollTrigger: { trigger: '.cert-section', start: 'top 90%', once: true }
   });
 
   /* ---------- Reveal di ogni strato: tag, titolo, testo e card in stagger ---------- */
