@@ -113,28 +113,19 @@
   /* ---------- HERO ---------- */
   .hero{
     position: relative;
-    padding: 0 0 96px;
+    padding: 168px 0 96px;
   }
-  .hero-band{
-    position: relative;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    min-height: 74vh;
-    display: flex; align-items: center;
-    overflow: hidden;
+  .hero-inner{
+    display:flex; align-items:flex-start; justify-content:space-between; gap: 64px; flex-wrap: wrap;
   }
-  .hero-band-content{ position: relative; z-index: 2; max-width: 600px; padding: 190px 0 88px; }
-  .hero-band-content .field-note{ color: var(--wheat); }
-  .hero-band-content .field-note::before{ background: var(--wheat); }
+  .hero-content{ max-width: 600px; }
   .hero h1{
     font-size: clamp(2.1rem, 3.6vw, 3.1rem);
     line-height: 1.16;
     margin-top: 20px;
-    color: var(--paper);
   }
-  .hero p{ margin-top: 22px; font-size: 16.5px; color: rgba(251,249,243,0.82); max-width: 56ch; }
-  .hero p strong{ color: var(--paper); font-weight: 700; }
+  .hero p{ margin-top: 22px; font-size: 16.5px; color: var(--ink-soft); max-width: 56ch; }
+  .hero p strong{ color: var(--forest-deep); font-weight: 700; }
   .hero-actions{ margin-top: 32px; display:flex; align-items:center; gap: 16px; flex-wrap: wrap; }
   .btn-primary{
     display:inline-flex; align-items:center; gap:9px;
@@ -151,14 +142,6 @@
   }
   .btn-secondary:hover{ border-color: var(--forest-deep); background: rgba(36,52,32,0.05); }
   .btn-secondary svg{ width:15px; height:15px; }
-  .hero-band-content .btn-secondary{ color: var(--paper); border-color: rgba(251,249,243,0.5); }
-  .hero-band-content .btn-secondary:hover{ border-color: var(--paper); background: rgba(251,249,243,0.1); }
-
-  @media (max-width: 820px), (hover: none){ .hero-band .parallax-bg{ background-attachment: scroll; } }
-  @media (max-width: 720px){
-    .hero-band{ min-height: 62vh; }
-    .hero-band-content{ padding: 150px 0 64px; }
-  }
 
   .hero-steps{
     margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--line);
@@ -186,16 +169,19 @@
   }
 
   /* ---------- LAB PARTNER STRIP ---------- */
-  .cert-section{ padding: 8px 0 64px; border-top: 1px solid var(--line); padding-top: 56px; }
-  .cert-row{
-    display: flex; align-items: center; gap: 44px;
+  .cert-section{ padding: 8px 0 64px; }
+  .cert-card{
+    display: flex; align-items: center; gap: 30px;
+    background: var(--paper-raised); border: 1px solid var(--line); border-radius: 10px;
+    padding: 28px 32px;
   }
   .cert-logo{
-    flex: 0 0 auto; width: 220px;
-    display: flex; align-items: center; justify-content: flex-start;
+    flex: 0 0 auto; width: 118px; height: 68px; border-radius: 6px;
+    background: #fff; border: 1px solid var(--line);
+    position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;
   }
-  .cert-logo img{ display: block; width: 100%; height: auto; max-height: 140px; object-fit: contain; object-position: left center; }
-  .cert-logo-fallback{ font-family: 'Space Mono', monospace; font-size: 15px; font-weight: 700; letter-spacing: 0.14em; color: var(--ink-soft); }
+  .cert-logo img{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 12px; }
+  .cert-logo-fallback{ font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: var(--ink-soft); }
   .cert-text h3{ font-size: 19px; margin-top: 6px; }
   .cert-text p{ margin-top: 8px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
   .cert-text .megalab-link{
@@ -204,7 +190,7 @@
     text-decoration: none; border-bottom: 1px solid rgba(177,90,52,0.35); padding-bottom: 2px; width: fit-content;
   }
   .cert-text .megalab-link:hover{ border-color: var(--terracotta); }
-  @media (max-width: 720px){ .cert-row{ flex-direction: column; text-align: center; gap: 24px; } .cert-logo{ width: 170px; justify-content: center; } .cert-logo img{ object-position: center; } .cert-text p{ margin-left:auto; margin-right:auto; } .cert-text .megalab-link{ margin-left:auto; margin-right:auto; } }
+  @media (max-width: 720px){ .cert-card{ flex-direction: column; text-align: center; padding: 26px 22px; } .cert-text p{ margin-left:auto; margin-right:auto; } .cert-text .megalab-link{ margin-left:auto; margin-right:auto; } }
 
   /* ---------- SFONDO FISSO (il sito scorre sopra, come le fasce fotografiche di yara.it, versione "fixed") ---------- */
   .report-section.parallax-section{
@@ -380,12 +366,10 @@
 <main class="wrap">
 
   <section class="hero">
-    <div class="hero-band">
-      <div class="parallax-bg" data-name="hero-campo"></div>
-      <div class="parallax-overlay"></div>
-      <div class="wrap hero-band-content">
+    <div class="hero-inner">
+      <div class="hero-content">
         <div class="field-note">Consulenza agronomica</div>
-        <h1>Scopri di cosa ha davvero bisogno il tuo terreno</h1>
+        <h1>Analisi del terreno e piano di concimazione</h1>
         <p><strong>Partiamo dall'analisi del terreno per capire esattamente di cosa ha bisogno la coltura.</strong> Valutiamo disponibilità di nutrienti, pH e caratteristiche fisiche del suolo, interpretiamo il referto e definiamo un piano di concimazione su misura: cosa distribuire, in che quantità e nel momento più opportuno — per ridurre gli sprechi e ottenere la massima resa.</p>
         <div class="hero-actions">
           <a class="btn-primary" href="#contattiTerreno">Prenota l'analisi →</a>
@@ -396,7 +380,7 @@
         </div>
       </div>
     </div>
-    <div class="wrap hero-steps">
+    <div class="hero-steps">
       <div class="field-note hero-steps-label">Come funziona</div>
       <div class="hero-steps-row">
         <div class="hero-step">
@@ -416,7 +400,7 @@
   </section>
 
   <section class="cert-section">
-    <div class="cert-row">
+    <div class="cert-card">
       <div class="cert-logo">
         <img data-name="yara-logo" alt="Yara">
         <span class="cert-logo-fallback img-fallback">YARA</span>
@@ -617,7 +601,6 @@
       .from('.hero h1', { opacity: 0, y: 22, duration: 0.7 }, 0.15)
       .from('.hero p', { opacity: 0, y: 18, duration: 0.7 }, 0.35)
       .from('.hero-actions', { opacity: 0, y: 14, duration: 0.6 }, 0.5)
-      .from('.hero-band .parallax-bg', { opacity: 0, scale: 1.06, duration: 1.1 }, 0)
       .from('.hero-steps', { opacity: 0, y: 18, duration: 0.7 }, 0.4);
   }
 
