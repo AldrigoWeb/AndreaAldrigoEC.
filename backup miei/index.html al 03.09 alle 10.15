@@ -248,10 +248,9 @@
   .hero-inner{
     display:flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 32px;
     flex-wrap: wrap;
-    padding-top: 80px;
   }
   .hero-inner-content{ max-width: 640px; }
 
@@ -263,33 +262,14 @@
     max-width: 300px;
     box-shadow: 0 18px 44px rgba(22,36,15,0.25);
   }
-  .legna-pellet-wrapper{
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .legna-strip-label{
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--paper);
-    background: var(--terracotta);
-    padding: 8px 16px;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    font-weight: 700;
-    display: block;
-  }
   .hero-notice.legna-pellet-card{
-    display: block;
+    display:block;
     background: linear-gradient(135deg, var(--paper) 0%, var(--paper-warm) 100%);
     border: 1.5px solid var(--wheat-light);
-    border-top: none;
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
     padding: 28px 26px;
     max-width: 320px;
     align-self: flex-start;
-    margin-top: 0;
+    margin-top: 80px;
   }
   .hero-notice.has-items{ display:block; }
   .hero-notice .label{
@@ -1223,21 +1203,19 @@
         <a class="btn btn-ghost" href="#prodotti">Cosa trattiamo →</a>
       </div>
     </div>
-    <div class="legna-pellet-wrapper">
-      <div class="legna-strip-label">Novità Stagione</div>
-      <div class="hero-notice legna-pellet-card">
-        <div class="legna-card-image">
-          <img data-name="legna-pellet-hero" alt="Legna da ardere e Pellet" loading="lazy" decoding="async">
-          <div class="ph-fallback">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
-            <span class="cap">IMMAGINE<br><span class="filename">images/legna-pellet-hero.jpg</span></span>
-          </div>
+    <div class="hero-notice legna-pellet-card">
+      <span class="label">Novità Stagione</span>
+      <div class="legna-card-image">
+        <img data-name="legna-pellet-hero" alt="Legna da ardere e Pellet" loading="lazy" decoding="async">
+        <div class="ph-fallback">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
+          <span class="cap">IMMAGINE<br><span class="filename">images/legna-pellet-hero.jpg</span></span>
         </div>
-        <div class="legna-card-content">
-          <h4>Legna da ardere e Pellet</h4>
-          <p>Carpino, faggio e rovere. Pellet premium di Abete pronto per l'inverno.</p>
-          <a href="#contatti" class="btn btn-primary btn-sm">Prenota ora →</a>
-        </div>
+      </div>
+      <div class="legna-card-content">
+        <h4>Legna da ardere e Pellet</h4>
+        <p>Carpino, faggio e rovere. Pellet premium di Abete pronto per l'inverno.</p>
+        <a href="#contatti" class="btn btn-primary btn-sm">Prenota ora →</a>
       </div>
     </div>
   </div>
