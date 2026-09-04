@@ -1,10 +1,75 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+<script>
+  // Impedisce al browser di ripartire dal punto in cui era rimasto lo scroll al refresh:
+  // ogni caricamento della pagina parte sempre dall'inizio (in alto).
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Andrea Aldrigo & C. — Sementi, Fitosanitari e Concimi a Pernumia</title>
 <meta name="description" content="Andrea Aldrigo & C. S.a.s. — rivendita di sementi, prodotti fitosanitari e concimi (dal granulare alla fertirrigazione) a Pernumia, tra Bassa Padovana e Colli Euganei. In collaborazione con il Consorzio CRA.">
+<link rel="canonical" href="https://www.andrealdrigo.it/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Andrea Aldrigo & C. — Sementi, Fitosanitari e Concimi a Pernumia">
+<meta property="og:description" content="Rivendita di sementi, prodotti fitosanitari e concimi a Pernumia, tra Bassa Padovana e Colli Euganei. In collaborazione con il Consorzio CRA.">
+<meta property="og:url" content="https://www.andrealdrigo.it/">
+<!-- TODO: se hai un'immagine di copertina dedicata (es. il camion o il team), sostituisci il
+     percorso qui sotto con quella reale, altrimenti lasciala così se images/team.jpg esiste già. -->
+<meta property="og:image" content="https://www.andrealdrigo.it/images/team.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Andrea Aldrigo & C.",
+  "url": "https://www.andrealdrigo.it/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Andrea Aldrigo & C.",
+  "image": "https://www.andrealdrigo.it/images/team.jpg",
+  "url": "https://www.andrealdrigo.it/",
+  "telephone": "+393484425820",
+  "email": "goeand@gmail.com",
+  "priceRange": "€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Via Monselice, 2",
+    "postalCode": "35020",
+    "addressLocality": "Pernumia",
+    "addressRegion": "PD",
+    "addressCountry": "IT"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "12:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "14:30",
+      "closes": "18:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:30",
+      "closes": "12:00"
+    }
+  ],
+  "sameAs": []
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Libre+Franklin:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -197,10 +262,30 @@
     max-width: 300px;
     box-shadow: 0 18px 44px rgba(22,36,15,0.25);
   }
+  .hero-notice.legna-pellet-card{
+    display:block;
+    background: linear-gradient(135deg, var(--paper) 0%, var(--paper-warm) 100%);
+    border: 1.5px solid var(--wheat-light);
+    padding: 28px 26px;
+    max-width: 320px;
+    align-self: flex-start;
+    margin-top: 80px;
+  }
   .hero-notice.has-items{ display:block; }
   .hero-notice .label{
     font-family:'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--terracotta); margin-bottom: 10px; display:block;
+    text-transform: uppercase; color: var(--terracotta); margin-bottom: 12px; display:block;
+  }
+  .legna-card-content h4{
+    font-family:'Fraunces', serif; font-size: 19px; font-weight: 600;
+    color: var(--forest-deep); margin-bottom: 10px; line-height: 1.3;
+  }
+  .legna-card-content p{
+    font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 16px;
+  }
+  .btn-sm{
+    padding: 10px 16px !important;
+    font-size: 13.5px !important;
   }
   .hero-notice ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
   .hero-notice li{ font-size: 14px; color: var(--ink); border-top: 1px dashed var(--line); padding-top: 8px; }
@@ -831,7 +916,7 @@
     z-index: 149;
     background: var(--terracotta);
     color: var(--paper);
-    display: flex;
+    display: none;
     align-items: center;
     gap: 10px;
     padding: 18px 24px 18px 18px;
@@ -1068,9 +1153,13 @@
         <a class="btn btn-ghost" href="#prodotti">Cosa trattiamo →</a>
       </div>
     </div>
-    <div class="hero-notice" id="hero-notice">
-      <span class="label">Comunicazioni</span>
-      <ul id="hero-notice-list"></ul>
+    <div class="hero-notice legna-pellet-card">
+      <span class="label">Novità Stagione</span>
+      <div class="legna-card-content">
+        <h4>Legna da ardere e Pellet</h4>
+        <p>Carpino, faggio e rovere. Pellet premium di Abete pronto per l'inverno.</p>
+        <a href="#contatti" class="btn btn-primary btn-sm">Prenota ora →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1171,7 +1260,8 @@
         </button>
         <div class="gallery-grid" id="gallery-grid"></div>
       </div>
-      <p class="gallery-note">Gli scatti dei clienti e dei tecnici in campo, aggiunti stagione dopo stagione.</p>
+ <p class="gallery-note">Gli scatti dei clienti e dei tecnici in campo, aggiunti stagione dopo stagione.</p>
+      <a class="btn btn-primary" href="galleria/" style="margin-top:18px">Vedi la galleria completa →</a>
     </div>
   </div>
 </section>
@@ -1672,24 +1762,7 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePanel(); });
   })();
 
-  // Bacheca comunicazioni: legge comunicazioni.json, si mostra solo se ci sono voci
-  (function () {
-    var box = document.getElementById('hero-notice');
-    var list = document.getElementById('hero-notice-list');
-    if (!box || !list) return;
-    fetch('comunicazioni.json')
-      .then(function (r) { return r.json(); })
-      .then(function (items) {
-        if (!Array.isArray(items) || items.length === 0) return;
-        items.forEach(function (item) {
-          var li = document.createElement('li');
-          li.innerHTML = (item.data ? '<span class="data">' + item.data + '</span>' : '') + (item.testo || '');
-          list.appendChild(li);
-        });
-        box.classList.add('has-items');
-      })
-      .catch(function () { /* nessuna comunicazione o file non raggiungibile: bacheca resta nascosta */ });
-  })();
+  // Script comunicazioni.json rimosso — hero-notice ora è card fissa Legna & Pellet
 
   // Animazioni di reveal allo scroll
   (function () {

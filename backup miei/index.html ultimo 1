@@ -11,8 +11,8 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Andrea Aldrigo & C. — Sementi, Fitosanitari e Concimi a Pernumia</title>
-<meta name="description" content="Andrea Aldrigo & C. S.a.s. — rivendita di sementi, prodotti fitosanitari e concimi (dal granulare alla fertirrigazione) a Pernumia, tra Bassa Padovana e Colli Euganei. In collaborazione con il Consorzio CRA.">
+<title>Pellet e Legna a Pernumia | Sementi, Fitosanitari, Concimi | Andrea Aldrigo</title>
+<meta name="description" content="Pellet e legna da ardere, sementi, fitosanitari e concimi a Pernumia (PD). Assistenza agronomica e analisi del terreno. Consorzio CRA. Contattaci per la tua azienda agricola.">
 <link rel="canonical" href="https://www.andrealdrigo.it/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Andrea Aldrigo & C. — Sementi, Fitosanitari e Concimi a Pernumia">
@@ -169,18 +169,20 @@
     color: var(--forest-deep);
     font-family: 'Fraunces', serif;
     font-weight: 600;
-    font-size: 20px;
-    white-space: nowrap;
+    font-size: 18px;
+    white-space: normal;
+    flex-shrink: 0;
   }
   .wordmark span{
     display:block;
     font-family: 'Space Mono', monospace;
-    font-size: 10.5px;
+    font-size: 9.5px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--terracotta);
     font-weight: 400;
-    margin-top: 2px;
+    margin-top: 1px;
+    white-space: nowrap;
   }
   nav{ display:flex; gap: 26px; align-items:center; flex-wrap: wrap; }
   nav a{
@@ -243,7 +245,7 @@
     z-index: 2;
     max-width: 1180px;
     margin: 0 auto;
-    padding: 0 32px 74px;
+    padding: 80px 32px 200px;
   }
   .hero-inner{
     display:flex;
@@ -251,7 +253,6 @@
     align-items: flex-start;
     gap: 32px;
     flex-wrap: wrap;
-    padding-top: 80px;
   }
   .hero-inner-content{ max-width: 640px; }
 
@@ -365,13 +366,63 @@
     display:block; margin-bottom: 2px;
   }
   @media (max-width: 880px){
-    .hero-inner{ flex-direction: column; align-items: flex-start; }
+    .hero-inner{ 
+      flex-direction: column; 
+      align-items: center;
+      padding: 60px 32px 120px;
+    }
+    .hero-inner-content{
+      text-align: center;
+      max-width: 100%;
+    }
+    .hero h1{
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero p.lead{
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-ctas{
+      justify-content: center;
+    }
+    .legna-pellet-wrapper{
+      align-self: center;
+      width: 100%;
+      max-width: 320px;
+    }
     .hero-notice{ max-width: 100%; }
+    .value-strip{ margin-top: -80px; }
+    .value-strip .wrap{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 620px){
+    .hero-inner{ 
+      padding: 50px 20px 100px;
+    }
+    .hero h1{
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+    }
+    .hero p.lead{
+      font-size: 15px;
+    }
+    .legna-pellet-wrapper{
+      max-width: 100%;
+    }
+    .hero-notice.legna-pellet-card{
+      max-width: 100%;
+    }
+    .legna-card-image{
+      height: 120px;
+    }
+    .value-strip{ margin-top: -60px; }
+    .value-strip .wrap{ grid-template-columns: 1fr; }
   }
   .hero h1{
     color: var(--paper);
     font-size: clamp(2.3rem, 4.6vw, 3.6rem);
     max-width: 14ch;
+    scroll-margin-top: 120px;
   }
   .hero p.lead{
     margin-top: 20px;
@@ -401,7 +452,7 @@
   .value-strip{
     position: relative;
     z-index: 5;
-    margin-top: -64px;
+    margin-top: -120px;
   }
   .value-strip .wrap{
     display: grid;
@@ -824,12 +875,32 @@
       display:flex; position: absolute; top: 100%; left: 0; right: 0; background: var(--paper);
       flex-direction: column; padding: 18px 32px 26px; gap: 16px; border-bottom: 1px solid var(--line);
     }
+    .wordmark{
+      font-size: 16px;
+    }
+    .wordmark span{
+      font-size: 8.5px;
+    }
     .territorio-banner{ height: 190px; }
   }
   @media (max-width: 520px){
     .cards{ grid-template-columns: 1fr; }
     .wrap, .nav-row{ padding-left: 20px; padding-right: 20px; }
     .hero-photo{ height: 78vh; }
+    .legna-strip-label{
+      font-size: 11px;
+      padding: 6px 12px;
+    }
+    .legna-card-content h4{
+      font-size: 17px;
+    }
+    .legna-card-content p{
+      font-size: 13px;
+    }
+    .btn-sm{
+      padding: 9px 14px !important;
+      font-size: 12px !important;
+    }
   }
 
   :focus-visible{ outline: 2.5px solid var(--terracotta); outline-offset: 2px; }
@@ -887,7 +958,37 @@
   #lightbox-close:hover{ background: rgba(251,249,243,0.22); }
   #lightbox-close svg{ width: 18px; height: 18px; }
 
-  /* ---------- PRIVACY & COOKIE MODAL ---------- */
+  /* ---------- FAQ ---------- */
+  .faq-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .faq-item{
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 26px 24px;
+    transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .faq-item:hover{
+    border-color: var(--wheat);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(22,36,15,0.08);
+  }
+  .faq-item h3{
+    font-size: 17px;
+    margin-bottom: 12px;
+    color: var(--forest-deep);
+  }
+  .faq-item p{
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  
   #privacy-modal{
     position: fixed; inset: 0; z-index: 210;
     background: rgba(18,26,12,0.55);
@@ -1214,7 +1315,7 @@
         <span style="width:22px;height:1px;background:var(--wheat-light);display:inline-block;margin-right:-8px"></span>
         Pernumia, tra Bassa Padovana e Colli Euganei
       </div>
-      <h1>Tutto il necessario per la tua azienda agricola.</h1>
+      <h1>Pellet, Legna, Sementi e Fitosanitari a Pernumia</h1>
       <p class="lead">
         Un'ampia gamma di sementi, prodotti fitosanitari, concimi e forniture professionali, con la competenza e la vicinanza di chi lavora ogni giorno al fianco del territorio.
       </p>
@@ -1604,7 +1705,51 @@
   </div>
 </section>
 
-<footer>
+<section id="faq" style="background:var(--sage-tint)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Domande Frequenti</div>
+      <h2>Risposte rapide</h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item reveal">
+        <h3>Dove posso comprare pellet a Pernumia?</h3>
+        <p>Andrea Aldrigo & C. è a via Monselice 2, Pernumia (PD). Offriamo pellet premium di Abete pronto per l'inverno, disponibile direttamente in azienda. Contattaci per prenotare la tua fornitura.</p>
+      </div>
+      <div class="faq-item reveal stagger-2">
+        <h3>Quali sono i tipi di legna da ardere disponibili?</h3>
+        <p>Forniamo legna da ardere di qualità: carpino, faggio e rovere. Perfette per il riscaldamento domestico, con disponibilità stagionale. Prenota in anticipo per garantire la fornitura.</p>
+      </div>
+      <div class="faq-item reveal stagger-3">
+        <h3>Offrite assistenza per l'analisi del terreno?</h3>
+        <p>Sì! Analizziamo il vostro terreno e creiamo un piano di concimazione personalizzato basato sui risultati reali. I nostri tecnici seguono ogni azienda con consulenza diretta.</p>
+      </div>
+      <div class="faq-item reveal stagger-4">
+        <h3>Quali prodotti fitosanitari vendete?</h3>
+        <p>Vendiamo una gamma completa di prodotti fitosanitari per la difesa delle colture. Collaboriamo con il Consorzio CRA per fornire mezzi tecnici selezionati e aggiornati alle esigenze reali del territorio.</p>
+      </div>
+      <div class="faq-item reveal stagger-5">
+        <h3>Servite aziende agricole nel territorio di Pernumia?</h3>
+        <p>Operiamo nella Bassa Padovana e Colli Euganei. Serviamo aziende agricole, serre e vivai con forniture puntuali e assistenza tecnica qualificata.</p>
+      </div>
+      <div class="faq-item reveal stagger-6">
+        <h3>Come contattarvi per una consulenza?</h3>
+        <p>Puoi raggiungerci telefonando al 348 442 5820 (Andrea Aldrigo) o 340 371 6236 (Giacomo Lion), oppure tramite WhatsApp o email a goeand@gmail.com. Rispondiamo direttamente, senza centralini.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="news-ticker" aria-label="Novità">
+  <div class="ticker-track">
+    <span>Legna da ardere: carpino, faggio e rovere</span>
+    <span>Pellet premium di Abete, pronto per l'inverno</span>
+    <span>Prenota la tua fornitura in azienda</span>
+    <span aria-hidden="true">Legna da ardere: carpino, faggio e rovere</span>
+    <span aria-hidden="true">Pellet premium di Abete, pronto per l'inverno</span>
+    <span aria-hidden="true">Prenota la tua fornitura in azienda</span>
+  </div>
+</div>
   <div class="wrap">
     <div class="footer-row">
       <div>
