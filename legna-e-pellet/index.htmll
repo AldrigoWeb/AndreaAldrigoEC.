@@ -16,7 +16,7 @@
 <meta property="og:url" content="https://www.andrealdrigo.it/legna-e-pellet/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Libre+Franklin:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -74,15 +74,12 @@
   body{
     background: var(--paper);
     color: var(--ink);
-    font-family: 'Roboto', 'Inter', sans-serif;
+    font-family: 'Libre Franklin', sans-serif;
     line-height: 1.65;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    font-weight: 400;
   }
-  h1{ font-family: 'Roboto', sans-serif; font-weight: 700; letter-spacing: -0.02em; color: var(--forest-deep); }
-  h2{ font-family: 'Roboto', sans-serif; font-weight: 600; letter-spacing: -0.015em; color: var(--forest-deep); }
-  h3{ font-family: 'Roboto', sans-serif; font-weight: 600; letter-spacing: -0.01em; color: var(--forest-deep); }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; letter-spacing: -0.01em; color: var(--forest-deep); }
   a{ color: inherit; }
   img{ display:block; }
   ::selection{ background: var(--wheat); color: var(--forest-deep); }
@@ -94,7 +91,6 @@
     font-family:'Space Mono', monospace; font-size:11.5px; letter-spacing:0.08em;
     text-transform:uppercase; color: var(--terracotta);
     display:flex; align-items:center; gap:10px;
-    font-weight: 500;
   }
   .field-note::before{ content:""; width: 22px; height:1px; background: var(--terracotta); opacity:0.6; }
 
@@ -131,47 +127,29 @@
     position: absolute; inset: 0;
     background: linear-gradient(180deg, rgba(22,17,10,0.42) 0%, rgba(22,17,10,0.78) 100%);
   }
-  .hero-band-content{ position: relative; z-index: 2; max-width: 680px; padding: 180px 0 76px; }
+  .hero-band-content{ position: relative; z-index: 2; max-width: 620px; padding: 180px 0 76px; }
   .hero-band-content .field-note{ color: var(--wheat); }
   .hero-band-content .field-note::before{ background: var(--wheat); }
   .hero-band h1{
-    font-size: clamp(2.4rem, 4.2vw, 3.6rem);
-    line-height: 1.1;
-    margin-top: 24px;
+    font-size: clamp(2.1rem, 3.8vw, 3.2rem);
+    line-height: 1.14;
+    margin-top: 20px;
     color: var(--paper);
-    font-weight: 700;
-    letter-spacing: -0.025em;
   }
-  .hero-band-intro{
-    margin-top: 18px;
-    font-size: 17px;
-    font-weight: 500;
-    color: rgba(251,249,243,0.92);
-    max-width: 58ch;
-    line-height: 1.7;
-  }
-  .hero-band p{
-    margin-top: 16px;
-    font-size: 15.5px;
-    color: rgba(251,249,243,0.78);
-    max-width: 56ch;
-    line-height: 1.68;
-  }
-  .hero-actions{ margin-top: 32px; display:flex; align-items:center; gap: 16px; flex-wrap: wrap; }
+  .hero-band p{ margin-top: 20px; font-size: 16.5px; color: rgba(251,249,243,0.84); max-width: 52ch; }
+  .hero-actions{ margin-top: 30px; display:flex; align-items:center; gap: 16px; flex-wrap: wrap; }
   .btn-primary{
     display:inline-flex; align-items:center; gap:9px;
     background: var(--wheat); color: var(--forest-deep);
-    font-weight:600; font-size:15px; padding: 14.5px 28px; border-radius:6px;
+    font-weight:700; font-size:14.5px; padding: 14.5px 26px; border-radius:4px;
     text-decoration:none; transition: background 0.15s ease, transform 0.15s ease; border: none; cursor: pointer;
-    font-family: 'Roboto', sans-serif;
   }
-  .btn-primary:hover{ background: var(--wheat-light); transform: translateY(-2px); }
+  .btn-primary:hover{ background: var(--wheat-light); transform: translateY(-1px); }
   .btn-secondary{
     display:inline-flex; align-items:center; gap:9px;
     border: 1.5px solid rgba(251,249,243,0.5); color: var(--paper);
-    font-weight:600; font-size:15px; padding: 13px 24px; border-radius:6px;
+    font-weight:700; font-size:14.5px; padding: 13px 22px; border-radius:4px;
     text-decoration:none; transition: border-color 0.15s ease, background 0.15s ease;
-    font-family: 'Roboto', sans-serif;
   }
   .btn-secondary:hover{ border-color: var(--paper); background: rgba(251,249,243,0.1); }
   .btn-secondary svg{ width:15px; height:15px; }
@@ -182,67 +160,66 @@
   }
 
   /* ---------- QUICK FACTS STRIP ---------- */
-  .facts-strip{ border-top: 1px solid var(--line); padding: 54px 0; }
-  .facts-row{ display: flex; gap: 52px; flex-wrap: wrap; }
-  .fact-item{ flex: 1 1 220px; display:flex; gap: 16px; align-items:flex-start; }
+  .facts-strip{ border-top: 1px solid var(--line); padding: 40px 0; }
+  .facts-row{ display: flex; gap: 44px; flex-wrap: wrap; }
+  .fact-item{ flex: 1 1 200px; display:flex; gap: 14px; align-items:flex-start; }
   .fact-item .f-ico{
-    flex: 0 0 auto; width: 38px; height: 38px; border-radius: 50%;
+    flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%;
     background: var(--terracotta-soft); color: var(--terracotta);
-    display:flex; align-items:center; justify-content:center; flex-shrink: 0;
+    display:flex; align-items:center; justify-content:center;
   }
-  .fact-item .f-ico svg{ width: 18px; height: 18px; }
-  .fact-item strong{ display:block; font-family:'Roboto', sans-serif; font-size: 16px; font-weight:600; padding-top: 2px; }
-  .fact-item p{ margin-top: 6px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
+  .fact-item .f-ico svg{ width: 16px; height: 16px; }
+  .fact-item strong{ display:block; font-family:'Fraunces', serif; font-size: 15px; font-weight:600; padding-top: 4px; }
+  .fact-item p{ margin-top: 3px; font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
 
   /* ---------- SPLIT LEGNA / PELLET ---------- */
-  .split-section{ border-top: 1px solid var(--line); padding: 100px 0; }
-  .split-head{ max-width: 680px; margin-bottom: 54px; }
-  .split-head h2{ font-size: clamp(2rem, 3.2vw, 2.6rem); margin-top: 16px; }
-  .split-head p{ margin-top: 18px; color: var(--ink-soft); font-size: 16px; line-height: 1.7; }
-  .split-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line-strong); border: 1px solid var(--line-strong); border-radius: 12px; overflow: hidden; }
-  .split-col{ background: var(--paper-raised); padding: 48px 44px; display: flex; flex-direction: column; }
+  .split-section{ border-top: 1px solid var(--line); padding: 88px 0; }
+  .split-head{ max-width: 640px; margin-bottom: 48px; }
+  .split-head h2{ font-size: clamp(1.8rem, 3vw, 2.4rem); margin-top: 12px; }
+  .split-head p{ margin-top: 14px; color: var(--ink-soft); font-size: 15.5px; }
+  .split-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line-strong); border: 1px solid var(--line-strong); border-radius: 10px; overflow: hidden; }
+  .split-col{ background: var(--paper-raised); padding: 44px 40px; display: flex; flex-direction: column; }
   .split-col .s-tag{
     font-family:'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--terracotta); margin-bottom: 14px; font-weight: 500;
+    color: var(--terracotta); margin-bottom: 14px;
   }
-  .split-col h3{ font-size: 28px; margin-bottom: 4px; }
-  .split-col p{ margin-top: 14px; color: var(--ink-soft); font-size: 15.5px; line-height: 1.7; }
-  .split-col .s-list{ list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 11px; }
+  .split-col h3{ font-size: 24px; }
+  .split-col p{ margin-top: 14px; color: var(--ink-soft); font-size: 15px; }
+  .split-col .s-list{ list-style: none; margin-top: 22px; display: flex; flex-direction: column; gap: 9px; }
   .split-col .s-list li{
-    font-size: 14.5px; color: var(--ink); padding-left: 18px; position: relative; font-weight: 500;
+    font-size: 14px; color: var(--ink); padding-left: 16px; position: relative;
   }
   .split-col .s-list li::before{
     content:""; position:absolute; left:0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--terracotta);
   }
   .split-col .s-go{
-    margin-top: 32px; display:inline-flex; align-items:center; gap: 8px;
-    font-family:'Roboto', sans-serif; font-size: 13.5px; font-weight: 600; color: var(--forest-deep);
-    text-decoration:none; border-bottom: 1.5px solid var(--line-strong); padding-bottom: 3px; width: fit-content;
-    transition: border-color 0.2s ease;
+    margin-top: 28px; display:inline-flex; align-items:center; gap: 7px;
+    font-family:'Space Mono', monospace; font-size: 12.5px; font-weight: 700; color: var(--forest-deep);
+    text-decoration:none; border-bottom: 1px solid var(--line-strong); padding-bottom: 3px; width: fit-content;
   }
   .split-col .s-go:hover{ border-color: var(--forest-deep); }
   @media (max-width: 780px){
     .split-grid{ grid-template-columns: 1fr; }
-    .split-col{ padding: 40px 32px; }
+    .split-col{ padding: 36px 28px; }
   }
 
   /* ---------- PRODUCT SECTIONS ---------- */
-  .product-section{ border-top: 1px solid var(--line); padding: 100px 0; }
-  .product-head{ display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: 48px; }
-  .product-head-left{ max-width: 640px; }
-  .product-head h2{ font-size: clamp(2rem, 3.2vw, 2.6rem); margin-top: 16px; }
-  .product-head p{ margin-top: 16px; color: var(--ink-soft); font-size: 16px; line-height: 1.7; }
+  .product-section{ border-top: 1px solid var(--line); padding: 88px 0; }
+  .product-head{ display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: 44px; }
+  .product-head-left{ max-width: 600px; }
+  .product-head h2{ font-size: clamp(1.8rem, 3vw, 2.4rem); margin-top: 12px; }
+  .product-head p{ margin-top: 14px; color: var(--ink-soft); font-size: 15.5px; }
 
-  .wood-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-  .pellet-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .wood-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .pellet-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
   @media (max-width: 920px){ .wood-grid{ grid-template-columns: repeat(2, 1fr); } .pellet-grid{ grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 620px){ .wood-grid{ grid-template-columns: 1fr; } .pellet-grid{ grid-template-columns: 1fr; } }
 
   .product-card{
-    background: var(--paper-raised); border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+    background: var(--paper-raised); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
     transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .product-card:hover{ border-color: var(--wheat); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(36,52,32,0.12); }
+  .product-card:hover{ border-color: var(--wheat); transform: translateY(-4px); box-shadow: 0 16px 34px rgba(36,52,32,0.1); }
   .product-media{
     position: relative; aspect-ratio: 4/3; background: #E9E2CE;
     display:flex; align-items:center; justify-content:center;
@@ -258,13 +235,13 @@
     display:flex; flex-direction: column; align-items:center; gap: 6px;
   }
   .product-media .m-fallback svg{ width: 24px; height: 24px; color: var(--ink-soft); opacity: 0.45; }
-  .product-body{ padding: 24px 24px 28px; }
+  .product-body{ padding: 20px 22px 24px; }
   .product-body .p-tag{
     font-family:'Space Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--terracotta); display:block; margin-bottom: 8px; font-weight: 500;
+    color: var(--terracotta); display:block; margin-bottom: 6px;
   }
-  .product-body h3{ font-size: 19px; font-weight: 600; }
-  .product-body p{ margin-top: 10px; font-size: 14px; color: var(--ink-soft); line-height: 1.65; }
+  .product-body h3{ font-size: 18px; }
+  .product-body p{ margin-top: 8px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
 
   /* ---------- FASCE FOTOGRAFICHE (stile analisi-del-terreno) ---------- */
   .parallax-section{
@@ -272,7 +249,7 @@
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
-    min-height: 56vh;
+    min-height: 52vh;
     display: flex; align-items: center;
     overflow: hidden;
     background-color: #4A3823;
@@ -287,88 +264,86 @@
     position: absolute; inset: 0;
     background: linear-gradient(180deg, rgba(22,17,10,0.42) 0%, rgba(22,17,10,0.8) 100%);
   }
-  .parallax-content{ position: relative; z-index: 2; padding: 84px 0; max-width: 640px; }
+  .parallax-content{ position: relative; z-index: 2; padding: 78px 0; max-width: 600px; }
   .parallax-content .field-note{ color: var(--wheat); }
   .parallax-content .field-note::before{ background: var(--wheat); }
-  .parallax-content h2{ color: var(--paper-raised); margin-top: 18px; font-size: clamp(1.9rem, 3vw, 2.5rem); font-weight: 700; }
-  .parallax-content p{ color: rgba(251,248,240,0.87); margin-top: 18px; font-size: 16px; max-width: 56ch; line-height: 1.7; }
+  .parallax-content h2{ color: var(--paper-raised); margin-top: 14px; font-size: clamp(1.7rem, 2.8vw, 2.3rem); }
+  .parallax-content p{ color: rgba(251,248,240,0.85); margin-top: 14px; font-size: 15px; max-width: 54ch; }
   @media (max-width: 820px), (hover: none){ .parallax-bg{ background-attachment: scroll; } }
   @media (max-width: 720px){
-    .parallax-section{ min-height: 46vh; }
-    .parallax-content{ padding: 56px 0; }
+    .parallax-section{ min-height: 42vh; }
+    .parallax-content{ padding: 52px 0; }
   }
 
   /* ---------- CTA ---------- */
-  .cta-section{ border-top: 1px solid var(--line); padding: 110px 0; text-align: center; }
-  .cta-section h2{ font-size: clamp(2.1rem, 4.2vw, 2.8rem); margin-top: 18px; max-width: 24ch; margin-left:auto; margin-right:auto; }
-  .cta-section p{ margin-top: 20px; color: var(--ink-soft); max-width: 50ch; margin-left:auto; margin-right:auto; font-size:16px; line-height: 1.7; }
+  .cta-section{ border-top: 1px solid var(--line); padding: 90px 0; text-align: center; }
+  .cta-section h2{ font-size: clamp(1.9rem, 4vw, 2.6rem); margin-top: 14px; max-width: 22ch; margin-left:auto; margin-right:auto; }
+  .cta-section p{ margin-top: 16px; color: var(--ink-soft); max-width: 46ch; margin-left:auto; margin-right:auto; font-size:15.5px; }
   .cta-section .field-note{ justify-content: center; }
   .cta-section .field-note::before{ display:none; }
-  .cta-section .btn-primary{ margin-top: 32px; }
+  .cta-section .btn-primary{ margin-top: 28px; color: var(--forest-deep); }
 
   /* ---------- CONTATTI / FORM ---------- */
-  .contact-section{ border-top: 1px solid var(--line); padding: 110px 0 120px; }
-  .contact-inner{ display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 68px; align-items: start; }
-  .contact-copy h2{ margin-top: 16px; font-size: clamp(1.9rem, 3vw, 2.4rem); }
-  .contact-copy p{ margin-top: 18px; color: var(--ink-soft); font-size: 16px; line-height: 1.7; max-width: 46ch; }
-  .contact-info{ margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
-  .contact-info-item{ display: flex; align-items: center; gap: 16px; text-decoration: none; font-size: 15.5px; color: var(--forest-deep); font-weight: 500; }
+  .contact-section{ border-top: 1px solid var(--line); padding: 96px 0 100px; }
+  .contact-inner{ display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 64px; align-items: start; }
+  .contact-copy h2{ margin-top: 14px; font-size: clamp(1.7rem, 2.8vw, 2.2rem); }
+  .contact-copy p{ margin-top: 16px; color: var(--ink-soft); font-size: 15.5px; max-width: 42ch; }
+  .contact-info{ margin-top: 36px; display: flex; flex-direction: column; gap: 14px; }
+  .contact-info-item{ display: flex; align-items: center; gap: 14px; text-decoration: none; font-size: 15px; color: var(--forest-deep); }
   .contact-info-item .c-ico{
-    flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
+    flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
     background: var(--paper-raised); border: 1px solid var(--line);
     display: flex; align-items: center; justify-content: center; color: var(--terracotta);
     transition: border-color 0.2s ease;
   }
-  .contact-info-item .c-ico svg{ width: 18px; height: 18px; }
+  .contact-info-item .c-ico svg{ width: 16px; height: 16px; }
   a.contact-info-item:hover .c-ico{ border-color: var(--terracotta); }
 
   .supply-form{
-    display: flex; flex-direction: column; gap: 20px;
-    background: var(--paper-raised); border: 1px solid var(--line); border-radius: 12px; padding: 38px 36px;
+    display: flex; flex-direction: column; gap: 18px;
+    background: var(--paper-raised); border: 1px solid var(--line); border-radius: 10px; padding: 34px 32px;
   }
-  .form-row{ display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-row{ display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   .supply-form label{
-    display: flex; flex-direction: column; gap: 10px;
-    font-family: 'Roboto', sans-serif; font-size: 13.5px; letter-spacing: 0.02em; color: var(--ink-soft);
-    font-weight: 500;
+    display: flex; flex-direction: column; gap: 8px;
+    font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.05em; color: var(--ink-soft);
   }
   .supply-form input, .supply-form textarea, .supply-form select{
-    font-family: 'Roboto', sans-serif; font-size: 15px; color: var(--ink);
-    background: #fff; border: 1.5px solid var(--line-strong);
-    border-radius: 6px; padding: 13px 15px; resize: vertical;
+    font-family: 'Libre Franklin', sans-serif; font-size: 15px; color: var(--ink);
+    background: #fff; border: 1px solid var(--line-strong);
+    border-radius: 5px; padding: 12px 14px; resize: vertical;
     transition: border-color 0.2s ease;
-    font-weight: 400;
   }
   .supply-form input:focus, .supply-form textarea:focus, .supply-form select:focus{ outline: none; border-color: var(--terracotta); }
-  .supply-form input::placeholder, .supply-form textarea::placeholder{ color: rgba(36,52,32,0.32); }
-  .form-submit{ margin-top: 8px; border: none; cursor: pointer; font-family: 'Roboto', sans-serif; justify-content: center; }
+  .supply-form input::placeholder, .supply-form textarea::placeholder{ color: rgba(36,52,32,0.35); }
+  .form-submit{ margin-top: 6px; border: none; cursor: pointer; font-family: 'Libre Franklin', sans-serif; justify-content: center; }
   .form-submit:disabled{ opacity: 0.7; cursor: default; }
   .form-submit .btn-loading{ display: none; }
   .supply-form.is-loading .btn-text{ display: none; }
   .supply-form.is-loading .btn-loading{ display: inline; }
-  .form-error{ color: #B4472F; font-size: 14px; margin-top: 6px; }
+  .form-error{ color: #B4472F; font-size: 13.5px; margin-top: 4px; }
   .form-error a{ color: var(--terracotta); text-decoration: underline; }
 
   .form-success{
     background: var(--paper-raised); border: 1px solid rgba(75,122,62,0.35);
-    border-radius: 12px; padding: 48px 40px; text-align: center;
+    border-radius: 10px; padding: 44px 36px; text-align: center;
   }
-  .form-success svg{ width: 44px; height: 44px; color: #4B7A3E; margin: 0 auto 20px; }
-  .form-success h3{ font-size: 22px; }
-  .form-success p{ margin-top: 12px; color: var(--ink-soft); font-size: 15.5px; max-width: 38ch; margin-left: auto; margin-right: auto; }
+  .form-success svg{ width: 42px; height: 42px; color: #4B7A3E; margin: 0 auto 18px; }
+  .form-success h3{ font-size: 21px; }
+  .form-success p{ margin-top: 10px; color: var(--ink-soft); font-size: 15px; max-width: 36ch; margin-left: auto; margin-right: auto; }
 
-  @media (max-width: 880px){ .contact-inner{ grid-template-columns: 1fr; gap: 48px; } .form-row{ grid-template-columns: 1fr; } }
-  @media (max-width: 620px){ .supply-form{ padding: 28px 24px; } }
+  @media (max-width: 880px){ .contact-inner{ grid-template-columns: 1fr; gap: 44px; } .form-row{ grid-template-columns: 1fr; } }
+  @media (max-width: 620px){ .supply-form{ padding: 26px 22px; } }
 
   /* ---------- FOOTER ---------- */
   .page-footer{
     background: var(--forest-deep); color: var(--paper);
-    padding: 38px 8vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;
+    padding: 34px 8vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;
   }
-  .footer-brand{ font-family: 'Roboto', sans-serif; font-size: 17px; font-weight: 600; }
-  .footer-meta{ font-size: 13px; color: rgba(251,249,243,0.58); margin-top: 6px; }
+  .footer-brand{ font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; }
+  .footer-meta{ font-size: 12.5px; color: rgba(251,249,243,0.55); margin-top: 4px; }
   .footer-back{
-    font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 500; color: var(--wheat);
+    font-family: 'Space Mono', monospace; font-size: 12px; color: var(--wheat);
     text-decoration: none; border-bottom: 1px solid rgba(201,151,62,0.4); padding-bottom: 2px;
   }
   .footer-back:hover{ border-color: var(--wheat); }
@@ -381,7 +356,7 @@
     padding: 40px;
   }
   #lightbox.open{ display: flex; }
-  #lightbox img{ max-width: 92vw; max-height: 86vh; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+  #lightbox img{ max-width: 92vw; max-height: 86vh; border-radius: 4px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
   #lightbox-close{
     position: absolute; top: 22px; right: 26px;
     width: 42px; height: 42px; border-radius: 50%;
@@ -406,8 +381,7 @@
     <div class="wrap hero-band-content">
       <div class="field-note">Pronti per l'inverno</div>
       <h1>Legna da ardere e pellet, per ogni tipo di riscaldamento</h1>
-      <p class="hero-band-intro">Una selezione completa di legna stagionata e pellet certificato dai migliori marchi europei.</p>
-      <p>Che tu stia cercando essenze locali per una stufa a legna oppure pellet ad alto potere calorifico per la tua caldaia, troverai tutto qui: legna di carpino, faggio e rovere, e i marchi di riferimento Pfeifer, Tiger, Rettenmeier, Sarner Holz, Austrian Premium e la nostra linea BIO Pellet. Prenota per tempo.</p>
+      <p>Legna di carpino, faggio e rovere per stufe e caminetti, e pellet dei marchi più affidabili — Pfeifer, Tiger, Rettenmeier, Sarner Holz, Austrian Premium e la nostra linea BIO Pellet. Prenota per tempo la tua fornitura.</p>
       <div class="hero-actions">
         <a class="btn-primary" href="#prenota">Prenota la fornitura →</a>
         <a class="btn-secondary" href="tel:+393484425820">
@@ -422,15 +396,15 @@
     <div class="facts-row">
       <div class="fact-item">
         <span class="f-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3v6l-3 3v9h6v-6h2v6h6v-9l-3-3V3"/><path d="M8 9h8"/></svg></span>
-        <div><strong>Consegna in azienda</strong><p>O ritiro diretto da noi a Pernumia, in via Monselice 2</p></div>
+        <div><strong>Consegna in azienda</strong><p>O ritiro diretto da noi a Pernumia</p></div>
       </div>
       <div class="fact-item">
         <span class="f-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
-        <div><strong>Prenotazione anticipata</strong><p>Contattaci per tempo e garantisci la disponibilità in stagione</p></div>
+        <div><strong>Prenotazione anticipata</strong><p>Per garantirti la disponibilità in stagione</p></div>
       </div>
       <div class="fact-item">
         <span class="f-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m8 12.5 2.5 2.5L16 9.5"/><circle cx="12" cy="12" r="8.5"/></svg></span>
-        <div><strong>Marchi selezionati</strong><p>Legna stagionata e pellet di qualità certificata ENplus® A1</p></div>
+        <div><strong>Marchi selezionati</strong><p>Legna stagionata e pellet di qualità certificata</p></div>
       </div>
     </div>
   </section>
@@ -456,7 +430,7 @@
       <div class="split-col">
         <span class="s-tag">Pellet</span>
         <h3>Pellet</h3>
-        <p>Sei marchi selezionati per potere calorifico, basso residuo di ceneri e affidabilità nella combustione quotidiana. La certificazione ENplus® A1 è il più alto standard europeo.</p>
+        <p>Sei marchi selezionati per potere calorifico, basso residuo di ceneri e affidabilità nella combustione quotidiana. La certificazione ENplus® A1 è il più alto standard europeo per la qualità e la tracciabilità del pellet di legno destinato al riscaldamento domestico </p>
         <ul class="s-list">
           <li>Pfeifer · Tiger · Rettenmeier</li>
           <li>Sarner Holz · Austrian Premium</li>
@@ -473,7 +447,7 @@
         <div class="product-head-left">
           <div class="field-note">Legna da ardere</div>
           <h2>Le nostre essenze</h2>
-          <p>Legna locale, tagliata e stagionata per garantire una combustione pulita e una resa calorica costante in tutte le condizioni.</p>
+          <p>Legna locale, tagliata e stagionata per garantire una combustione pulita e una resa calorica costante.</p>
         </div>
       </div>
       <div class="wood-grid">
@@ -543,7 +517,7 @@
         <div class="product-head-left">
           <div class="field-note">Pellet</div>
           <h2>I marchi che trattiamo</h2>
-          <p>Una selezione curata di pellet per stufe e caldaie domestiche, certificati e affidabili. Pronto per il ritiro o la consegna in azienda.</p>
+          <p>Una selezione di pellet per stufe e caldaie domestiche, pronto per il ritiro o la consegna in azienda.</p>
         </div>
       </div>
       <div class="pellet-grid">
@@ -634,7 +608,7 @@
           <div class="product-body">
             <span class="p-tag">Pellet</span>
             <h3>BIO Pellet</h3>
-            <p>Il gruppo HASSLACHER si impegna per l'utilizzo sostenibile del legno con materie prime da gestioni forestali certificate PEFC™.</p>
+            <p>Il gruppo HASSLACHER si impegna attivamente per l’utilizzo sostenibile del legno come risorsa utilizzando soltanto materie prime da gestioni forestali sostenibili e controllate, nonché sedi aziendali certificate secondo i più severi standard PEFCTM..</p>
           </div>
         </div>
 
@@ -648,14 +622,14 @@
     <div class="wrap parallax-content">
       <div class="field-note">Calore per tutto l'inverno</div>
       <h2>Il pellet giusto per la tua stufa</h2>
-      <p>Marchi certificati, basso residuo di ceneri e potere calorifico costante: scegli il pellet più adatto alle tue esigenze di riscaldamento e goditi un inverno al caldo.</p>
+      <p>Marchi certificati, basso residuo di ceneri e potere calorifico costante: scegli il pellet più adatto alle tue esigenze di riscaldamento.</p>
     </div>
   </section>
 
   <section class="cta-section" id="prenota">
     <div class="field-note">Pronto per l'inverno</div>
     <h2>Prenota la tua fornitura di legna e pellet</h2>
-    <p>Compila il modulo con le tue esigenze e le quantità indicative: ti ricontattiamo il prima possibile per organizzare consegna o ritiro.</p>
+    <p>Dicci di cosa hai bisogno e le quantità: ti ricontattiamo per organizzare consegna o ritiro.</p>
     <a class="btn-primary" href="#contattiLegna">Vai al modulo →</a>
   </section>
 
@@ -665,7 +639,7 @@
         <div class="contact-copy">
           <div class="field-note">Parliamone</div>
           <h2>Richiedi la tua fornitura</h2>
-          <p>Raccontaci di cosa hai bisogno: quantità, essenza o marchio preferito, e le tempistiche di consegna. Ti ricontattiamo per confermare disponibilità e modalità.</p>
+          <p>Compila il modulo con le tue esigenze: ti ricontattiamo per confermare disponibilità e modalità di consegna.</p>
           <div class="contact-info">
             <a class="contact-info-item" href="tel:+393484425820">
               <span class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.5 3.5h3l1.5 4-2 1.3a11 11 0 0 0 4.7 4.7l1.3-2 4 1.5v3a1.7 1.7 0 0 1-1.8 1.7A14.7 14.7 0 0 1 4.8 5.3 1.7 1.7 0 0 1 6.5 3.5Z"/></svg></span>
@@ -722,7 +696,7 @@
           <div class="form-success" id="formSuccess" hidden>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 2.5 2.5L16 9.5"/></svg>
             <h3>Richiesta inviata!</h3>
-            <p>Ti ricontatteremo il prima possibile per organizzare la fornitura di legna e pellet.</p>
+            <p>Ti ricontatteremo il prima possibile per organizzare la fornitura.</p>
           </div>
         </div>
       </div>
