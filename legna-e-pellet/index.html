@@ -5,17 +5,18 @@
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
-  // Torna in cima solo su un vero refresh/ricarica della pagina.
-  // Se invece si arriva con un'ancora (es. #legna o #pellet, come dai
-  // pulsanti della home), lascia che il browser scorra lì normalmente.
-  var isReload = false;
-  try {
-    var nav = performance.getEntriesByType('navigation')[0];
-    isReload = nav && nav.type === 'reload';
-  } catch (e) {}
-  if (isReload || !location.hash) {
-    window.scrollTo(0, 0);
+  // Toglie l'eventuale ancora (#legna, #pellet) dall'URL prima che il browser
+  // possa usarla per saltare lì da solo, così la pagina parte sempre dall'alto.
+  if (location.hash) {
+    history.replaceState(null, '', location.pathname + location.search);
   }
+  window.scrollTo(0, 0);
+  // Rete di sicurezza per mobile: a volte la pagina "cresce" dopo il primo
+  // rendering (immagini, font) e lo scroll si sposta da solo. Ri-forziamo
+  // la cima anche a caricamento completato.
+  window.addEventListener('load', function () {
+    window.scrollTo(0, 0);
+  });
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
