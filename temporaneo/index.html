@@ -365,8 +365,25 @@
     display:block; margin-bottom: 2px;
   }
   @media (max-width: 880px){
-    .hero-inner{ flex-direction: column; align-items: flex-start; }
+    .hero{ overflow: visible; }
+    .hero-photo{ position: absolute; inset: 0; height: auto; min-height: 0; max-height: none; }
+    .hero-photo::after{ background: linear-gradient(180deg, rgba(22,36,15,0.45) 0%, rgba(22,36,15,0.72) 100%); }
+    .hero-inner{ position: relative; flex-direction: column; align-items: flex-start; padding: 88px 24px 32px; gap: 20px; }
     .hero-notice{ max-width: 100%; }
+    .legna-pellet-wrapper{ width: 100%; }
+    .legna-strip-label{ font-size: 10.5px; padding: 6px 14px; }
+    .hero-notice.legna-pellet-card{
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      max-width: 100%;
+      padding: 14px 16px;
+    }
+    .legna-card-image{ width: 60px; height: 60px; flex: 0 0 60px; margin-bottom: 0; }
+    .legna-card-content{ flex: 1; min-width: 0; }
+    .legna-card-content h4{ font-size: 14.5px; margin-bottom: 2px; }
+    .legna-card-content p{ display: none; }
+    .legna-card-content .btn{ margin-top: 8px; }
   }
   .hero h1{
     color: var(--paper);
@@ -899,7 +916,6 @@
   @media (max-width: 520px){
     .cards{ grid-template-columns: 1fr; }
     .wrap, .nav-row{ padding-left: 20px; padding-right: 20px; }
-    .hero-photo{ height: 78vh; }
   }
 
   :focus-visible{ outline: 2.5px solid var(--terracotta); outline-offset: 2px; }

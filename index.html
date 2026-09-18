@@ -132,6 +132,40 @@
     display: inline-block;
   }
 
+  /* ---------- SOTTOLINEATURA TITOLI (svolazzo disegnato) ---------- */
+  @keyframes uline-draw{ from{ transform: scaleX(0); } to{ transform: scaleX(1); } }
+  .u-line{ position: relative; display: inline-block; max-width: 100%; }
+  .u-line::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -13px;
+    height: 15px;
+    background-repeat: repeat-x;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.9s var(--ease);
+  }
+  .u-line.u-sm::after{ bottom: -8px; height: 10px; }
+  .u-line.u-terracotta::after{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 15'%3E%3Cpath d='M0 8.5 Q5.5 1 11 8.5 T22 8.5' fill='none' stroke='%23B15A34' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: 22px 15px;
+  }
+  .u-line.u-wheat::after{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 15'%3E%3Cpath d='M0 8.5 Q5.5 1 11 8.5 T22 8.5' fill='none' stroke='%23E7C87C' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: 22px 15px;
+  }
+  .u-line.u-field::after{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 15'%3E%3Cpath d='M0 8.5 Q5.5 1 11 8.5 T22 8.5' fill='none' stroke='%237FA05F' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: 22px 15px;
+  }
+  .reveal.in-view .u-line::after{ transform: scaleX(1); }
+  .u-line.u-auto::after{ animation: uline-draw 0.9s var(--ease) 0.6s both; }
+  @media (prefers-reduced-motion: reduce){
+    .u-line::after{ transform: scaleX(1) !important; transition: none !important; animation: none !important; }
+  }
+
   /* ---------- SCROLL REVEAL ---------- */
   .reveal{
     opacity: 0;
@@ -838,41 +872,49 @@
   }
 
   /* Contatti */
-  .contact-grid{ display:grid; grid-template-columns: 0.95fr 1.1fr; gap: 40px; align-items: stretch; }
-  .contact-col{ display:flex; flex-direction:column; gap: 14px; }
-  .contact-card{
-    display:flex; gap: 16px; align-items:flex-start;
+  .contact-grid{ display:grid; grid-template-columns: 0.95fr 1.1fr; gap: 32px; align-items: stretch; }
+  .contact-col{ display:flex; flex-direction:column; gap: 16px; }
+  .contact-info-card{
     background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg);
-    padding: 20px 22px;
-    transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    overflow: hidden;
   }
-  .contact-card:hover{ border-color: var(--wheat); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(22,36,15,0.09); }
-  .contact-card .c-icon{
-    flex: 0 0 auto; width: 42px; height: 42px; border-radius: 50%;
+  .info-row{
+    display:flex; gap: 14px; align-items:flex-start;
+    padding: 16px 20px;
+  }
+  .info-row + .info-row{ border-top: 1px solid var(--line); }
+  .info-row .c-icon{
+    flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%; margin-top: 1px;
     background: var(--sage-tint); color: var(--field);
     display:flex; align-items:center; justify-content:center;
   }
-  .contact-card .c-icon svg{ width: 20px; height: 20px; }
-  .contact-card .c-body{ min-width: 0; }
-  .contact-card .label{
-    font-family:'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--terracotta); display:block; margin-bottom: 6px;
+  .info-row .c-icon svg{ width: 16px; height: 16px; }
+  .info-row .c-body{ min-width: 0; }
+  .info-row .label{
+    font-family:'Space Mono', monospace; font-size: 10.5px; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--terracotta); display:block; margin-bottom: 5px;
   }
-  .contact-card .val{ font-size: 16.5px; font-weight: 600; display:block; }
-  .contact-card .val-sub{ display:block; font-size: 14px; color: var(--ink-soft); font-weight: 500; margin-top: 3px; }
-  .contact-card a.val:hover{ color: var(--field); }
-  .contact-people{ display:flex; flex-direction:column; gap: 7px; }
-  .contact-people a{ font-size: 15.5px; font-weight: 600; }
+  .info-row .val{ font-size: 15px; font-weight: 600; display:block; line-height: 1.4; }
+  .info-row .val-sub{ display:block; font-size: 13px; color: var(--ink-soft); font-weight: 500; margin-top: 3px; }
+  .hours{ display:flex; flex-direction:column; gap: 4px; }
+  .hours-line{ display:flex; align-items:baseline; gap: 10px; }
+  .hours-day{
+    font-family:'Space Mono', monospace; font-size: 11px; letter-spacing: 0.03em;
+    color: var(--field); min-width: 58px; flex: 0 0 auto;
+  }
+  .hours-time{ font-size: 15px; font-weight: 600; color: var(--ink); }
+  .contact-people{ display:flex; flex-direction:column; gap: 5px; }
+  .contact-people a{ font-size: 14.5px; font-weight: 600; }
   .contact-people a:hover{ color: var(--field); }
-  .contact-quick{ display:flex; gap: 12px; flex-wrap: wrap; margin-top: 2px; }
+  .contact-quick{ display:flex; gap: 12px; flex-wrap: wrap; }
   .quick-btn{
     flex: 1 1 180px;
     display:flex; align-items:center; justify-content:center; gap: 10px;
-    padding: 15px 18px; border-radius: var(--radius-lg);
-    font-weight: 700; font-size: 14.5px;
+    padding: 14px 18px; border-radius: var(--radius-lg);
+    font-weight: 700; font-size: 14px;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .quick-btn svg{ width: 19px; height: 19px; flex-shrink:0; }
+  .quick-btn svg{ width: 18px; height: 18px; flex-shrink:0; }
   .quick-btn.is-whatsapp{ background: #25D366; color: #fff; }
   .quick-btn.is-whatsapp:hover{ transform: translateY(-2px); box-shadow: 0 12px 26px rgba(37,211,102,0.32); }
   .quick-btn.is-email{ background: var(--forest); color: var(--paper); }
@@ -888,7 +930,7 @@
     .map-frame iframe{ min-height: 280px; }
   }
   @media (max-width: 480px){
-    .contact-card{ padding: 18px; }
+    .info-row{ padding: 14px 16px; }
     .quick-btn{ flex: 1 1 100%; }
   }
 
@@ -1302,7 +1344,7 @@
         <span style="width:22px;height:1px;background:var(--wheat-light);display:inline-block;margin-right:-8px"></span>
         Pernumia, tra Bassa Padovana e Colli Euganei
       </div>
-      <h1>Tutto il necessario per la tua azienda agricola.</h1>
+      <h1 class="u-line u-wheat u-auto">Tutto il necessario per la tua azienda agricola.</h1>
       <p class="lead">
         Un'ampia gamma di sementi, prodotti fitosanitari, concimi e forniture professionali, con la competenza e la vicinanza di chi lavora ogni giorno al fianco del territorio.
       </p>
@@ -1455,7 +1497,7 @@
   <div class="wrap">
     <div class="cra-intro reveal">
       <div class="eyebrow">La nostra rete</div>
-      <h2>Operiamo con il Consorzio CRA</h2>
+      <h2 class="u-line u-wheat">Operiamo con il Consorzio CRA</h2>
       <p>Collaboriamo con il Consorzio CRA (Consorzio Romagnolo Agriservizi), che seleziona e distribuisce mezzi tecnici per l'agricoltura a marchio proprio — concimi, biostimolanti e fisioattivatori pensati per le esigenze reali delle aziende agricole.</p>
       <p>Questa collaborazione ci permette di offrire ai nostri clienti prodotti selezionati, aggiornati alle esigenze del territorio.</p>
       <a class="cra-link" href="https://craconsorzio.it" target="_blank" rel="noopener">Scopri il Consorzio CRA →</a>
@@ -1476,7 +1518,7 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Il territorio</div>
-      <h2>Tra Bassa Padovana e Colli Euganei</h2>
+      <h2 class="u-line u-terracotta">Tra Bassa Padovana e Colli Euganei</h2>
     </div>
     <div class="territorio-banner reveal" aria-hidden="true">
       <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
@@ -1543,9 +1585,9 @@
 
 <section class="legna-pellet-highlight" id="legna-pellet">
   <div class="wrap">
-    <div class="lph-center">
+    <div class="lph-center reveal">
       <div class="eyebrow">Riscaldamento</div>
-      <h2 class="lph-title">Legna e Pellet</h2>
+      <h2 class="lph-title u-line u-wheat">Legna e Pellet</h2>
       <p class="lph-desc">Carpino, faggio e rovere per la stufa a legna, e pellet certificato dei marchi più affidabili — Pfeifer, Tiger, Rettenmeier, Sarner Holz, Austrian Premium e la nostra linea BIO Pellet. Pronti per l'inverno, disponibili direttamente in azienda a Pernumia.</p>
       <div class="lph-buttons">
         <a class="btn btn-legna" href="legna-e-pellet/#legna">Legna da Ardere →</a>
@@ -1559,7 +1601,7 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Prodotti</div>
-      <h2>Tutto quello che serve al campo</h2>
+      <h2 class="u-line u-terracotta">Tutto quello che serve al campo</h2>
       <p>Quattro aree di fornitura, un solo interlocutore per l'azienda agricola.</p>
     </div>
     <div class="cards">
@@ -1603,47 +1645,51 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Contatti</div>
-      <h2>Vieni a trovarci a Pernumia</h2>
+      <h2 class="u-line u-terracotta">Vieni a trovarci a Pernumia</h2>
       <p>Siamo in via Monselice 2, a pochi minuti da Monselice e Battaglia Terme.</p>
     </div>
     <div class="contact-grid">
       <div class="contact-col">
-        <div class="contact-card reveal">
-          <span class="c-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-6.1 7-11.4A7 7 0 0 0 5 9.6C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
-          </span>
-          <div class="c-body">
-            <span class="label">Indirizzo</span>
-            <span class="val">Via Monselice, 2 — 35020 Pernumia (PD)</span>
-            <span class="val-sub">A pochi minuti da Monselice e Battaglia Terme</span>
-          </div>
-        </div>
-
-        <div class="contact-card reveal stagger-2">
-          <span class="c-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
-          </span>
-          <div class="c-body">
-            <span class="label">Orari</span>
-            <span class="val">Lun–Ven 8:00–12:30 · 14:30–18:30</span>
-            <span class="val-sub">Sabato 8:30–12:00</span>
-          </div>
-        </div>
-
-        <div class="contact-card reveal stagger-3">
-          <span class="c-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6.5 3.5h3l1.5 4-2 1.3a11 11 0 0 0 4.7 4.7l1.3-2 4 1.5v3a1.7 1.7 0 0 1-1.8 1.7A14.7 14.7 0 0 1 4.8 5.3 1.7 1.7 0 0 1 6.5 3.5Z"/></svg>
-          </span>
-          <div class="c-body">
-            <span class="label">Assistenza Commerciale ed Agronomica</span>
-            <span class="contact-people">
-              <a href="tel:+393484425820">Andrea Aldrigo — 348 442 5820</a>
-              <a href="tel:+393403716236">Giacomo Lion — 340 371 6236</a>
+        <div class="contact-info-card reveal">
+          <div class="info-row">
+            <span class="c-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-6.1 7-11.4A7 7 0 0 0 5 9.6C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
             </span>
+            <div class="c-body">
+              <span class="label">Indirizzo</span>
+              <span class="val">Via Monselice, 2 — 35020 Pernumia (PD)</span>
+              <span class="val-sub">A pochi minuti da Monselice e Battaglia Terme</span>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <span class="c-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+            </span>
+            <div class="c-body">
+              <span class="label">Orari</span>
+              <div class="hours">
+                <div class="hours-line"><span class="hours-day">Lun–Ven</span><span class="hours-time">8:00–12:30 · 14:30–18:30</span></div>
+                <div class="hours-line"><span class="hours-day">Sabato</span><span class="hours-time">8:30–12:00</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <span class="c-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6.5 3.5h3l1.5 4-2 1.3a11 11 0 0 0 4.7 4.7l1.3-2 4 1.5v3a1.7 1.7 0 0 1-1.8 1.7A14.7 14.7 0 0 1 4.8 5.3 1.7 1.7 0 0 1 6.5 3.5Z"/></svg>
+            </span>
+            <div class="c-body">
+              <span class="label">Assistenza Commerciale ed Agronomica</span>
+              <span class="contact-people">
+                <a href="tel:+393484425820">Andrea Aldrigo — 348 442 5820</a>
+                <a href="tel:+393403716236">Giacomo Lion — 340 371 6236</a>
+              </span>
+            </div>
           </div>
         </div>
 
-        <div class="contact-quick reveal stagger-4">
+        <div class="contact-quick reveal stagger-2">
           <a class="quick-btn is-whatsapp" href="https://wa.me/393484425820" target="_blank" rel="noopener">
             <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.909 6.478L4 29l7.723-1.867A11.94 11.94 0 0 0 16.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3Zm5.94 13.672c-.325-.163-1.92-.947-2.217-1.056-.297-.108-.514-.163-.73.163-.216.325-.838 1.056-1.028 1.273-.19.217-.379.244-.703.081-.325-.163-1.372-.505-2.613-1.61-.966-.86-1.618-1.923-1.808-2.248-.19-.325-.02-.5.143-.663.147-.146.325-.379.487-.569.163-.19.217-.325.325-.542.108-.217.054-.407-.027-.57-.081-.163-.73-1.756-1-2.406-.263-.632-.53-.546-.73-.556-.19-.01-.407-.011-.62-.011-.217 0-.57.081-.868.407-.297.325-1.135 1.11-1.135 2.705 0 1.596 1.162 3.138 1.325 3.355.163.217 2.287 3.49 5.542 4.895.774.334 1.378.534 1.848.683.776.247 1.483.212 2.041.129.623-.093 1.92-.785 2.19-1.543.27-.759.27-1.409.19-1.544-.081-.135-.298-.217-.623-.38Z"/></svg>
             Scrivici su WhatsApp
