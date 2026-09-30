@@ -132,6 +132,40 @@
     display: inline-block;
   }
 
+  /* ---------- SOTTOLINEATURA TITOLI (svolazzo disegnato) ---------- */
+  @keyframes uline-draw{ from{ transform: scaleX(0); } to{ transform: scaleX(1); } }
+  .u-line{ position: relative; display: inline-block; max-width: 100%; }
+  .u-line::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -13px;
+    height: 15px;
+    background-repeat: repeat-x;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.9s var(--ease);
+  }
+  .u-line.u-sm::after{ bottom: -8px; height: 10px; }
+  .u-line.u-terracotta::after{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 15'%3E%3Cpath d='M0 8.5 Q5.5 1 11 8.5 T22 8.5' fill='none' stroke='%23B15A34' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: 22px 15px;
+  }
+  .u-line.u-wheat::after{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 15'%3E%3Cpath d='M0 8.5 Q5.5 1 11 8.5 T22 8.5' fill='none' stroke='%23E7C87C' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: 22px 15px;
+  }
+  .u-line.u-field::after{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 15'%3E%3Cpath d='M0 8.5 Q5.5 1 11 8.5 T22 8.5' fill='none' stroke='%237FA05F' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: 22px 15px;
+  }
+  .reveal.in-view .u-line::after{ transform: scaleX(1); }
+  .u-line.u-auto::after{ animation: uline-draw 0.9s var(--ease) 0.6s both; }
+  @media (prefers-reduced-motion: reduce){
+    .u-line::after{ transform: scaleX(1) !important; transition: none !important; animation: none !important; }
+  }
+
   /* ---------- SCROLL REVEAL ---------- */
   .reveal{
     opacity: 0;
@@ -233,14 +267,6 @@
   .hero-photo .fallback-illustration{
     position:absolute; inset:0; width:100%; height:100%;
   }
-  /* Video di sfondo: sta sopra foto e illustrazione, che restano come riserva.
-     Compare con dissolvenza solo quando parte davvero. */
-  .hero-photo .hero-video{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-    opacity:0; transition: opacity 0.9s var(--ease);
-    pointer-events:none;
-  }
-  .hero-photo .hero-video.is-playing{ opacity:1; }
   .hero-photo::after{
     content:"";
     position:absolute; inset:0;
@@ -1311,13 +1337,6 @@
         </g>
       </svg>
     </div>
-    <!-- VIDEO HERO: carica images/hero.mp4 (e opzionalmente hero.webm / hero-mobile.mp4).
-         Se il file non c'è, restano visibili la foto hero.jpg o l'illustrazione. -->
-    <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1">
-      <source src="images/hero-mobile.mp4" type="video/mp4" media="(max-width: 700px)">
-      <source src="images/hero.webm" type="video/webm">
-      <source src="images/hero.mp4" type="video/mp4">
-    </video>
   </div>
   <div class="hero-inner">
     <div class="hero-inner-content">
@@ -1325,7 +1344,7 @@
         <span style="width:22px;height:1px;background:var(--wheat-light);display:inline-block;margin-right:-8px"></span>
         Pernumia, tra Bassa Padovana e Colli Euganei
       </div>
-      <h1>Tutto il necessario per la tua azienda agricola.</h1>
+      <h1 class="u-line u-wheat u-auto">Tutto il necessario per la tua azienda agricola.</h1>
       <p class="lead">
         Un'ampia gamma di sementi, prodotti fitosanitari, concimi e forniture professionali, con la competenza e la vicinanza di chi lavora ogni giorno al fianco del territorio.
       </p>
@@ -1478,7 +1497,7 @@
   <div class="wrap">
     <div class="cra-intro reveal">
       <div class="eyebrow">La nostra rete</div>
-      <h2>Operiamo con il Consorzio CRA</h2>
+      <h2 class="u-line u-wheat">Operiamo con il Consorzio CRA</h2>
       <p>Collaboriamo con il Consorzio CRA (Consorzio Romagnolo Agriservizi), che seleziona e distribuisce mezzi tecnici per l'agricoltura a marchio proprio — concimi, biostimolanti e fisioattivatori pensati per le esigenze reali delle aziende agricole.</p>
       <p>Questa collaborazione ci permette di offrire ai nostri clienti prodotti selezionati, aggiornati alle esigenze del territorio.</p>
       <a class="cra-link" href="https://craconsorzio.it" target="_blank" rel="noopener">Scopri il Consorzio CRA →</a>
@@ -1499,7 +1518,7 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Il territorio</div>
-      <h2>Tra Bassa Padovana e Colli Euganei</h2>
+      <h2 class="u-line u-terracotta">Tra Bassa Padovana e Colli Euganei</h2>
     </div>
     <div class="territorio-banner reveal" aria-hidden="true">
       <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
@@ -1568,7 +1587,7 @@
   <div class="wrap">
     <div class="lph-center reveal">
       <div class="eyebrow">Riscaldamento</div>
-      <h2 class="lph-title">Legna e Pellet</h2>
+      <h2 class="lph-title u-line u-wheat">Legna e Pellet</h2>
       <p class="lph-desc">Carpino, faggio e rovere per la stufa a legna, e pellet certificato dei marchi più affidabili — Pfeifer, Tiger, Rettenmeier, Sarner Holz, Austrian Premium e la nostra linea BIO Pellet. Pronti per l'inverno, disponibili direttamente in azienda a Pernumia.</p>
       <div class="lph-buttons">
         <a class="btn btn-legna" href="legna-e-pellet/#legna">Legna da Ardere →</a>
@@ -1582,7 +1601,7 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Prodotti</div>
-      <h2>Tutto quello che serve al campo</h2>
+      <h2 class="u-line u-terracotta">Tutto quello che serve al campo</h2>
       <p>Quattro aree di fornitura, un solo interlocutore per l'azienda agricola.</p>
     </div>
     <div class="cards">
@@ -1626,7 +1645,7 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Contatti</div>
-      <h2>Vieni a trovarci a Pernumia</h2>
+      <h2 class="u-line u-terracotta">Vieni a trovarci a Pernumia</h2>
       <p>Siamo in via Monselice 2, a pochi minuti da Monselice e Battaglia Terme.</p>
     </div>
     <div class="contact-grid">
@@ -1831,26 +1850,6 @@
     });
   }
   initImageFallbacks(document);
-
-  // Video hero: parte solo se il file esiste e l'utente non ha chiesto meno movimento
-  // o il risparmio dati. Altrimenti restano foto/illustrazione.
-  (function () {
-    var v = document.getElementById('hero-video');
-    if (!v) return;
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var conn = navigator.connection || {};
-    var saver = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '');
-    if (reduce || saver) { v.remove(); return; }
-    v.muted = true;
-    v.addEventListener('playing', function () { v.classList.add('is-playing'); });
-    var p = v.play();
-    if (p && p.catch) p.catch(function () { /* autoplay bloccato: resta la foto */ });
-    // se nessuna sorgente è caricabile, rimuove il video
-    var sources = v.querySelectorAll('source');
-    if (sources.length) {
-      sources[sources.length - 1].addEventListener('error', function () { v.remove(); });
-    }
-  })();
 
   // Frecce di scorrimento della galleria
   (function () {
