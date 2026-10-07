@@ -115,6 +115,8 @@
   .g-item img{ opacity:0; transition:transform .6s var(--ease), opacity .5s var(--ease); }
   .g-item.loaded img{ opacity:1; }
   @media (prefers-reduced-motion:reduce){ .g-item:not(.loaded){ animation:none; } }
+  .g-item.loaded{ aspect-ratio:var(--ar,4/5); }
+  .g-item img{ height:100%; object-fit:cover; }
 </style>
 </head>
 <body>
@@ -167,47 +169,54 @@
 
 <script>
   var grid = document.getElementById('masonryGrid');
-  var loadedCount = 0, checks = [], aspectCycle = ['4/5','1/1','3/4','5/6','4/3'], n = 0;
+  var label = document.getElementById('photo-count-label');
+  var empty = document.getElementById('galleryEmpty');
+  var CAT_ORDER = [], loadedCount = 0, aspectCycle = ['4/5','1/1','3/4','5/6','4/3'];
 
-  // Legge galleria/foto.json (generato in automatico dalle cartelle images/galleria/<categoria>/)
-  var CAT_ORDER = [];
-  var loader = fetch('foto.json', { cache: 'no-cache' })
-    .then(function(r){ return r.json(); })
-    .catch(function(){ return { categorie: [] }; })
-    .then(function(data){
-      CAT_ORDER = data.categorie || [];
-      (data.foto || []).forEach(function(f){ n++; addPhoto(n, f.cat, '../' + f.src); });
-      return Promise.all(checks);
-    });
+  // Paracadute: se per qualunque motivo qualcosa non parte, dopo 2,5 s tutto diventa comunque visibile
+  setTimeout(function(){
+    document.querySelectorAll('.reveal').forEach(function(e){ e.classList.add('in-view'); });
+    grid.querySelectorAll('.g-item').forEach(function(e){ e.classList.add('in'); });
+  }, 2500);
 
-  function addPhoto(n, cat, src){
+  function vuota(msg){ empty.classList.add('show'); label.textContent = msg; }
+
+  function addPhoto(f, i){
+    var cat = f.cat, src = encodeURI('../' + f.src);
     var item = document.createElement('div');
     item.className = 'g-item'; item.dataset.cat = cat;
-    item.style.setProperty('--ar', aspectCycle[n % aspectCycle.length]);
-    item.innerHTML = '<img data-name="f'+n+'" alt="'+cat+' — foto '+n+'" loading="lazy" decoding="async">' +
+    item.style.setProperty('--ar', f.w && f.h ? f.w + '/' + f.h : aspectCycle[i % aspectCycle.length]);
+    item.innerHTML = '<img data-name="f'+i+'" alt="'+cat+' — foto '+(i+1)+'" decoding="async">' +
       '<div class="ph-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>Foto</div>' +
       '<span class="g-cat">'+cat+'</span>';
-    grid.appendChild(item);
     var img = item.querySelector('img');
-    checks.push(new Promise(function(resolve){
-      img.onerror = function(){ item.remove(); resolve(false); };
-      img.onload = function(){ item.querySelector('.ph-fallback').style.display = 'none'; item.classList.add('loaded'); loadedCount++; resolve(true); };
-      img.src = encodeURI(src);
-    }));
+    if (i >= 8) img.loading = 'lazy';
+    img.onload = function(){ item.classList.add('loaded'); var p = item.querySelector('.ph-fallback'); if (p) p.style.display = 'none'; };
+    img.onerror = function(){
+      if (!img.dataset.retry){ img.dataset.retry = '1'; setTimeout(function(){ img.src = src + '?r=1'; }, 700); }
+      else item.remove();
+    };
+    img.src = src;
+    grid.appendChild(item);
   }
 
-  loader.then(function(){
-    var label = document.getElementById('photo-count-label');
-    if (!loadedCount){ document.getElementById('galleryEmpty').classList.add('show'); label.textContent = 'Nessuna foto ancora disponibile'; return; }
-    // contatore animato
-    var t0 = performance.now();
-    (function tick(t){
-      var p = Math.min((t - t0) / 900, 1), v = Math.round(loadedCount * (1 - Math.pow(1 - p, 3)));
-      label.textContent = v + (loadedCount === 1 ? ' fotografia in galleria' : ' fotografie in galleria');
-      if (p < 1) requestAnimationFrame(tick);
-    })(t0);
-    buildFilters(); observeItems();
-  });
+  // Le foto vengono mostrate subito, senza aspettare che siano tutte scaricate
+  fetch('foto.json', { cache: 'no-cache' })
+    .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(data){
+      var foto = data.foto || [];
+      if (!foto.length){ vuota('Nessuna foto ancora disponibile'); return; }
+      CAT_ORDER = data.categorie || []; loadedCount = foto.length;
+      foto.forEach(addPhoto);
+      var t0 = performance.now();
+      (function tick(t){
+        var p = Math.min((t - t0) / 900, 1), v = Math.round(loadedCount * (1 - Math.pow(1 - p, 3)));
+        label.textContent = v + (loadedCount === 1 ? ' fotografia in galleria' : ' fotografie in galleria');
+        if (p < 1) requestAnimationFrame(tick);
+      })(t0);
+      buildFilters(); observeItems();
+    })
+    .catch(function(){ vuota('Galleria non disponibile, ricarica la pagina'); });
 
   // Comparsa a cascata mentre si scorre
   function observeItems(){
