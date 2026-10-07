@@ -1293,7 +1293,7 @@
 
 <section class="hero">
   <div class="hero-photo">
-    <img data-name="hero" alt="" fetchpriority="high" decoding="async">
+    <img data-name="hero-campo" alt="" fetchpriority="high" decoding="async">
     <div class="fallback-illustration" aria-hidden="true">
       <svg viewBox="0 0 1200 620" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
         <rect width="1200" height="620" fill="#B6AE85"/>
@@ -1546,14 +1546,14 @@
           </div>
         </figure>
         <figure class="tb-item reveal">
-          <img data-name="focus4" alt="Grappolo di uva Glera" loading="lazy" decoding="async">
+          <img data-name="focus4" data-src="images/galleria/05-uva/focus4.jpeg" alt="Grappolo di uva Glera" loading="lazy" decoding="async">
           <div class="focus-placeholder">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
             <span class="cap">FOTO<br><span class="filename">images/focus4.jpg</span></span>
           </div>
         </figure>
         <figure class="tb-item reveal stagger-2">
-          <img data-name="focus5" alt="Trappola di monitoraggio lepidotteri" loading="lazy" decoding="async">
+          <img data-name="focus5" data-src="images/galleria/06-in-campo/focus5.jpeg" alt="Trappola di monitoraggio lepidotteri" loading="lazy" decoding="async">
           <div class="focus-placeholder">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
             <span class="cap">FOTO<br><span class="filename">images/focus5.jpg</span></span>
@@ -1782,23 +1782,30 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Genera dinamicamente le 50 miniature della galleria "Scatti dal campo"
+  // Slider "Scatti dal campo": legge galleria/foto.json
   (function () {
     var grid = document.getElementById('gallery-grid');
     if (!grid) return;
-    var frag = document.createDocumentFragment();
-    for (var n = 1; n <= 50; n++) {
-      var name = 'extra' + n;
-      var item = document.createElement('div');
-      item.className = 'gph';
-      item.innerHTML =
-        '<img data-name="' + name + '" alt="Foto ' + n + '" loading="lazy" decoding="async">' +
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>' +
-        '<span class="cap">FOTO ' + n + '<br><span class="filename">images/' + name + '.jpg</span></span>';
-      frag.appendChild(item);
-    }
-    grid.appendChild(frag);
-    initImageFallbacks(grid);
+    fetch('galleria/foto.json', { cache: 'no-cache' })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        (data.foto || []).slice(0, 30).forEach(function (f, i) {
+          var item = document.createElement('div');
+          item.className = 'gph';
+          var img = document.createElement('img');
+          img.dataset.name = 'g' + i;
+          img.dataset.fallbackInit = '1';      // non passare da initImageFallbacks
+          img.dataset.full = encodeURI(f.src); // originale per la lightbox
+          img.alt = f.cat + ' — foto ' + (i + 1);
+          img.decoding = 'async';
+          if (i > 3) img.loading = 'lazy';
+          img.onerror = function () { item.remove(); };
+          img.src = encodeURI(f.thumb || f.src);
+          item.appendChild(img);
+          grid.appendChild(item);
+        });
+      })
+      .catch(function () {});
   })();
 
   // Prova automaticamente varie estensioni (jpg, jpeg, png, webp) per ogni
@@ -1810,11 +1817,13 @@
       if (img.dataset.fallbackInit) return;
       img.dataset.fallbackInit = '1';
       var exts = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG'];
+      var candidates = [];
+      if (img.dataset.src) candidates.push(img.dataset.src);
+      exts.forEach(function (e) { candidates.push('images/' + img.dataset.name + '.' + e); });
       var i = 0;
       function tryNext() {
-        if (i >= exts.length) { img.remove(); return; }
-        img.src = 'images/' + img.dataset.name + '.' + exts[i];
-        i++;
+        if (i >= candidates.length) { img.remove(); return; }
+        img.src = candidates[i++];
       }
       img.onerror = tryNext;
       img.onload = function () {
@@ -1904,7 +1913,7 @@
         return;
       }
       var img = e.target.closest('.gph img[data-name], .tb-feature img[data-name], .tb-item img[data-name], .about-photo img[data-name], .novita-photo img[data-name]');
-      if (img && img.src) openLightbox(img.src, img.alt);
+      if (img && img.src) openLightbox(img.dataset.full || img.src, img.alt);
     });
     closeBtn.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', function (e) {
