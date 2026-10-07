@@ -8,13 +8,6 @@
  ],
  "foto": [
   {
-<<<<<<< HEAD
-   "src": "images/galleria/04-in-magazzino/extra27.jpeg",
-   "cat": "In magazzino",
-   "w": 1200,
-   "h": 1600,
-   "thumb": "galleria/thumb/04-in-magazzino/extra27.jpg"
-=======
    "src": "images/galleria/04-in-magazzino/extra23.jpeg",
    "cat": "In magazzino",
    "w": 1200,
@@ -34,7 +27,6 @@
    "w": 1200,
    "h": 1600,
    "thumb": "galleria/thumb/04-in-magazzino/extra25.jpg"
->>>>>>> 6557ebf61176d50e519699b66ddcb069ee5968fa
   },
   {
    "src": "images/galleria/04-in-magazzino/extra26.jpeg",
@@ -44,27 +36,6 @@
    "thumb": "galleria/thumb/04-in-magazzino/extra26.jpg"
   },
   {
-<<<<<<< HEAD
-   "src": "images/galleria/04-in-magazzino/extra25.jpeg",
-   "cat": "In magazzino",
-   "w": 1200,
-   "h": 1600,
-   "thumb": "galleria/thumb/04-in-magazzino/extra25.jpg"
-  },
-  {
-   "src": "images/galleria/04-in-magazzino/extra24.jpeg",
-   "cat": "In magazzino",
-   "w": 1200,
-   "h": 1600,
-   "thumb": "galleria/thumb/04-in-magazzino/extra24.jpg"
-  },
-  {
-   "src": "images/galleria/04-in-magazzino/extra23.jpeg",
-   "cat": "In magazzino",
-   "w": 1200,
-   "h": 1600,
-   "thumb": "galleria/thumb/04-in-magazzino/extra23.jpg"
-=======
    "src": "images/galleria/04-in-magazzino/extra27.jpeg",
    "cat": "In magazzino",
    "w": 1200,
@@ -119,7 +90,6 @@
    "w": 1200,
    "h": 1600,
    "thumb": "galleria/thumb/05-uva/extra19.jpg"
->>>>>>> 6557ebf61176d50e519699b66ddcb069ee5968fa
   },
   {
    "src": "images/galleria/05-uva/extra9.jpeg",
@@ -129,13 +99,6 @@
    "thumb": "galleria/thumb/05-uva/extra9.jpg"
   },
   {
-<<<<<<< HEAD
-   "src": "images/galleria/05-uva/extra21.jpeg",
-   "cat": "Uva",
-   "w": 1600,
-   "h": 1317,
-   "thumb": "galleria/thumb/05-uva/extra21.jpg"
-=======
    "src": "images/galleria/06-in-campo/extra16.jpeg",
    "cat": "In campo",
    "w": 1600,
@@ -190,7 +153,6 @@
    "w": 1200,
    "h": 1600,
    "thumb": "galleria/thumb/06-in-campo/extra5.jpg"
->>>>>>> 6557ebf61176d50e519699b66ddcb069ee5968fa
   },
   {
    "src": "images/galleria/02-vigneto/extra14.jpeg",
@@ -207,97 +169,6 @@
    "thumb": "galleria/thumb/02-vigneto/extra15.jpg"
   },
   {
-<<<<<<< HEAD
-   "src": "images/galleria/05-uva/extra1.jpeg",
-   "cat": "Uva",
-   "w": 1600,
-   "h": 1200,
-   "thumb": "galleria/thumb/05-uva/extra1.jpg"
-  },
-  {
-   "src": "images/galleria/06-in-campo/focus5.jpeg",
-   "cat": "In campo",
-   "w": 1600,
-   "h": 1200,
-   "thumb": "galleria/thumb/06-in-campo/focus5.jpg"
-  },
-  {
-   "src": "images/galleria/06-in-campo/extra17.jpeg",
-   "cat": "In campo",
-   "w": 1600,
-   "h": 1200,
-   "thumb": "galleria/thumb/06-in-campo/extra17.jpg"
-  },
-  {
-   "src": "images/galleria/05-uva/focus4.jpeg",
-   "cat": "Uva",
-   "w": 768,
-   "h": 1024,
-   "thumb": "galleria/thumb/05-uva/focus4.jpg"
-  },
-  {
-   "src": "images/galleria/05-uva/focus1.jpeg",
-   "cat": "Uva",
-   "w": 1600,
-   "h": 1200,
-   "thumb": "galleria/thumb/05-uva/focus1.jpg"
-  },
-  {
-   "src": "images/galleria/05-uva/extra19.jpeg",
-   "cat": "Uva",
-   "w": 1200,
-   "h": 1600,
-   "thumb": "galleria/thumb/05-uva/extra19.jpg"
-  },
-  {
-   "src": "images/galleria/06-in-campo/extra2.jpeg",
-   "cat": "In campo",
-   "w": 1059,
-   "h": 1412,
-   "thumb": "galleria/thumb/06-in-campo/extra2.jpg"
-  },
-  {
-   "src": "images/galleria/03-concimazioni/extra13.jpeg",
-   "cat": "Concimazioni",
-   "w": 1600,
-   "h": 1200,
-   "thumb": "galleria/thumb/03-concimazioni/extra13.jpg"
-  },
-  {
-   "src": "images/galleria/06-in-campo/extra16.jpeg",
-   "cat": "In campo",
-   "w": 1600,
-   "h": 900,
-   "thumb": "galleria/thumb/06-in-campo/extra16.jpg"
-  },
-  {
-   "src": "images/galleria/06-in-campo/extra18.jpeg",
-   "cat": "In campo",
-   "w": 1600,
-   "h": 1200,
-   "thumb": "galleria/thumb/06-in-campo/extra18.jpg"
-  },
-  {
-   "src": "images/galleria/06-in-campo/extra20.jpeg",
-   "cat": "In campo",
-   "w": 1600,
-   "h": 1200,
-   "thumb": "galleria/thumb/06-in-campo/extra20.jpg"
-  },
-  {
-   "src": "images/galleria/06-in-campo/extra22.jpeg",
-   "cat": "In campo",
-   "w": 900,
-   "h": 1600,
-   "thumb": "galleria/thumb/06-in-campo/extra22.jpg"
-  },
-  {
-   "src": "images/galleria/06-in-campo/extra5.jpeg",
-   "cat": "In campo",
-   "w": 1200,
-   "h": 1600,
-   "thumb": "galleria/thumb/06-in-campo/extra5.jpg"
-=======
    "src": "images/galleria/05-uva/extra11.jpeg",
    "cat": "Uva",
    "w": 1600,
@@ -338,7 +209,6 @@
    "w": 1200,
    "h": 1600,
    "thumb": "galleria/thumb/06-in-campo/extra10.jpg"
->>>>>>> 6557ebf61176d50e519699b66ddcb069ee5968fa
   },
   {
    "src": "images/galleria/06-in-campo/extra6.jpeg",
@@ -346,58 +216,6 @@
    "w": 1200,
    "h": 1600,
    "thumb": "galleria/thumb/06-in-campo/extra6.jpg"
-<<<<<<< HEAD
-  },
-  {
-   "src": "images/galleria/06-in-campo/extra12.jpeg",
-   "cat": "In campo",
-   "w": 1280,
-   "h": 960,
-   "thumb": "galleria/thumb/06-in-campo/extra12.jpg"
-  },
-  {
-   "src": "images/galleria/06-in-campo/extra8.jpeg",
-   "cat": "In campo",
-   "w": 1200,
-   "h": 1600,
-   "thumb": "galleria/thumb/06-in-campo/extra8.jpg"
-  },
-  {
-   "src": "images/galleria/06-in-campo/extra10.jpeg",
-   "cat": "In campo",
-   "w": 1200,
-   "h": 1600,
-   "thumb": "galleria/thumb/06-in-campo/extra10.jpg"
-  },
-  {
-   "src": "images/galleria/05-uva/extra11.jpeg",
-   "cat": "Uva",
-   "w": 1600,
-   "h": 1200,
-   "thumb": "galleria/thumb/05-uva/extra11.jpg"
-  },
-  {
-   "src": "images/galleria/05-uva/extra7.jpeg",
-   "cat": "Uva",
-   "w": 1200,
-   "h": 1600,
-   "thumb": "galleria/thumb/05-uva/extra7.jpg"
-  },
-  {
-   "src": "images/galleria/06-in-campo/extra3.jpeg",
-   "cat": "In campo",
-   "w": 1200,
-   "h": 1600,
-   "thumb": "galleria/thumb/06-in-campo/extra3.jpg"
-  },
-  {
-   "src": "images/galleria/06-in-campo/extra4.jpeg",
-   "cat": "In campo",
-   "w": 1200,
-   "h": 1600,
-   "thumb": "galleria/thumb/06-in-campo/extra4.jpg"
-=======
->>>>>>> 6557ebf61176d50e519699b66ddcb069ee5968fa
   }
  ]
 }
