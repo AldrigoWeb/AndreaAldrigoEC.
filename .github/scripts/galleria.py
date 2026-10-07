@@ -1,22 +1,18 @@
 #!/usr/bin/env python3
-"""Genera gli elenchi letti dal sito (così il browser non deve mai "indovinare" i nomi dei file):
-  galleria/foto.json      -> foto di images/galleria/<categoria>/, dalla più recente, con dimensioni e miniatura
+"""Genera due elenchi letti dal sito (così il browser non deve mai "indovinare" i nomi dei file):
+  galleria/foto.json      -> foto di images/galleria/<categoria>/, dalla più recente, con dimensioni
   galleria/immagini.json  -> tutte le immagini direttamente in images/ (nome senza estensione -> file)
-  galleria/thumb/...      -> miniature leggere (800 px di larghezza) delle foto della galleria
-In locale, dalla radice del sito:  python3 .github/scripts/galleria.py   (serve:  pip install pillow)"""
-import json, os, re, shutil, subprocess
+In locale, dalla radice del sito:  python3 .github/scripts/galleria.py"""
+import json, os, re, subprocess
 
 BASE = "images/galleria"
-THUMB = "galleria/thumb"
-THUMB_W = 800
 EXT = (".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif", ".svg")
 EXT_GALLERIA = (".jpg", ".jpeg", ".png", ".webp")
 
 try:
-    from PIL import Image, ImageOps
+    from PIL import Image
 except Exception:
     Image = None
-    print("ATTENZIONE: Pillow non disponibile, niente dimensioni né miniature")
 
 def etichetta(cartella):
     nome = re.sub(r"^\d+[-_ ]*", "", cartella)
@@ -33,31 +29,20 @@ def data_caricamento(path):
         pass
     return int(os.path.getmtime(path))
 
-def prepara(path, cartella, nome_file):
-    """Legge la foto (già ruotata come da EXIF), ne salva la miniatura e restituisce w, h, thumb."""
+def dimensioni(path):
     if Image is None:
         return {}
     try:
         with Image.open(path) as im:
-            im = ImageOps.exif_transpose(im)      # foto da telefono: orientamento corretto
             w, h = im.size
-            info = {"w": w, "h": h}
-            dest_dir = os.path.join(THUMB, cartella)
-            os.makedirs(dest_dir, exist_ok=True)
-            dest = f"{THUMB}/{cartella}/{os.path.splitext(nome_file)[0]}.jpg"
-            t = im.convert("RGB")
-            if t.width > THUMB_W:
-                t = t.resize((THUMB_W, round(t.height * THUMB_W / t.width)), Image.LANCZOS)
-            t.save(dest, "JPEG", quality=78, optimize=True, progressive=True)
-            info["thumb"] = dest
-            return info
-    except Exception as e:
-        print("Errore su", path, "->", e)
+            try:
+                if im.getexif().get(274) in (5, 6, 7, 8):  # foto da telefono ruotate
+                    w, h = h, w
+            except Exception:
+                pass
+            return {"w": w, "h": h}
+    except Exception:
         return {}
-
-# le miniature vengono rigenerate da zero: così non restano quelle di foto cancellate
-shutil.rmtree(THUMB, ignore_errors=True)
-os.makedirs(THUMB, exist_ok=True)
 
 categorie, foto = [], []
 if os.path.isdir(BASE):
@@ -70,7 +55,7 @@ if os.path.isdir(BASE):
             if f.lower().endswith(EXT_GALLERIA):
                 p = f"{BASE}/{cartella}/{f}"
                 voce = {"src": p, "cat": nome, "_d": data_caricamento(p)}
-                voce.update(prepara(p, cartella, f))
+                voce.update(dimensioni(p))
                 foto.append(voce)
                 trovate = True
         if trovate:
