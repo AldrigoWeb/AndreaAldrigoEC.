@@ -648,7 +648,6 @@
     background: linear-gradient(180deg,#EADFC2 0%, #DCCB9E 100%);
   }
   .territorio-banner svg{ width:100%; height:100%; }
-  .territorio-banner img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; z-index:2; }
   .territorio-text{ max-width: 640px; margin-top: 28px; }
   .territorio-text p{ color: var(--ink-soft); font-size: 15.5px; margin-top: 12px; }
 
@@ -1294,7 +1293,7 @@
 
 <section class="hero">
   <div class="hero-photo">
-    <img data-name="hero-campo" alt="" fetchpriority="high" decoding="async">
+    <img data-name="hero" alt="" fetchpriority="high" decoding="async">
     <div class="fallback-illustration" aria-hidden="true">
       <svg viewBox="0 0 1200 620" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
         <rect width="1200" height="620" fill="#B6AE85"/>
@@ -1314,10 +1313,8 @@
     </div>
     <!-- VIDEO HERO: carica images/hero.mp4 (e opzionalmente hero.webm / hero-mobile.mp4).
          Se il file non c'è, restano visibili la foto hero.jpg o l'illustrazione. -->
-    <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1">
-      <source src="images/hero-mobile.mp4" type="video/mp4" media="(max-width: 700px)">
-      <source src="images/hero.webm" type="video/webm">
-      <source src="images/hero.mp4" type="video/mp4">
+    <video class="hero-video" id="hero-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+      <source src="images/hero-nuovo.mp4" type="video/mp4">
     </video>
   </div>
   <div class="hero-inner">
@@ -1503,7 +1500,6 @@
       <h2>Tra Bassa Padovana e Colli Euganei</h2>
     </div>
     <div class="territorio-banner reveal" aria-hidden="true">
-      <img data-name="territorio-banner" alt="" decoding="async">
       <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
         <circle cx="1000" cy="60" r="46" fill="#C89B3C" opacity="0.35"/>
         <path d="M0,140 C180,90 320,160 520,120 C700,85 880,150 1080,110 C1140,98 1170,105 1200,100 L1200,300 L0,300 Z" fill="#8A9A6B" opacity="0.55"/>
@@ -1548,14 +1544,14 @@
           </div>
         </figure>
         <figure class="tb-item reveal">
-          <img data-name="focus4" data-src="images/galleria/05-uva/focus4.jpeg" alt="Grappolo di uva Glera" loading="lazy" decoding="async">
+          <img data-name="focus4" alt="Grappolo di uva Glera" loading="lazy" decoding="async">
           <div class="focus-placeholder">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
             <span class="cap">FOTO<br><span class="filename">images/focus4.jpg</span></span>
           </div>
         </figure>
         <figure class="tb-item reveal stagger-2">
-          <img data-name="focus5" data-src="images/galleria/06-in-campo/focus5.jpeg" alt="Trappola di monitoraggio lepidotteri" loading="lazy" decoding="async">
+          <img data-name="focus5" alt="Trappola di monitoraggio lepidotteri" loading="lazy" decoding="async">
           <div class="focus-placeholder">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
             <span class="cap">FOTO<br><span class="filename">images/focus5.jpg</span></span>
@@ -1784,31 +1780,38 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Slider "Scatti dal campo": legge galleria/foto.json
-  (function () {
-    var grid = document.getElementById('gallery-grid');
-    if (!grid) return;
-    fetch('galleria/foto.json', { cache: 'no-cache' })
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
-        (data.foto || []).slice(0, 30).forEach(function (f, i) {
-          var item = document.createElement('div');
-          item.className = 'gph';
-          var img = document.createElement('img');
-          img.dataset.name = 'g' + i;
-          img.dataset.fallbackInit = '1';      // non passare da initImageFallbacks
-          img.dataset.full = encodeURI(f.src); // originale per la lightbox
-          img.alt = f.cat + ' — foto ' + (i + 1);
-          img.decoding = 'async';
-          if (i > 3) img.loading = 'lazy';
-          img.onerror = function () { item.remove(); };
-          img.src = encodeURI(f.thumb || f.src);
-          item.appendChild(img);
-          grid.appendChild(item);
-        });
-      })
-      .catch(function () {});
-  })();
+// Miniature "Scatti dal campo": lette da galleria/foto.json (le più recenti, max 50)
+(function () {
+  var grid = document.getElementById('gallery-grid');
+  if (!grid) return;
+  fetch('galleria/foto.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      var foto = (data.foto || []).slice(0, 50);
+      var frag = document.createDocumentFragment();
+      foto.forEach(function (f, i) {
+        var item = document.createElement('div');
+        item.className = 'gph';
+        var img = document.createElement('img');
+        img.setAttribute('data-name', 'galleria' + (i + 1));
+        img.dataset.fallbackInit = '1';
+        img.alt = (f.cat || 'Foto') + ' — foto ' + (i + 1);
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.onload = function () {
+          Array.prototype.forEach.call(item.children, function (el) {
+            if (el !== img) el.style.display = 'none';
+          });
+        };
+        img.onerror = function () { item.remove(); };
+        img.src = encodeURI(f.src);
+        item.appendChild(img);
+        frag.appendChild(item);
+      });
+      grid.appendChild(frag);
+    })
+    .catch(function () {});
+})();
 
   // Prova automaticamente varie estensioni (jpg, jpeg, png, webp) per ogni
   // immagine con attributo data-name, cercando in images/<nome>.<estensione>.
@@ -1819,13 +1822,11 @@
       if (img.dataset.fallbackInit) return;
       img.dataset.fallbackInit = '1';
       var exts = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG'];
-      var candidates = [];
-      if (img.dataset.src) candidates.push(img.dataset.src);
-      exts.forEach(function (e) { candidates.push('images/' + img.dataset.name + '.' + e); });
       var i = 0;
       function tryNext() {
-        if (i >= candidates.length) { img.remove(); return; }
-        img.src = candidates[i++];
+        if (i >= exts.length) { img.remove(); return; }
+        img.src = 'images/' + img.dataset.name + '.' + exts[i];
+        i++;
       }
       img.onerror = tryNext;
       img.onload = function () {
@@ -1854,8 +1855,9 @@
     if (reduce || saver) { v.remove(); return; }
     v.muted = true;
     v.addEventListener('playing', function () { v.classList.add('is-playing'); });
-    var p = v.play();
-    if (p && p.catch) p.catch(function () { /* autoplay bloccato: resta la foto */ });
+    // parte solo a pagina caricata, per non rubare banda a foto e testi
+    function avvia() { var p = v.play(); if (p && p.catch) p.catch(function () { /* autoplay bloccato: resta la foto */ }); }
+    if (document.readyState === 'complete') avvia(); else window.addEventListener('load', avvia);
     // se nessuna sorgente è caricabile, rimuove il video
     var sources = v.querySelectorAll('source');
     if (sources.length) {
@@ -1915,7 +1917,7 @@
         return;
       }
       var img = e.target.closest('.gph img[data-name], .tb-feature img[data-name], .tb-item img[data-name], .about-photo img[data-name], .novita-photo img[data-name]');
-      if (img && img.src) openLightbox(img.dataset.full || img.src, img.alt);
+      if (img && img.src) openLightbox(img.src, img.alt);
     });
     closeBtn.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', function (e) {

@@ -1544,14 +1544,14 @@
           </div>
         </figure>
         <figure class="tb-item reveal">
-          <img data-name="focus4" alt="Grappolo di uva Glera" loading="lazy" decoding="async">
+          <img data-name="focus4" data-src="images/galleria/05-uva/focus4.jpeg" alt="Grappolo di uva Glera" loading="lazy" decoding="async">
           <div class="focus-placeholder">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
             <span class="cap">FOTO<br><span class="filename">images/focus4.jpg</span></span>
           </div>
         </figure>
         <figure class="tb-item reveal stagger-2">
-          <img data-name="focus5" alt="Trappola di monitoraggio lepidotteri" loading="lazy" decoding="async">
+          <img data-name="focus5" data-src="images/galleria/06-in-campo/focus5.jpeg" alt="Trappola di monitoraggio lepidotteri" loading="lazy" decoding="async">
           <div class="focus-placeholder">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>
             <span class="cap">FOTO<br><span class="filename">images/focus5.jpg</span></span>
@@ -1804,7 +1804,8 @@
           });
         };
         img.onerror = function () { item.remove(); };
-        img.src = encodeURI(f.src);
+        img.dataset.full = encodeURI(f.src);          // originale per la lightbox
+        img.src = encodeURI(f.thumb || f.src);        // miniatura leggera se esiste
         item.appendChild(img);
         frag.appendChild(item);
       });
@@ -1823,10 +1824,12 @@
       img.dataset.fallbackInit = '1';
       var exts = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG'];
       var i = 0;
+      var candidates = [];
+      if (img.dataset.src) candidates.push(img.dataset.src);
+      exts.forEach(function (e) { candidates.push('images/' + img.dataset.name + '.' + e); });
       function tryNext() {
-        if (i >= exts.length) { img.remove(); return; }
-        img.src = 'images/' + img.dataset.name + '.' + exts[i];
-        i++;
+        if (i >= candidates.length) { img.remove(); return; }
+        img.src = candidates[i++];
       }
       img.onerror = tryNext;
       img.onload = function () {
@@ -1917,7 +1920,7 @@
         return;
       }
       var img = e.target.closest('.gph img[data-name], .tb-feature img[data-name], .tb-item img[data-name], .about-photo img[data-name], .novita-photo img[data-name]');
-      if (img && img.src) openLightbox(img.src, img.alt);
+      if (img && img.src) openLightbox(img.dataset.full || img.src, img.alt);
     });
     closeBtn.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', function (e) {
