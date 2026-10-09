@@ -16,7 +16,7 @@
 <meta property="og:url" content="https://www.andrealdrigo.it/analisi-del-terreno/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Libre+Franklin:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Libre+Franklin:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -122,7 +122,7 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
-  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; letter-spacing: -0.01em; color: var(--forest-deep); }
+  h1,h2,h3{ font-family:'Quicksand', sans-serif; font-weight:700; letter-spacing: 0; color: var(--forest-deep); }
   .mono{ font-family:'Space Mono', monospace; }
   a{ color: inherit; }
   ::selection{ background: var(--wheat); color: var(--forest-deep); }
@@ -219,7 +219,7 @@
     display:flex; align-items:center; justify-content:center;
     font-family:'Space Mono', monospace; font-size: 11.5px; font-weight:700;
   }
-  .hero-step strong{ display:block; font-family:'Fraunces', serif; font-size: 15px; font-weight:600; padding-top: 3px; }
+  .hero-step strong{ display:block; font-family:'Quicksand', sans-serif; font-size: 15px; font-weight:600; padding-top: 3px; }
   .hero-step p{ margin-top: 4px; font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
   @media (max-width: 720px){
     .hero-steps-row{ flex-direction: column; gap: 22px; }
@@ -342,7 +342,7 @@
   .price-inner{ display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 56px; align-items: start; }
   .price-card{ background: var(--paper-raised); border: 1px solid var(--line-strong); border-radius: 10px; padding: 36px 32px; }
   .price-figure{ margin-top: 14px; display:flex; align-items: baseline; gap: 10px; }
-  .price-figure strong{ font-family:'Fraunces', serif; font-size: clamp(2.8rem, 5vw, 3.8rem); line-height: 1; color: var(--forest-deep); }
+  .price-figure strong{ font-family:'Quicksand', sans-serif; font-size: clamp(2.8rem, 5vw, 3.8rem); line-height: 1; color: var(--forest-deep); }
   .price-figure span{ font-family:'Space Mono', monospace; font-size: 14px; font-weight: 700; color: var(--terracotta); }
   .price-card p{ margin-top: 14px; color: var(--ink-soft); font-size: 14.5px; }
   .price-card .price-asterisk{ margin-top: 10px; font-size: 12.5px; }
@@ -359,7 +359,7 @@
   .faq-section h2{ font-size: clamp(1.7rem, 2.8vw, 2.2rem); margin-top: 14px; }
   .faq-list{ margin-top: 28px; max-width: 760px; }
   .faq-list details{ border-bottom: 1px solid var(--line-strong); padding: 16px 0; }
-  .faq-list summary{ cursor: pointer; font-family:'Fraunces', serif; font-weight: 600; font-size: 17px; color: var(--forest-deep); }
+  .faq-list summary{ cursor: pointer; font-family:'Quicksand', sans-serif; font-weight: 600; font-size: 17px; color: var(--forest-deep); }
   .faq-list details p{ margin-top: 10px; color: var(--ink-soft); font-size: 15px; }
 
   /* ---------- CTA finale ---------- */
@@ -430,7 +430,7 @@
     background: var(--forest-deep); color: var(--paper);
     padding: 34px 8vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;
   }
-  .footer-brand{ font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; }
+  .footer-brand{ font-family: 'Quicksand', sans-serif; font-size: 16px; font-weight: 600; }
   .footer-meta{ font-size: 12.5px; color: rgba(251,249,243,0.55); margin-top: 4px; }
   .footer-back{
     font-family: 'Space Mono', monospace; font-size: 12px; color: var(--wheat);
@@ -462,6 +462,16 @@
     background: radial-gradient(ellipse 60% 70% at 100% 100%, rgba(75,122,62,0.14), transparent 70%);
     pointer-events:none;
   }
+
+  /* ---------- TITOLI PRINCIPALI CENTRATI ---------- */
+  .hero-band-content, .hero-steps-label, .report-intro-inner, .parallax-content, .faq-section > .field-note, .faq-section > h2{ text-align: center; }
+  .hero-band-content{ margin-left: auto; margin-right: auto; }
+  .hero-band-content .field-note, .hero-steps-label, .report-intro .field-note, .faq-section > .field-note{ justify-content: center; }
+  .hero-band-content .field-note::before, .hero-steps-label::before, .report-intro .field-note::before, .faq-section > .field-note::before{ display: none; }
+  .hero-band-content p, .report-intro p, .parallax-content p{ margin-left: auto; margin-right: auto; }
+  .hero-actions, .report-toc{ justify-content: center; }
+  .report-intro-inner, .parallax-content{ margin-left: auto; margin-right: auto; }
+  .faq-list{ margin-left: auto; margin-right: auto; }
 </style>
 </head>
 <body>
