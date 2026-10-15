@@ -8,6 +8,24 @@
  ],
  "foto": [
   {
+   "src": "images/galleria/02-vigneto/WhatsApp Image 2026-10-15 at 17.19.29.jpeg",
+   "cat": "Vigneto",
+   "w": 1600,
+   "h": 1199
+  },
+  {
+   "src": "images/galleria/04-in-magazzino/WhatsApp Image 2026-10-14 at 15.25.34.jpeg",
+   "cat": "In magazzino",
+   "w": 4430,
+   "h": 3517
+  },
+  {
+   "src": "images/galleria/06-in-campo/WhatsApp Image 2026-10-15 at 17.19.56.jpeg",
+   "cat": "In campo",
+   "w": 1599,
+   "h": 873
+  },
+  {
    "src": "images/galleria/04-in-magazzino/extra23.jpeg",
    "cat": "In magazzino",
    "w": 1200,
