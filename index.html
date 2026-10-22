@@ -67,6 +67,7 @@
       "closes": "12:00"
     }
   ],
+  "areaServed": [{"@type": "City", "name": "Pernumia"}, {"@type": "City", "name": "Monselice"}, {"@type": "City", "name": "Battaglia Terme"}, {"@type": "City", "name": "Due Carrare"}, {"@type": "City", "name": "Bagnoli di Sopra"}, {"@type": "City", "name": "Cartura"}, {"@type": "City", "name": "Conselve"}, {"@type": "City", "name": "Terrassa Padovana"}, {"@type": "City", "name": "Arquà Petrarca"}, {"@type": "City", "name": "Galzignano Terme"}, {"@type": "City", "name": "Cervarese Santa Croce"}],
   "sameAs": []
 }
 </script>
@@ -1282,6 +1283,14 @@
   @media (prefers-reduced-motion: reduce){
     .evento-wrapper{ transform: none; opacity: 1; transition: none; }
   }
+
+  /* FAQ consegna pellet */
+  .lph-faq{ max-width: 720px; margin: 26px auto 0; text-align: left; border-top: 1px solid rgba(251,249,243,0.22); }
+  .lph-faq summary{ cursor: pointer; list-style: none; padding: 16px 34px 16px 0; font-family:'Fraunces',serif; font-weight:600; font-size: 17px; color: var(--paper); position: relative; }
+  .lph-faq summary::-webkit-details-marker{ display:none; }
+  .lph-faq summary::after{ content:"+"; position:absolute; right:4px; top:50%; transform:translateY(-50%); font-size: 24px; color: var(--wheat-light); }
+  .lph-faq[open] summary::after{ content:"\2212"; }
+  .lph-faq p{ padding: 0 0 18px; color: #D6D3BF; font-size: 15.5px; }
 </style>
 </head>
 <body>
@@ -1594,6 +1603,10 @@
         <a class="btn btn-legna" href="legna-e-pellet/#legna">Legna da Ardere →</a>
         <a class="btn btn-pellet" href="legna-e-pellet/#pellet">Pellet Certificato →</a>
       </div>
+      <details class="lph-faq">
+        <summary>Consegnate il pellet a domicilio? In quali comuni?</summary>
+        <p>Sì. Consegniamo pellet a domicilio a Pernumia e nei comuni vicini, entro circa 15 km: Monselice, Battaglia Terme, Conselve, Due Carrare, Bagnoli di Sopra, Cartura, Terrassa Padovana, Arquà Petrarca, Galzignano Terme, Cervarese Santa Croce e zone limitrofe. Chiamaci o scrivici su WhatsApp con il tuo comune e la quantità che ti serve: ti diamo disponibilità e preventivo.</p>
+      </details>
     </div>
   </div>
 </section>
